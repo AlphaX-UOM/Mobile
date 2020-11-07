@@ -57,7 +57,7 @@ secure={true} //we pass secure component to identify its password
            </View>
            
            <View style={{padding:1}}>
-           <Button title="Login"  color="#f7287b" onPress={() => Alert.alert('Login process')} />
+           <Button title="Login"  color="#f7287b" onPress={() => navigation.navigate('ThirdPage')}/>
            </View>
         
         </View>

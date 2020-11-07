@@ -84,10 +84,10 @@ function firstScreenStack({ navigation }) {
           component={FirstPage}
           options={{
             title: 'Smart Travel System', //Set Header Title
-            headerLeft: ()=>
+           /* headerLeft: ()=>
               <NavigationDrawerStructure
                 navigationProps={navigation}
-              />,
+              />,*/
             headerStyle: {
               backgroundColor: '#f7287b', //Set Header color
             },
@@ -134,6 +134,30 @@ function secondScreenStack({ navigation }) {
     </Stack.Navigator>
   );
 }
+function ThirdScreenStack({ navigation }) {
+  return (
+      <Stack.Navigator initialRouteName="ThirdPage">
+        <Stack.Screen
+          name="ThirdPage"
+          component={ThirdPage}
+          options={{
+            title: 'User Details', //Set Header Title
+            headerLeft: ()=>
+              <NavigationDrawerStructure
+                navigationProps={navigation}
+              />,
+            headerStyle: {
+              backgroundColor: '#f7287b', //Set Header color
+            },
+            headerTintColor: '#fff', //Set Header text color
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+      </Stack.Navigator>
+  );
+}
 
 function App() {
   return (
@@ -154,7 +178,7 @@ function App() {
           <Drawer.Screen
           name="ThirdPage"
           options={{ drawerLabel: 'User Details' }}
-          component={secondScreenStack} />
+          component={ThirdScreenStack} />
       </Drawer.Navigator>
       
     </NavigationContainer>
