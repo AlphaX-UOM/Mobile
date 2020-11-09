@@ -1,35 +1,5 @@
 
-/*import React from 'react';
-import { StyleSheet, Text, View,Button, Alert,ImageBackground } from 'react-native';
-import Header from './components/Header';
 
-
-export default function App() {
-  return (
-    <View style={styles.screen}>
-      <Header title="Smart Travel System"/>
-      <ImageBackground source= {require('./assets/MY5ZwP4OK-thumb.jpg')} style={styles.image}>
-        <View style={styles.inputContainer}>
-        
-        <Text style={styles.text}>Let's Get Started'</Text>
-       
-        <View style={styles.buttonContainer}>
-        
-           <Button title="Login"  color="#f7287b" onPress={() => Alert.alert('Login process')} />
-           
-        </View>
-        
-        </View>
-        </ImageBackground>
-      
-      </View>
-      
-    
-      
-      
-    
-  );
-}*/
 import 'react-native-gesture-handler';
 
 import * as React from 'react';
