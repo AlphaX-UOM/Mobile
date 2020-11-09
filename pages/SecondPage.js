@@ -1,57 +1,21 @@
 import * as React from 'react';
-import {
-  Button,
-  View,
+import { View,ScrollView,
   Text,
-  SafeAreaView
+  SafeAreaView,Image
 } from 'react-native';
+import Cardele from '../screens/card';
+
 
 const SecondPage = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, padding: 16 }}>
-      <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            Hotels
-          </Text>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            Transport Provider
-          </Text>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            Toure Guide
-          </Text>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            Events
-          </Text>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-         
-         
-        </View>
-        
+      <View style={{ flex: 1, padding: 16 },{backgroundColor:'blue'}}>
+      <ScrollView>
+        <Cardele title="Hotels" text="no details yet"/>
+        <Cardele title="Events" text="no details yet"/>
+        <Cardele title="Guide" text="no details yet"/>
+        <Cardele title="Transport" text="no details yet"/>
+      </ScrollView>
       </View>
     </SafeAreaView>
   );

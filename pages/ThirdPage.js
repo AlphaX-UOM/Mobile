@@ -5,29 +5,16 @@ import {
   Text,
   SafeAreaView
 } from 'react-native';
+import Cardele from '../screens/card';
+import Usercard from '../screens/userdetailcard';
 
 const ThirdPage = ({ route, navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 16 }}>
-      <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            Your Details
-          </Text>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-            <Text>User:</Text>
+     
           
-          
-        </View>
+      <Usercard /> 
         
       </View>
     </SafeAreaView>
