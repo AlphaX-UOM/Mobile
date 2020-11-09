@@ -20,7 +20,7 @@ const FirstPage = ({ navigation }) => {
       <TextInput style={{ height: 30,width:220,padding:4}}
 onChangeText={(value) => console.log(value)}
 placeholder="Password"
-secure={true} //we pass secure component to identify its password
+secureTextEntry={true} //we pass secure component to identify its password
 //give custom styles
 />
     )
