@@ -1,203 +1,183 @@
+// In App.js in a new project
 
 
-import 'react-native-gesture-handler';
+// In App.js in a new project
 
 import * as React from 'react';
-import {
-  Button,
-  View,
-  Text,
-  TouchableOpacity,
-  Image
-} from 'react-native';
-
+import { View, Text,Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import RootStackScreen from './Screens/StackScreens/RootStackScreen';
+import { ActivityIndicator } from 'react-native-paper';
+import AuthContext from './components/context'
+import MainTabScreen from './Screens/MainTabScreen'
+import SupportScreen from './Screens/SupportScreen';
+import SettingsScreen from './Screens/SettingsScreen';
+import BookmarkScreen from './Screens/Reservation';
+import DrawerContent from './Screens/DrawerContent';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import HomeStackScreen from './Screens/StackScreens/HomeStackScreen';
+import DetailsStackScreen from './Screens/StackScreens/DetailStackScreen';
+import ReservationStackScreen from './Screens/StackScreens/ReservationStackScreen'
+import ReservationScreen from './Screens/Reservation'
 
-import FirstPage from './pages/FirstPage';
-import SecondPage from './pages/SecondPage';
-import ThirdPage from './pages/ThirdPage';
-
-const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const NavigationDrawerStructure = (props)=> {
-  
-  const toggleDrawer = () => {
-    
-    props.navigationProps.toggleDrawer();
-  };
-
-  return (
-    <View style={{ flexDirection: 'row' }}>
-      <TouchableOpacity onPress={()=> toggleDrawer()}>
-        {}
-        <Image
-          source={{uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/drawerWhite.png'}}
-          style={{
-            width: 25,
-            height: 25,
-            marginLeft: 5
-          }}
-        />
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-function firstScreenStack({ navigation }) {
-  return (
-      <Stack.Navigator initialRouteName="FirstPage">
-        <Stack.Screen
-          name="FirstPage"
-          component={FirstPage}
-          options={{
-            title: 'Smart Travel System', 
-           
-            headerStyle: {
-              backgroundColor: '#f7287b', 
-            },
-            headerTintColor: '#fff', 
-            headerTitleStyle: {
-              fontWeight: 'bold', 
-            },
-          }}
-        />
-      </Stack.Navigator>
-  );
-}
-
-function secondScreenStack({ navigation }) {
-  return (
-    <Stack.Navigator
-      initialRouteName="SecondPage"
-      screenOptions={{
-        headerLeft: ()=>
-          <NavigationDrawerStructure
-            navigationProps={navigation}
-          />,
-        headerStyle: {
-          backgroundColor: '#f7287b', 
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold', 
-        }
-      }}>
-      <Stack.Screen
-        name="SecondPage"
-        component={SecondPage}
-        options={{
-          title: 'Reservations',
-          
-        }}/>
-      <Stack.Screen
-        name="ThirdPage"
-        component={ThirdPage}
-        options={{
-          title: 'Third Page', 
-        }}/>
-    </Stack.Navigator>
-  );
-}
-function ThirdScreenStack({ navigation }) {
-  return (
-      <Stack.Navigator initialRouteName="ThirdPage">
-        <Stack.Screen
-          name="ThirdPage"
-          component={ThirdPage}
-          options={{
-            title: 'User Details', 
-            headerLeft: ()=>
-              <NavigationDrawerStructure
-                navigationProps={navigation}
-              />,
-            headerStyle: {
-              backgroundColor: '#f7287b',
-            },
-            headerTintColor: '#fff', 
-            headerTitleStyle: {
-              fontWeight: 'bold', 
-            },
-          }}
-        />
-      </Stack.Navigator>
-  );
-}
-
+ 
 function App() {
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        drawerContentOptions={{
-          activeTintColor: '#e91e63',
-          itemStyle: { marginVertical: 5 },
-        }}>
-        <Drawer.Screen
-          name="FirstPage"
-          options={{ drawerLabel: 'Home', }}
-          component={firstScreenStack} />
-        <Drawer.Screen
-          name="SecondPage"
-          options={{ drawerLabel: 'Reservations' }}
-          component={secondScreenStack} />
-          <Drawer.Screen
-          name="ThirdPage"
-          options={{ drawerLabel: 'User Details' }}
-          component={ThirdScreenStack} />
-      </Drawer.Navigator>
+  // const [isLoading,setIsLoading]=React.useState(true);
+  // const [userToken,setUserToken]=React.useState(null);
+  
+  // const [isLoading, setLoading] = React.useState(true);
+  // const [data1, setData1] = React.useState([]);
+  //     let i=0;
+  //   React.useEffect(() => {
+  //     fetch('https://alphax-api.azurewebsites.net/api/tourguides')
+  //       .then((response) => response.json())
+  //       .then((json) => setData1(json.movies))
+  //       .catch((error) => console.error(error))
+  //       .finally(() => setLoading(false));
+  //   }, []);
+ 
+   
+const initialLoginState={
+   isLoading:true,
+   userName:null,
+   userToken:null,
+   
+
+ };
+  
+ const loginReducer=(prevState,action)=>{
+  
+   switch(action.type){
+     case 'RETRIVE_TOKEN':
+       return{
+         ...prevState,
+         userToken:action.token,
+         isLoading:false,
+       };
+       case 'LOGIN':
+       return{
+         ...prevState,
+         userName:action.id,
+         userToken:action.token,
+         isLoading:false
+       };
+       case 'LOGOUT':
+       return{
+         ...prevState,
+         userName:null,
+         userToken:null,
+         isLoading:false
+       };
+       case 'REGISTER':
+       return{
+         ...prevState,
+         userName:action.id,
+         userToken:action.token,
+         isLoading:false
+
+       };
+   }
+
+ };
+ const[loginState,dispatch]=React.useReducer(loginReducer,initialLoginState)
+ 
+  const authContext=React.useMemo(()=>( 
+    
+    {
+    
+    signIn:async(condition)=>{
       
+      // setUserToken('false');
+      // setIsLoading(false);
+      
+      let userToken;
+      userToken=null;
+    //  for(i;i<10;i++){
+    //    if(userName===data1[i].id){
+         
+    //      break;
+    //    }
+    //    else continue;
+    //  }
+      //  console.log('user name',data1[0].id)
+      //  console.log('pass',data1[0].releaseYear)
+      if(condition==true){
+        
+        try {
+          userToken='fksjf';
+          await AsyncStorage.setItem('userToken', userToken);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      console.log('user token',userToken);
+      dispatch({type:'LOGIN', token: userToken});
+    },
+    signOut:async()=>{
+      
+      // setUserToken(null);
+      // setIsLoading(false);
+      try {
+        await AsyncStorage.removeItem('userToken');
+      } catch (e) {
+        console.log(e);
+      }
+      dispatch({type:'LOGOUT'});
+    },
+    signUp:()=>{
+      //setUserToken('fksjf');
+      // setIsLoading(false);
+    }
+  }),[]);
+  React.useEffect(() => {
+    setTimeout(async() =>{
+      // setIsLoading(false);
+      let userToken;
+      userToken=null;
+      try {
+       userToken= await AsyncStorage.getItem('userToken')
+      } catch (e) {
+        console.log(e);
+      }
+      console.log('user token',userToken);
+      dispatch({type:'REGISTER', token:userToken});
+    },1000);
+    
+  }, [])
+
+  if (loginState.isLoading){
+    return(
+      
+      <View style={{flex: 1,justifyContent: 'center',alignItems:'center'}}>
+        <ActivityIndicator size="large"/>
+      </View>
+    )
+  }
+
+  
+  return (
+    <AuthContext.Provider value={authContext}>
+       
+    <NavigationContainer>
+      {loginState.userToken !== null ?(
+  
+    <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
+            <Drawer.Screen name="userDetails" component={DetailsStackScreen} />
+          <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
+        
+          <Drawer.Screen name="reservation" component={ReservationStackScreen} />
+          <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+          <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+         
+      </Drawer.Navigator> )
+     : <RootStackScreen/>
+     }
     </NavigationContainer>
+    </AuthContext.Provider>
   );
 }
 
 export default App;
-
-/*const styles = StyleSheet.create({
-     screen: {
-       flex: 1,
-     },
-     container: {
-      flex: 1,
-      flexDirection: "column",
-      padding:0
-  
-    },
-    image: {
-      flex: 1,
-    resizeMode:'cover'
-      
-   
-    },
-    text: {
-      color: "#606165",
-      fontSize: 30,
-      fontWeight: "bold",
-      padding:10
-  
-    },
-   inputContainer: {
-    padding:35,
-    alignItems: 'center',
-    
-   },
-
-    buttonContainer:{
-      flexDirection: 'row',
-      width:'50%',
-      
-      padding:56,
-      alignItems: 'center',
-      shadowColor:'black',
-      shadowOffset:{width:0, height:2},
-      shadowRadius:6,
-      shadowOpacity:0.6,
-      elevation:5,
-      backgroundColor: '#d4e7e8',
-      borderRadius:10
-
-
-    }
-});
-*/
