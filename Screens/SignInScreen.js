@@ -106,7 +106,7 @@ const SignInScreen = ({navigation}) => {
                person=>person.guideId===userName && person.name===password).map(
                    (Aname)=>{
                        return(
-                           signIn(true),
+                           signIn(true,Aname.name),
                            status=true,
                            person_name=Aname.name
                            )}) 
@@ -117,14 +117,10 @@ const SignInScreen = ({navigation}) => {
           
             
             
-           )  ,
+           )  
           
                 
-           () =>
-           navigation.navigate("DetailsScreen", {
-            
-            params: { param1:person_name }
-          })
+         
      
 
     }

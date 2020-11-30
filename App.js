@@ -47,7 +47,8 @@ const initialLoginState={
    
 
  };
-  
+  const [tokenState,setTokenState] =React.useState(null)
+  console.log('appjs token',tokenState)
  const loginReducer=(prevState,action)=>{
   
    switch(action.type){
@@ -88,11 +89,11 @@ const initialLoginState={
     
     {
     
-    signIn:async(condition)=>{
+    signIn:async(condition,token)=>{
       
       // setUserToken('false');
       // setIsLoading(false);
-      
+      setTokenState(token)
       let userToken;
       userToken=null;
     //  for(i;i<10;i++){
@@ -156,7 +157,7 @@ const initialLoginState={
       </View>
     )
   }
-
+  console.log('userName',tokenState)
   
   return (
     <AuthContext.Provider value={authContext}>
@@ -165,12 +166,11 @@ const initialLoginState={
       {loginState.userToken !== null ?(
   
     <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
-            <Drawer.Screen name="userDetails" component={DetailsStackScreen} />
-          <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
-        
-          <Drawer.Screen name="reservation" component={ReservationStackScreen} />
-          <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-          <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+            <Drawer.Screen name="userDetails" component={DetailsStackScreen}  initialParams={{ Name: tokenState }}/>
+            <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
+            <Drawer.Screen name="reservation" component={ReservationStackScreen} />
+            <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+            <Drawer.Screen name="SupportScreen" component={SupportScreen} />
          
       </Drawer.Navigator> )
      : <RootStackScreen/>
