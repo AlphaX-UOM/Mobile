@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { Avatar, Accessory } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
@@ -8,8 +8,32 @@ import 'react-native-gesture-handler';
 import {route} from '@react-navigation/native';
 
 const DetailsScreen = ({ route, navigation }) => {
+  const [data1, setData1] = React.useState([]);
+  let email=''; 
+  let image='';
+  let pno='';
+  let adress='';
+  let Name='';
 
-  console.log('detailscreen',route.params.Name)
+  React.useEffect(() => {
+    fetch('https://localhost:44396/api/UserDetails')
+      .then((response) => response.json())
+      .then((json) => setData1(json))
+      .catch((error) => console.error(error))
+      
+  }, []);
+  data1 && data1.filter(
+    person=>person.uid===route.params.Name ).map(
+        (Aname)=>{
+            return(
+                
+                Name=Aname.name,
+                email=Aname.email,
+                image=Aname.useurl,
+                pno=Aname.pnumber,
+                adress=Aname.adress
+                )}) 
+  console.log('detailscreen',email)
  
     return (
       <View style={styles.container}>
@@ -17,14 +41,14 @@ const DetailsScreen = ({ route, navigation }) => {
         <Avatar
          rounded
          size="xlarge"
-         source={{ uri:'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',}}/>
+         source={{ uri:{image}}}/>
         </View>
         <Animatable.View  animation="fadeInUpBig" style={styles.footer}>
           <View style={styles.text_detail}>
-    <Text style={styles.text_footer}>Name           :{route.params.Name}</Text>
-          <Text style={styles.text_footer}>Email            :</Text>
-          <Text style={styles.text_footer}>Contact No  :</Text>
-          <Text style={styles.text_footer}>Adress          :</Text>
+    <Text style={styles.text_footer}>Name:</Text><Text>{Name}</Text>
+    <Text style={styles.text_footer}>Email    :</Text><Text>{email}</Text>
+          <Text style={styles.text_footer}>Contact No:</Text><Text>{pno}</Text>
+          <Text style={styles.text_footer}>Adress:</Text><Text>{adress}</Text>
           </View>
         </Animatable.View>
         
@@ -61,7 +85,7 @@ header: {
   alignItems: 'center'
 },
 text_footer: {
-  color: '#05375a',
+  color: 'blue',
   fontSize: 18,
   padding: 10
 },

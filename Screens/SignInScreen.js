@@ -25,7 +25,7 @@ const SignInScreen = ({navigation}) => {
     const [data1, setData1] = React.useState([]);
         
       React.useEffect(() => {
-        fetch('https://alphax-api.azurewebsites.net/api/tourguides')
+        fetch('https://localhost:44396/api/UserDetails')
           .then((response) => response.json())
           .then((json) => setData1(json))
           .catch((error) => console.error(error))
@@ -103,12 +103,13 @@ const SignInScreen = ({navigation}) => {
      
          
            data1 && data1.filter(
-               person=>person.guideId===userName && person.name===password).map(
+               person=>person.name===userName && person.passsword===password).map(
                    (Aname)=>{
                        return(
-                           signIn(true,Aname.name),
+                           signIn(true,Aname.uid),
                            status=true,
                            person_name=Aname.name
+                           
                            )}) 
 
                           

@@ -168,7 +168,7 @@ const initialLoginState={
     <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
             <Drawer.Screen name="userDetails" component={DetailsStackScreen}  initialParams={{ Name: tokenState }}/>
             <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
-            <Drawer.Screen name="reservation" component={ReservationStackScreen} />
+            <Drawer.Screen name="reservation" component={ReservationStackScreen} initialParams={{ Name: tokenState }} />
             <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
             <Drawer.Screen name="SupportScreen" component={SupportScreen} />
          

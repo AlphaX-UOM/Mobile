@@ -5,7 +5,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const ReservationStack = createStackNavigator();
 
-const ReservationStackScreen = ({navigation}) => (
+const ReservationStackScreen = ({navigation,route}) => 
+{
+    let useName=route.params.Name;
+  return  (
     <ReservationStack.Navigator screenOptions={{
             headerStyle: {
             backgroundColor: '#434a54',
@@ -15,7 +18,7 @@ const ReservationStackScreen = ({navigation}) => (
             fontWeight: 'bold'
             }
         }}>
-            <ReservationStack.Screen name="Home" component={ReservationScreen} options={{
+            <ReservationStack.Screen name="Home" component={ReservationScreen} initialParams={{ Name:useName  }} options={{
             title:'Reservations',
             headerLeft: () => (
                 <Icon.Button name="ios-menu" size={25} backgroundColor="#434a54" onPress={() => navigation.openDrawer()}></Icon.Button>
@@ -23,5 +26,5 @@ const ReservationStackScreen = ({navigation}) => (
             }} />
     </ReservationStack.Navigator>
     );
-
+        }
     export default ReservationStackScreen;
