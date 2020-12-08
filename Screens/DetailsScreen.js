@@ -16,7 +16,7 @@ const DetailsScreen = ({ route, navigation }) => {
   let Name='';
 
   React.useEffect(() => {
-    fetch('https://localhost:44396/api/UserDetails')
+    fetch('https://run.mocky.io/v3/63363a9e-7e23-4f7c-b4af-e75d8655f8c3')
       .then((response) => response.json())
       .then((json) => setData1(json))
       .catch((error) => console.error(error))
@@ -29,11 +29,11 @@ const DetailsScreen = ({ route, navigation }) => {
                 
                 Name=Aname.name,
                 email=Aname.email,
-                image=Aname.useurl,
+                image=Aname.userurl,
                 pno=Aname.pnumber,
                 adress=Aname.adress
                 )}) 
-  console.log('detailscreen',email)
+ // console.log(image)
  
     return (
       <View style={styles.container}>
@@ -41,7 +41,7 @@ const DetailsScreen = ({ route, navigation }) => {
         <Avatar
          rounded
          size="xlarge"
-         source={{ uri:{image}}}/>
+         source={{ uri:image}}/>
         </View>
         <Animatable.View  animation="fadeInUpBig" style={styles.footer}>
           <View style={styles.text_detail}>

@@ -13,7 +13,7 @@ const ReservationScreen = ({ route, navigation }) => {
   let price4='';
   let eventtype='';
   React.useEffect(() => {
-    fetch('https://localhost:44396/api/Eventreservations')
+    fetch('https://run.mocky.io/v3/6541a298-8af0-4ee5-885d-bd592317d6c0')
       .then((response) => response.json())
       .then((json) => setData1(json))
       .catch((error) => console.error(error))
@@ -37,7 +37,7 @@ let checkInDate3='';
 let price3='';
 let NameG='';
 React.useEffect(() => {
-  fetch('https://localhost:44396/api/Guiderservations')
+  fetch('https://run.mocky.io/v3/fd5fe704-a42b-41e2-ac28-75488c55c5e5')
                     .then((response) => response.json())
                     .then((json) => setData11(json))
                     .catch((error) => console.error(error))
@@ -64,7 +64,7 @@ React.useEffect(() => {
                               let nooftravellers='';
                               let hotelName='';
                               React.useEffect(() => {
-                                fetch('https://localhost:44396/api/Hotelreservations')
+                                fetch('https://run.mocky.io/v3/93acd6ff-6391-46f0-a734-9e4d468351ea')
                                                   .then((response) => response.json())
                                                   .then((json) => setData111(json))
                                                   .catch((error) => console.error(error))
@@ -94,7 +94,7 @@ React.useEffect(() => {
                                                             let drop='';
                                                             let notrav='';
                                                             React.useEffect(() => {
-                                                              fetch('https://localhost:44396/api/Transportproviderreservations')
+                                                              fetch('https://run.mocky.io/v3/dc29ebec-fa25-4c53-bcce-01e9143b7576')
                                                                                 .then((response) => response.json())
                                                                                 .then((json) => setData1111(json))
                                                                                 .catch((error) => console.error(error))

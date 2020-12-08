@@ -25,7 +25,7 @@ const SignInScreen = ({navigation}) => {
     const [data1, setData1] = React.useState([]);
         
       React.useEffect(() => {
-        fetch('https://localhost:44396/api/UserDetails')
+        fetch('https://run.mocky.io/v3/63363a9e-7e23-4f7c-b4af-e75d8655f8c3')
           .then((response) => response.json())
           .then((json) => setData1(json))
           .catch((error) => console.error(error))
@@ -101,7 +101,7 @@ const SignInScreen = ({navigation}) => {
         
         return(
      
-         
+          
            data1 && data1.filter(
                person=>person.name===userName && person.passsword===password).map(
                    (Aname)=>{

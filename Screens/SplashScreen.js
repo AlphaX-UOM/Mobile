@@ -6,7 +6,8 @@ import {
     Dimensions,
     StyleSheet,
     StatusBar,
-    Image
+    Image,
+    ImageBackground
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
@@ -17,22 +18,22 @@ const SplashScreen = ({navigation}) => {
 
 
     return (
+        <ImageBackground  style={styles.ImageBackground} source={require('../assets/annie-spratt-qyAka7W5uMY-unsplash.jpg')}>
      <View style={styles.container}>
-            <StatusBar backgroundColor='#434a54' barStyle='light-content'/>
+         
+            <StatusBar backgroundColor='rgba( 0, 0, 0, 05 )' barStyle='light-content'/>
         <View style={styles.header}>
-           <Animatable.Image
+        <View>
+            <Animatable.Image
                animation="bounce"
                iterationCount="infinite"
                direction="alternate"
-            style={styles.logo} source={require('../assets/logowhite.png')}
+            style={styles.logo} source={require('../assets/edited1.png')}
            resizeMode="contain"/>
-        </View>
-        <Animatable.View style={styles.footer} animation="fadeInUpBig">
-            <Text style={styles.title}>Welcome to AlphaX SmartTravel</Text>
-            
+            </View>
             <View style={styles.button}>
             <TouchableOpacity onPress={()=>navigation.navigate('SignInScreen')}>
-                <LinearGradient colors={['#434a54','#c5c9d9']} style={styles.signIn}>
+                <LinearGradient colors={['#434a54','#69C6BA']} style={styles.signIn}>
                     <Text style={styles.textSign}>Get Started</Text>
                     <MaterialCommunityIcons
                     name="chevron-right"
@@ -42,8 +43,11 @@ const SplashScreen = ({navigation}) => {
                 </LinearGradient>
             </TouchableOpacity>
             </View>
-        </Animatable.View>
+        </View>
+       
+      
      </View>
+     </ImageBackground>
     );
 };
 
@@ -54,8 +58,10 @@ const height_logo = height * 0.28;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    backgroundColor: '#434a54'
+    flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba( 0, 0, 0, 0.6 )',
   },
   header: {
       flex: 2,
@@ -63,16 +69,16 @@ const styles = StyleSheet.create({
       alignItems: 'center'
   },
   footer: {
-      flex: 0.5,
+      flex: 2,
       backgroundColor: '#fff',
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
       paddingVertical: 50,
-      paddingHorizontal: 30
+      paddingHorizontal: 40
   },
   logo: {
-      width: height_logo,
-      height: height_logo
+      width: 350,
+      height: 150
   },
   title: {
       color: '#05375a',
@@ -98,6 +104,11 @@ const styles = StyleSheet.create({
   textSign: {
       color: 'white',
       fontWeight: 'bold'
-  }
+  },
+  ImageBackground: {
+    flex: 1,
+    width: null,
+    height: null,
+},
 });
 

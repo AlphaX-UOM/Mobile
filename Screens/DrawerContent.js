@@ -40,9 +40,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
                             
                             }}>
                             <Image 
-                                source={require('../assets/logo.png')}
-                                borderWidth={2} 
+                                source={require('../assets/mekablpn1234w.png')}
+                                borderWidth={0} 
                                 resizeMode= 'contain'
+                                style={{padding:80}}
                             />
                            
                         </View>
