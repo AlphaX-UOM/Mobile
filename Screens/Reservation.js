@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Text,  StyleSheet,ScrollView ,Image} from 'react-native';
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import {FontAwesome,Feather} from 'react-native-vector-icons';
+import CollapsibleCard from "./Collapsiablecard";
 
 
 
@@ -131,12 +132,31 @@ React.useEffect(() => {
              <FontAwesome name={props.icon} color="black" size={45}/>
              <Text style={[styles.text_footer,{fontSize:30}]}>{props.Title}</Text>
           </View>
-          <Text style={{padding:5}}>CheckInDate:   {props.checkInDate}</Text>
-          <Text style={{padding:5}}>CheckOutDate:  {props.checkOutDate}</Text>
-          <Text style={{padding:5}}>Price:  {props.price}</Text>  
-             <Text style={styles.text_footer}>{props.discription}</Text>
+          <View style={[styles.Rcardstylet]}>
+          <Text style={styles.Rcardtext}>CheckInDate:   {props.checkInDate}</Text>
+          </View>
+          <View style={[styles.Rcardstylet]}>
+          <Text style={styles.Rcardtext}>CheckOutDate:  {props.checkOutDate}</Text>
+          </View>
+          <View style={styles.Rcardstylet}>
+          <Text style={styles.Rcardtext}>Price:  {props.price}</Text>  
+          </View>
+          <View style={[styles.Rcardstylet]}>
+             <Text style={styles.Rcardtext}>{props.discription}</Text>
+             </View>
+             <CollapsibleCard
+        title="History"
+        style={styles.Rcardtext}
+      >
+        <View style={{ padding: 8 }}>
+          <Text style={styles.paragraph}>Content</Text>
+
+          <Text style={styles.paragraph}>Hello World</Text>
+        </View>
+      </CollapsibleCard>
             
             </View>
+        
         </View>
         
       </View>
@@ -146,6 +166,7 @@ React.useEffect(() => {
       <View style={styles.container}>
         <ScrollView style={{padding:10}}>
         <View style={{padding:10}}>
+       
            <RCard icon='hospital-o' Title='Hotels'
            checkInDate={checkInDate2}
            checkOutDate={checkOutDate2} 
@@ -212,6 +233,16 @@ header: {
 },
 text_detail:{
   padding: 10
+},
+Rcardtext: {
+  padding:5 ,
+  fontSize:18,
+  color: 'black'
+},
+Rcardstylet:{
+  padding:10,
+  backgroundColor:'white',
+  borderRadius: 10
 }
 
 });
