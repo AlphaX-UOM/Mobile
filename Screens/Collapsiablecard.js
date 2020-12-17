@@ -61,6 +61,7 @@ function CollapsibleCard({
                     name="chevron-down"
                     color={'black'}
                     size={30}
+                   
                     />
         </AnimatedView>
       </TouchableOpacity>

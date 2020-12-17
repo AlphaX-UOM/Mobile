@@ -6,7 +6,7 @@ import {
     TextInput,
     Platform,
     StyleSheet ,
-    
+    ImageBackground,
     StatusBar,
     Alert
 } from 'react-native';
@@ -25,7 +25,7 @@ const SignInScreen = ({navigation}) => {
     const [data1, setData1] = React.useState([]);
         
       React.useEffect(() => {
-        fetch('https://run.mocky.io/v3/63363a9e-7e23-4f7c-b4af-e75d8655f8c3')
+        fetch('https://alphax-api.azurewebsites.net/api/users')
           .then((response) => response.json())
           .then((json) => setData1(json))
           .catch((error) => console.error(error))
@@ -103,10 +103,10 @@ const SignInScreen = ({navigation}) => {
      
           
            data1 && data1.filter(
-               person=>person.name===userName && person.passsword===password).map(
+               person=>person.email===userName && person.password===password).map(
                    (Aname)=>{
                        return(
-                           signIn(true,Aname.uid),
+                           signIn(true,Aname.id),
                            status=true,
                            person_name=Aname.name
                            
@@ -152,6 +152,7 @@ const SignInScreen = ({navigation}) => {
  
   console.log(data.password)
  return (
+  <ImageBackground  style={styles.ImageBackground} source={require('../assets/annie-spratt-qyAka7W5uMY-unsplash.jpg')}>
       <View style={styles.container}>
           <StatusBar backgroundColor='#434a54' barStyle='light-content'/>
           <View style={styles.header}>
@@ -166,13 +167,13 @@ const SignInScreen = ({navigation}) => {
                   style={styles.textInput}
                   onChangeText={(val)=>textInputChange(val)}
                 />
-                {/* {data.check_textInputChange ?
+                {data.check_textInputChange ?
                 <Feather
                  name="check-circle"
                  color="black"
                  size={20}
                 />
-                :null} */}
+                :null}
             </View>
             <Text style={[styles.text_footer,{marginTop:35}]}>Password</Text>
             <View style={styles.action}>
@@ -183,7 +184,7 @@ const SignInScreen = ({navigation}) => {
                   secureTextEntry={data.secureTextEntry ? true:false}
                   onChangeText={(val)=>handlePasswordChange(val)}
                 />
-                {/* <TouchableOpacity 
+                <TouchableOpacity 
                 onPress={updateSecureTextEntry}
                 >
                     {data.secureTextEntry ?
@@ -197,12 +198,12 @@ const SignInScreen = ({navigation}) => {
                 color="black"
                 size={20}
                />}
-                </TouchableOpacity> */}
+                </TouchableOpacity>
             </View>
             <View style={styles.button}>
                 <TouchableOpacity style={styles.signIn} onPress={() =>{loginHandle(data.userName,data.password),check()}}>
                 <LinearGradient
-                  colors={['#434a54','#c5c9d9']}
+                  colors={['#434a54','#69C6BA']}
                   style={styles.signIn}
                 >
                     <Text style={[styles.textSign,{color:'#ffff'}]}>Sign In</Text>
@@ -213,6 +214,7 @@ const SignInScreen = ({navigation}) => {
           </Animatable.View>
         
       </View>
+      </ImageBackground>
     );
 };
 
@@ -220,8 +222,10 @@ export default SignInScreen;
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1, 
-      backgroundColor: '#434a54'
+      flex: 1,
+      justifyContent: 'center',
+     
+      backgroundColor: 'rgba( 0, 0, 0, 0.6 )',
     },
     header: {
         flex: 1,
@@ -284,5 +288,10 @@ const styles = StyleSheet.create({
     textSign: {
         fontSize: 18,
         fontWeight: 'bold'
-    }
+    },
+    ImageBackground: {
+      flex: 1,
+      width: null,
+      height: null,
+  },
   });

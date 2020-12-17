@@ -16,22 +16,22 @@ const DetailsScreen = ({ route, navigation }) => {
   let Name='';
 
   React.useEffect(() => {
-    fetch('https://run.mocky.io/v3/63363a9e-7e23-4f7c-b4af-e75d8655f8c3')
+    fetch('https://alphax-api.azurewebsites.net/api/users')
       .then((response) => response.json())
       .then((json) => setData1(json))
       .catch((error) => console.error(error))
       
   }, []);
   data1 && data1.filter(
-    person=>person.uid===route.params.Name ).map(
+    person=>person.id===route.params.Name ).map(
         (Aname)=>{
             return(
                 
-                Name=Aname.name,
+                Name=Aname.firstName,
                 email=Aname.email,
                 image=Aname.userurl,
-                pno=Aname.pnumber,
-                adress=Aname.adress
+                pno=Aname.contact,
+                adress=Aname.address
                 )}) 
  // console.log(image)
  
