@@ -18,7 +18,7 @@ const defaultProps = {
   contentHeight: 300,
 };
 
-function CollapsibleCard({
+function CollapsibleCard1({
   children,
   contentHeight,
   defaultCollapsed,
@@ -56,15 +56,15 @@ function CollapsibleCard({
         onPress={() => setCollapsed(c => !c)}
         style={styles.cardTop}>
         <View style={styles. addpadding}>
-        <Text style={{fontSize:20,color:'white'}}>{title}</Text>
+        <Text style={{color:'white'}}>{title}</Text>
         </View>
         <AnimatedView style={{ transform: [{ rotate: animation.rotation }] }}>
-        <MaterialCommunityIcons
+        {/* <MaterialCommunityIcons
                     name="chevron-down"
                     color={'black'}
                     size={30}
                    
-                    />
+                    /> */}
         </AnimatedView>
       </TouchableOpacity>
 
@@ -90,7 +90,7 @@ function CollapsibleCard({
             transform: [
               {
                 translateY: animation.progress.interpolate({
-                  range: [0, 85, 100, 200],
+                  range: [0, 85, 95, 100],
                   output: [7.5, 5, 2.5, 0],
                 }),
               },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
@@ -127,18 +127,18 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
   },
   addpadding: {
-    backgroundColor: '#263957',
+    backgroundColor: '#28d448',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    paddingVertical: 5,
-    paddingHorizontal: 100,
+    paddingVertical: 1,
+    paddingHorizontal: 60,
     padding:10,
   }
 });
 
-CollapsibleCard.propTypes = propTypes;
-CollapsibleCard.defaultProps = defaultProps;
+CollapsibleCard1.propTypes = propTypes;
+CollapsibleCard1.defaultProps = defaultProps;
 
-export default CollapsibleCard;
+export default CollapsibleCard1;
