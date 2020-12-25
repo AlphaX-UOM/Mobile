@@ -317,7 +317,7 @@ data111 && data111.filter(person=>person.userID===route.params.Name ).map(
     return(
             <View>
             <CollapsibleCard1
-                title="History"
+                title="History" 
                 style={styles.Rcardtext}
                 >
                 <View style={{ padding: 8 ,backgroundColor:'#cbf054'  }}>
