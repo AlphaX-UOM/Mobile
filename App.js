@@ -15,11 +15,12 @@ import SupportScreen from './Screens/SupportScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import BookmarkScreen from './Screens/Reservation';
 import DrawerContent from './Screens/DrawerContent';
+import DrawerContent1 from './Screens/DrawerContent1';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeStackScreen from './Screens/StackScreens/HomeStackScreen';
 import DetailsStackScreen from './Screens/StackScreens/DetailStackScreen';
 import ReservationStackScreen from './Screens/StackScreens/ReservationStackScreen'
-import ReservationScreen from './Screens/Reservation'
+import ServiceStackScreen from './Screens/StackScreens/ServiceStackScreen'
 
 const Drawer = createDrawerNavigator();
 
@@ -44,10 +45,11 @@ const initialLoginState={
    isLoading:true,
    userName:null,
    userToken:null,
-   
+   role:null,
 
  };
   const [tokenState,setTokenState] =React.useState(null)
+  const [roleState,setroleState] =React.useState(null)
   console.log('appjs token',tokenState)
  const loginReducer=(prevState,action)=>{
   
@@ -89,11 +91,12 @@ const initialLoginState={
     
     {
     
-    signIn:async(condition,token)=>{
+    signIn:async(condition,token,role)=>{
       
       // setUserToken('false');
       // setIsLoading(false);
       setTokenState(token)
+      setroleState(role)
       let userToken;
       userToken=null;
     //  for(i;i<10;i++){
@@ -110,6 +113,7 @@ const initialLoginState={
         try {
           userToken='fksjf';
           await AsyncStorage.setItem('userToken', userToken);
+         
         } catch (e) {
           console.log(e);
         }
@@ -163,7 +167,7 @@ const initialLoginState={
     <AuthContext.Provider value={authContext}>
        
     <NavigationContainer>
-      {loginState.userToken !== null ?(
+      {loginState.userToken !== null ?( roleState ==='Customer' ?
   
     <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>}>
             <Drawer.Screen name="userDetails" component={DetailsStackScreen}  initialParams={{ Name: tokenState }}/>
@@ -172,7 +176,15 @@ const initialLoginState={
             <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
             <Drawer.Screen name="SupportScreen" component={SupportScreen} />
          
-      </Drawer.Navigator> )
+      </Drawer.Navigator>:
+      <Drawer.Navigator drawerContent={props=><DrawerContent1 {...props}/>}>
+      <Drawer.Screen name="userDetails" component={DetailsStackScreen}  initialParams={{ Name: tokenState }}/>
+      <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
+      <Drawer.Screen name="Services" component={ServiceStackScreen} initialParams={{ Name: tokenState }}  />
+      <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+   
+</Drawer.Navigator> )
      : <RootStackScreen/>
      }
     </NavigationContainer>

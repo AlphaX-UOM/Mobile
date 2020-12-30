@@ -96,7 +96,7 @@ const SignInScreen = ({navigation}) => {
    let condition;
    let i=0
    let status=false;
-   let person_name='abc';
+   let person_role='abc';
     const loginHandle=(userName,password)=>{
         
         return(
@@ -106,9 +106,9 @@ const SignInScreen = ({navigation}) => {
                person=>person.email===userName && person.password===password).map(
                    (Aname)=>{
                        return(
-                           signIn(true,Aname.id),
+                           signIn(true,Aname.id,Aname.role),
                            status=true,
-                           person_name=Aname.name
+                           person_role=Aname.role
                            
                            )}) 
 
