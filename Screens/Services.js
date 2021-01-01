@@ -56,10 +56,7 @@ const ServicesScreen = ({ route, navigation }) => {
   let hotelsServiceID=[];
   
 
-  const [data1, setData1] = React.useState([]);
-  const [data11, setData11] = React.useState([]);
-  const [data111, setData111] = React.useState([]);
-  const [data1111, setData1111] = React.useState([]);
+  
   const[hotelinfo,setHotelinfo]=React.useState([])
   const[guideinfo,setguideinfo]=React.useState([])
   const[transportinfo,settransportinfo]=React.useState([])
@@ -69,13 +66,7 @@ const ServicesScreen = ({ route, navigation }) => {
 
   
 
-  React.useEffect(() => {
-    fetch('https://alphax-api.azurewebsites.net/api/EventPlannerServiceReservations')
-      .then((response) => response.json())
-      .then((json) => setData1(json))
-      .catch((error) => console.error(error))
-      
-  }, []);
+ 
 
 React.useEffect(() => {
     fetch('https://alphax-api.azurewebsites.net/api/EventPlannerServices')
@@ -86,13 +77,7 @@ React.useEffect(() => {
   }, []);
 
 
-  React.useEffect(() => {
-    fetch('https://alphax-api.azurewebsites.net/api/TourGuideServiceReservations')
-                .then((response) => response.json())
-                .then((json) => setData11(json))
-                .catch((error) => console.error(error))
-                      
-                  }, []);
+ 
 
   React.useEffect(() => {
     fetch('https://alphax-api.azurewebsites.net/api/TourGuideServices')
@@ -102,13 +87,7 @@ React.useEffect(() => {
                       
         }, []);
 
-  React.useEffect(() => {
-    fetch('https://alphax-api.azurewebsites.net/api/HotelsServiceReservations')
-              .then((response) => response.json())
-              .then((json) => setData111(json))
-              .catch((error) => console.error(error))
-                                                            
-                }, []);
+ 
  React.useEffect(() => {
   fetch('https://alphax-api.azurewebsites.net/api/HotelsServices')
         .then((response) => response.json())
@@ -117,13 +96,7 @@ React.useEffect(() => {
                     
                 }, []);
           
-  React.useEffect(() => {
-     fetch('https://alphax-api.azurewebsites.net/api/TransportServiceReservations')
-              .then((response) => response.json())
-              .then((json) => setData1111(json))
-              .catch((error) => console.error(error))
-                                                                                              
-                }, []);
+ 
   React.useEffect(() => {
     fetch('https://alphax-api.azurewebsites.net/api/TransportServices')
           .then((response) => response.json())
@@ -134,31 +107,15 @@ React.useEffect(() => {
   
  
 
-//  arrayOfArrays && arrayOfArrays.map(
-//   (Aname)=>{
-//       return(
-          
-          
-//         transportServiceIDId=Aname. transportServiceID,
-//         tourGuideServiceID=Aname.tourGuideServiceID,
-//         eventPlannerServiceID=Aname.eventPlannerServiceID,
-//         hotelsServiceID=Aname.hotelsServiceID
 
-//           )}) 
   
-  
-data1 && data1.filter(person=>person.userID===route.params.Name ).map(
-        (Aname,i)=>{
-            return(
-                eventId[i]=Aname.eventPlannerServiceID
-                )}) 
 
 
 const Collapsibleevent=()=>{
  
   return ( 
   
-    eventinfo  &&  eventinfo.filter((word)=>eventId.indexOf(word)).map((Aname,i)=>{
+    eventinfo  &&  eventinfo.filter(person=>person.userID===route.params.Name ).map((Aname,i)=>{
   return(
       <Showmoreevents
         
@@ -179,17 +136,12 @@ const Collapsibleevent=()=>{
  
 
                 
-data11 && data11.filter(person=>person.userID===route.params.Name ).map(
-                      (Aname,i)=>{
-                          return(
-                      
-                      Gid[i]=Aname.tourGuideServiceID
-                      )}) 
+
  const Collapsibleguid=()=>{
  
         return ( 
                         
-        guideinfo  &&  guideinfo.filter((word)=>Gid.indexOf(word)).map((Aname,i)=>{
+        guideinfo  &&  guideinfo.filter(person=>person.userID===route.params.Name ).map((Aname,i)=>{
          return(
                 <Showmoreguide
                               
@@ -210,19 +162,12 @@ data11 && data11.filter(person=>person.userID===route.params.Name ).map(
                                            
 
 
-data111 && data111.filter(person=>person.userID===route.params.Name ).map(
-                   (Aname)=>{
-                              
-                      return( 
-                              
-                              hotelNameid=Aname.hotelsServiceID
-                                                            
-                   )}) 
+
  const CollapsibleHotels=()=>{
  
        return ( 
                     
-    hotelinfo  &&  hotelinfo.filter((word)=>hotelNameid.indexOf(word)).map((Aname,i)=>{
+    hotelinfo  &&  hotelinfo.filter(person=>person.userID===route.params.Name ).map((Aname,i)=>{
     return(
              <Showmorehotels
                           
@@ -246,27 +191,14 @@ data111 && data111.filter(person=>person.userID===route.params.Name ).map(
 
 
 
-//  otherhotelarray.map(Aname => {return (                                           
-//                       checkInDate21=Aname.checkInDate,
-//                       checkOutDate21=Aname.checkOutDate,
-//                       price21=Aname.price,
-//                       Noofrooms1=Aname.noOfRooms,
-//                       Roomtype1=Aname.roomType,
-//                       nooftravellers1=Aname.noOfTravellers,
-//                       hotelName1=Aname.hotelName)})
-                                                    
-  data1111 && data1111.filter(person=>person.userID===route.params.Name ).map(
-      (Aname)=>{
-        return(
-                                                                                        
-       trnsportId=Aname.transportServiceID                                                                                  
-   )}) 
 
+                                                    
+  
   const CollapsibleTransport=()=>{
  
     return ( 
     
-      transportinfo  &&  transportinfo.filter((word)=>trnsportId.indexOf(word)).map((Aname,i)=>{
+      transportinfo  &&  transportinfo.filter(person=>person.userID===route.params.Name ).map((Aname,i)=>{
     return(
         <ShowmoreTransport
           
