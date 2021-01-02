@@ -1,2 +1,2 @@
 
-##Mobile application for Tour Planning System
+Mobile application for Tour Planning System
