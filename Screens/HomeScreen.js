@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, StatusBar,ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import {Button, Avatar,  Card, Title, Paragraph } from 'react-native-paper';
+import {CardEcomOne,CardEcomTwo,CardEcomFour}  from 'react-native-card-ui'
+
 const HomeScreen = ({navigation}) => {
 
   const { colors } = useTheme();
@@ -17,7 +19,15 @@ const HomeScreen = ({navigation}) => {
       <View >
         <StatusBar barStyle= { theme.dark ? "light-content" : "dark-content" }/>
         <ScrollView>
-        
+        <CardEcomFour
+            title={"Porsche Rubber"}
+            subTitle={"Zermatt is famed as a mounering and ski destome banmdo liono"}
+            price={"$200"}
+            image={require("../assets/annie-spratt-qyAka7W5uMY-unsplash.jpg")}
+            buttonText={"VIEW DETAILS"}
+            buttonColor={"#4383FF"}
+            onClickButton={() => alert("Has clicked")}
+          />
         <MyComponent/>
         <MyComponent/>
         <MyComponent/>
