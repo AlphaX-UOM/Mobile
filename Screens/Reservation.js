@@ -4,19 +4,27 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  StatusBar,
   Image,
   ImageBackground,
 } from "react-native";
+import { CardEcomOne, CardEcomTwo, CardEcomFour } from "react-native-card-ui";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { FontAwesome, Feather } from "react-native-vector-icons";
 import CollapsibleCard from "./Collapsiablecard";
 import CollapsibleCard1 from "./CollapsiableCard1";
+import { useTheme } from '@react-navigation/native';
 //import Swiper from "react-native-web-swiper";
 import FlipCard from "react-native-flip-card";
 import { BlurView } from "expo-blur";
 import Swiper from "react-native-swiper";
 import { NeuView } from "react-native-neu-element";
 const ReservationScreen = ({ route, navigation }) => {
+
+  const { colors } = useTheme();
+
+  const theme = useTheme();
+
   let eventId = [];
   let eventname = "";
   let evprice = "";
@@ -266,61 +274,34 @@ const ReservationScreen = ({ route, navigation }) => {
       // Your Code
 
       <View style={{ padding: 8 }}>
-        <View
-          style={{
-            padding: 8,
-            backgroundColor: "white",
-            shadowColor: "blue",
-            shadowOffset: {
-              width: 0,
-              height: 8,
-            },
-            shadowOpacity: 0.8,
-            shadowRadius: 11.14,
-
-            elevation: 17,
-            borderRadius: 10,
-          }}
-        >
-          <Text style={[styles1.text, { padding: 1 }]}>Name: </Text>
-          <Text> {props.eventname}</Text>
-          <Text style={[styles1.text, { padding: 1 }]}>Type :</Text>
-          <Text> {props.evevenye}</Text>
-
-          <Text style={[styles1.text, { padding: 1 }]}>Price: </Text>
-          <Text> {props.evprice}</Text>
-          <Text style={[styles1.text, { padding: 1 }]}>Details: </Text>
-          <Text> {props.eventtypeevent}</Text>
-          <Text style={[styles1.text, { padding: 1 }]}>Date :</Text>
-          <Text> {props.dateevent}</Text>
-          <Text style={[styles1.text, { padding: 1 }]}>Time :</Text>
-          <Text> {props.timeevent}</Text>
-        </View>
+        <CardEcomFour
+          title={props.eventname}
+          subTitle={props.evevenye}
+          price={
+            "$" +
+            props.evprice +
+            `\n` +
+            `\n` +
+            props.dateevent +
+            `\n` +
+            `\n` +
+            props.timeevent
+          }
+          image={require("../assets/danny-howe-bn-D2bCvpik-unsplash.jpg")}
+        />
       </View>
     );
   }
 
   function Showmoreguide(props) {
     return (
-      <View>
-        <View style={{ padding: 8, backgroundColor: "#cbf054" }}>
-          <Text style={[styles1.text, { padding: 1 }]}>
-            Name: {props.Gname}
-          </Text>
-
-          <Text style={[styles1.text, { padding: 1 }]}>
-            Language: {props.languageg}
-          </Text>
-          <Text style={[styles1.text, { padding: 1 }]}>
-            CostPerDay: {props.costPerDayg}
-          </Text>
-          <Text style={[styles1.text, { padding: 1 }]}>
-            PNo: {props.pnumberg}
-          </Text>
-          <Text style={[styles1.text, { padding: 1 }]}>
-            Details: {props.otherDetailsg}
-          </Text>
-        </View>
+      <View style={{ padding: 8 }}>
+        <CardEcomFour
+          title={props.Gname}
+          subTitle={props.languageg}
+          price={"$" + props.costPerDayg + `\n` + `\n` + props.otherDetailsg}
+          image={require("../assets/ahmed-zayan-n_YWKiIBnp4-unsplash.jpg")}
+        />
       </View>
     );
   }
@@ -328,45 +309,54 @@ const ReservationScreen = ({ route, navigation }) => {
   function ShowmoreTransport(props) {
     return (
       <View>
-        <View style={{ padding: 8, backgroundColor: "#cbf054" }}>
-          <Text style={{ padding: 3 }}>Name: {props.name}</Text>
-
-          <Text style={{ padding: 3 }}>District: {props.district}</Text>
-          <Text style={{ padding: 3 }}>PNo: {props.pnumber}</Text>
-          <Text style={{ padding: 3 }}>vehicle: {props.vehicleType}</Text>
-          <Text style={{ padding: 3 }}>Discription: {props.descriptiont}</Text>
-        </View>
+        <CardEcomFour
+          title={props.name}
+          subTitle={props.vehicleType}
+          price={
+            "$" +
+            `\n` +
+            `\n` +
+            props.district +
+            `\n` +
+            `\n` +
+            props.descriptiont
+          }
+          image={require("../assets/kyle-szegedi-tRQfEwP5P_0-unsplash.jpg")}
+        />
       </View>
     );
   }
   function Showmorehotels(props) {
     return (
       <View>
-        {/* <CollapsibleCard1
-                title="History"
-                style={styles.Rcardtext}
-                > */}
-        <View style={{ padding: 8, backgroundColor: "#cbf054" }}>
-          <Text style={{ padding: 3 }}>Hotel: {props.nameH}</Text>
-
-          <Text style={{ padding: 3 }}>Venue : {props.venueH}</Text>
-          <Text style={{ padding: 3 }}>
-            Price Per Day: {props.pricePerDayH}
-          </Text>
-          <Text style={{ padding: 3 }}>District :{props.districtH}</Text>
-          <Text style={{ padding: 3 }}>Features: {props.features}</Text>
-          <Text style={{ padding: 3 }}>******: {props.otherDetailsH}</Text>
-        </View>
-        {/* </CollapsibleCard1> */}
+        <CardEcomFour
+          title={props.nameH}
+          subTitle={props.venueH}
+          price={
+            "$" +
+            props.pricePerDayH +
+            `\n` +
+            `\n` +
+            props.districtH +
+            `\n` +
+            `\n` +
+            props.features
+          }
+          image={require("../assets/roberto-nickson-HmieZw0YOC0-unsplash.jpg")}
+        />
       </View>
     );
   }
 
   return (
+    
+      
     <Swiper style={styles1.wrapper} showsButtons={true}>
+       
       <View style={styles1.slide1}>
+      <StatusBar barStyle= { theme.dark ? "light-content" : "dark-content" }/>
         <FlipCard>
-          <View style={[styles.container, { padding: 10 }]}>
+          <View style={{ flex: 1 }}>
             <ImageBackground
               style={styles.footer3}
               source={require("../assets/taylor-simpson-L-HhvkK7xrM-unsplash.jpg")}
@@ -402,7 +392,7 @@ const ReservationScreen = ({ route, navigation }) => {
       </View>
       <View style={styles1.slide2}>
         <FlipCard>
-          <View style={[styles.container, { padding: 10 }]}>
+          <View style={{ flex: 1 }}>
             <ImageBackground
               style={styles.footer3}
               source={require("../assets/priscilla-du-preez-v0kQglce46E-unsplash.jpg")}
@@ -439,7 +429,7 @@ const ReservationScreen = ({ route, navigation }) => {
       </View>
       <View style={styles1.slide2}>
         <FlipCard>
-          <View style={[styles.container, { padding: 10 }]}>
+          <View style={{ flex: 1 }}>
             <ImageBackground
               style={styles.footer3}
               source={require("../assets/severin-hoin-oXVCgaDqX30-unsplash.jpg")}
@@ -476,7 +466,7 @@ const ReservationScreen = ({ route, navigation }) => {
       </View>
       <View style={styles1.slide2}>
         <FlipCard>
-          <View style={[styles.container, { padding: 10 }]}>
+          <View style={{ flex: 1 }}>
             <ImageBackground
               style={styles.footer3}
               source={require("../assets/ivan-diaz-tG49tjZOui0-unsplash.jpg")}
@@ -498,7 +488,7 @@ const ReservationScreen = ({ route, navigation }) => {
                   <Text
                     style={{ color: "black", fontSize: 40, fontWeight: "bold" }}
                   >
-                    Events
+                   Transport
                   </Text>
                 </BlurView>
               </View>
@@ -513,6 +503,7 @@ const ReservationScreen = ({ route, navigation }) => {
         </FlipCard>
       </View>
     </Swiper>
+   
   );
 };
 
@@ -521,7 +512,7 @@ export default ReservationScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
+    backgroundColor: "white",
   },
   blurredImage: {
     width: 192,
@@ -540,7 +531,7 @@ const styles = StyleSheet.create({
     height: 280,
   },
   footer3: {
-    backgroundColor: "#20356b",
+    backgroundColor: "white",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     borderTopLeftRadius: 10,
