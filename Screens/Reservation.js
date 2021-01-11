@@ -113,7 +113,7 @@ const ReservationScreen = ({ route, navigation }) => {
     fetch("https://alphax-api.azurewebsites.net/api/HotelsServiceReservations")
       .then((response) => response.json())
       .then((json) => setData111(json))
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error)); 
   }, []);
   React.useEffect(() => {
     fetch("https://alphax-api.azurewebsites.net/api/HotelsServices")
