@@ -1,11 +1,18 @@
 import * as React from "react";
-import { View, Text, Button, Image, StyleSheet ,TouchableOpacity} from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { Avatar, Accessory } from "react-native-elements";
 import * as Animatable from "react-native-animatable";
 import AuthContext from "../components/context";
 import "react-native-gesture-handler";
 import { CardEcomOne, CardEcomTwo, CardEcomFour } from "react-native-card-ui";
-
+import { FontAwesome, Feather, Entypo } from "react-native-vector-icons";
 import { route } from "@react-navigation/native";
 
 const DetailsScreen = ({ route, navigation }) => {
@@ -36,47 +43,105 @@ const DetailsScreen = ({ route, navigation }) => {
       });
   // console.log(image)
 
+  // return (
+  //        <View style={styles.container}>
+  //         {/* <View style={styles.header}></View> */}
+  //         <Animatable.View  animation="fadeInUpBig" style={styles.header}>
+  //         <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+  //         <View style={styles.body}>
+  //           <View style={styles.bodyContent}>
+  //             <Text style={styles.name}>{Name}</Text>
+  //             <Text style={styles.info}>{email}</Text>
+  //             <Text style={styles.description}>{pno}</Text>
+  //             <Text style={styles.description}>{adress}</Text>
+  //             {/* <TouchableOpacity style={styles.buttonContainer}>
+  //               <Text>Opcion 1</Text>
+  //             </TouchableOpacity>
+  //             <TouchableOpacity style={styles.buttonContainer}>
+  //               <Text>Opcion 2</Text>
+  //             </TouchableOpacity> */}
+  //           </View>
+  //       </View>
+  //       </Animatable.View>
+  //     </View>
+  //   // <View style={{ flex: 1 }}>
+  //   //   <CardEcomOne
+  //   //     style={{ flex: 1 }}
+  //   //     title={"NIKE SILVER"}
+  //   //     price={"$200"}
+  //   //     image={require("../assets/ahmed-zayan-n_YWKiIBnp4-unsplash.jpg")} //OR {{uri:"http://......"}}
+  //   //     icon={"star"}
+  //   //     nbStar={3}
+  //   //     iconColor={"#FFC57C"}
+  //   //     colorList={["#000000", "#0b8457", "#7ed3b2"]}
+  //   //     selectColor={"#000000"}
+  //   //     getSelectColor={(color) => alert(color)}
+  //   //   />
+  //   //   {/* <View style={styles.text_detail}>
+  //   // <Text style={styles.text_footer}>Name:</Text><Text>{Name}</Text>
+  //   // <Text style={styles.text_footer}>Email    :</Text><Text>{email}</Text>
+  //   //       <Text style={styles.text_footer}>Contact No:</Text><Text>{pno}</Text>
+  //   //       <Text style={styles.text_footer}>Adress:</Text><Text>{adress}</Text>
+  //   //       </View> */}
+  //   // </View>
+  // );
   return (
-         <View style={styles.container}>
-          {/* <View style={styles.header}></View> */}
-          <Animatable.View  animation="fadeInUpBig" style={styles.header}>
-          <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
-          <View style={styles.body}>
-            <View style={styles.bodyContent}>
-              <Text style={styles.name}>{Name}</Text>
-              <Text style={styles.info}>{email}</Text>
-              <Text style={styles.description}>{pno}</Text>
-              <Text style={styles.description}>{adress}</Text>
-              {/* <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 1</Text>  
-              </TouchableOpacity>              
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 2</Text> 
-              </TouchableOpacity> */}
-            </View>
-        </View>
-        </Animatable.View>
+    <View style={styles.container}>
+      <View style={styles.profiimage}>
+        <Image
+          style={styles.image}
+          source={{ uri: "https://bootdey.com/img/Content/avatar/avatar6.png" }}
+        />
+
       </View>
-    // <View style={{ flex: 1 }}>
-    //   <CardEcomOne
-    //     style={{ flex: 1 }}
-    //     title={"NIKE SILVER"}
-    //     price={"$200"}
-    //     image={require("../assets/ahmed-zayan-n_YWKiIBnp4-unsplash.jpg")} //OR {{uri:"http://......"}}
-    //     icon={"star"}
-    //     nbStar={3}
-    //     iconColor={"#FFC57C"}
-    //     colorList={["#000000", "#0b8457", "#7ed3b2"]}
-    //     selectColor={"#000000"}
-    //     getSelectColor={(color) => alert(color)}
-    //   />
-    //   {/* <View style={styles.text_detail}>
-    // <Text style={styles.text_footer}>Name:</Text><Text>{Name}</Text>
-    // <Text style={styles.text_footer}>Email    :</Text><Text>{email}</Text>
-    //       <Text style={styles.text_footer}>Contact No:</Text><Text>{pno}</Text>
-    //       <Text style={styles.text_footer}>Adress:</Text><Text>{adress}</Text>
-    //       </View> */}
-    // </View>
+      <Animatable.View  animation="fadeInUpBig" style={styles.header}>
+      {/* all cards */}
+      <View style={styles.cardall}>
+        {/* firstcard */}
+        <View style={styles.namecard}>
+          <Text style={styles.name}>{Name}</Text>
+        </View>
+        {/* firstcard */}
+        {/* secondcard */}
+        <View style={styles.namecard2}>
+          <View style={styles.emailwrpper}>
+            <View style={styles.atsignwrapper}>
+              <View style={styles.at}>
+                <Entypo name="email" size={14} color="black" />
+              </View>
+            </View>
+            <Text style={styles.email}>{Name}</Text>
+          </View>
+        </View>
+        {/* secondcard */}
+        {/* thirdcard */}
+        <View style={styles.namecard2}>
+          <View style={styles.emailwrpper}>
+            <View style={styles.atsignwrapper}>
+              <View style={styles.at}>
+                <Entypo name="phone" size={14} color="black" />
+              </View>
+            </View>
+            <Text style={styles.email}>{pno}</Text>
+          </View>
+        </View>
+        {/* thirdcard */}
+        {/* fourthcard */}
+        <View style={styles.namecard2}>
+          <View style={styles.emailwrpper}>
+            <View style={styles.atsignwrapper}>
+              <View style={styles.at}>
+                <Entypo name="location" size={14} color="black" />
+              </View>
+            </View>
+            <Text style={styles.email}>{adress}</Text>
+          </View>
+        </View>
+        {/* fourthcard */}
+      </View>
+      {/* all cards */}
+      </Animatable.View>
+    </View>
   );
 };
 
@@ -117,62 +182,121 @@ export default DetailsScreen;
 //   },
 // });
 const styles = StyleSheet.create({
-  header:{
-    backgroundColor: "gray",
-    height:200,
-  },
-  avatar: {
-    width: 150,
-    height: 150,
-    borderRadius: 80,
-    borderWidth: 4,
-    borderColor: "white",
-    marginBottom:10,
-    alignSelf:'center',
-    position: 'absolute',
-    marginTop:90
-  },
-  name:{
-    fontSize:22,
-    color:"#FFFFFF",
-    fontWeight:'600',
-  },
-  body:{
-    marginTop:220,
-    borderRadius:30
-  },
-  bodyContent: {
+  container: {
+    backgroundColor: "#3E8977",
     flex: 1,
-    alignItems: 'center',
-    padding:30,
   },
-  name:{
-    fontSize:28,
-    color: "#696969",
-    fontWeight: "600"
+  profiimage: {
+    alignItems: "center",
+    marginTop: 180,
   },
-  info:{
-    fontSize:16,
-    color: "#00BFFF",
-    marginTop:10
+  image: {
+    width: 107,
+    height: 108,
+    borderRadius: 96.5,
   },
-  description:{
-    fontSize:16,
-    color: "#696969",
-    marginTop:10,
-    textAlign: 'center'
+  cardall: {
+    alignItems: "center",
   },
-  buttonContainer: {
-    marginTop:10,
-    height:45,
+  namecard: {
+    width: 318,
+    height: 90,
+    backgroundColor: "white",
+    marginTop: 24,
+    borderRadius: 28,
+    alignItems: "center",
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginTop:20
+  },
+  namecard2: {
+    width: 318,
+    height: 90,
+    backgroundColor: "white",
+    marginTop: 13,
+    borderRadius: 28,
+    overflow: "hidden"
+    
+  },
+  atsignwrapper: {
+    width: 48,
+    height: 44,
+    backgroundColor: "#3E8977",
+    marginLeft: 15,
+    marginTop: 21,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    alignItems: "center",
+  },
+  at: {
+    marginTop: 17,
+    marginLeft: 4,
+  },
+  email:{
+      fontSize:14,
+      marginLeft:41,marginTop:31
+  },
+  emailwrpper:{
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
-    backgroundColor: "#00BFFF",
-  },
-});
+    alignItems: "center",
+  }
 
-                                           
+  // header:{
+  //   backgroundColor: "gray",
+  //   height:200,
+  // },
+  // avatar: {
+  //   width: 150,
+  //   height: 150,
+  //   borderRadius: 80,
+  //   borderWidth: 4,
+  //   borderColor: "white",
+  //   marginBottom:10,
+  //   alignSelf:'center',
+  //   position: 'absolute',
+  //   marginTop:90
+  // },
+  // name:{
+  //   fontSize:22,
+  //   color:"#FFFFFF",
+  //   fontWeight:'600',
+  // },
+  // body:{
+  //   marginTop:220,
+  //   borderRadius:30
+  // },
+  // bodyContent: {
+  //   flex: 1,
+  //   alignItems: 'center',
+  //   padding:30,
+  // },
+  // name:{
+  //   fontSize:28,
+  //   color: "#696969",
+  //   fontWeight: "600"
+  // },
+  // info:{
+  //   fontSize:16,
+  //   color: "#00BFFF",
+  //   marginTop:10
+  // },
+  // description:{
+  //   fontSize:16,
+  //   color: "#696969",
+  //   marginTop:10,
+  //   textAlign: 'center'
+  // },
+  // buttonContainer: {
+  //   marginTop:10,
+  //   height:45,
+  //   flexDirection: 'row',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   marginBottom:20,
+  //   width:250,
+  //   borderRadius:30,
+  //   backgroundColor: "#00BFFF",
+  //},
+});
