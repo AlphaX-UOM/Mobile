@@ -110,7 +110,7 @@ const DetailsScreen = ({ route, navigation }) => {
                 <Entypo name="email" size={14} color="black" />
               </View>
             </View>
-            <Text style={styles.email}>{Name}</Text>
+            <Text style={styles.email}>{email}</Text>
           </View>
         </View>
         {/* secondcard */}
