@@ -158,7 +158,7 @@ const ServicesScreen = ({ route, navigation }) => {
 
      // stooped at here*************************************************************
 
-  console.log("hotel name and id", hotelNameiduserid);
+
   const CollapsibleTransport = () => {
     return (
       transportinfo &&
@@ -400,23 +400,11 @@ const ServicesScreen = ({ route, navigation }) => {
 
         <View style={[styles1.slideContainer, styles1.slide1]}>
           <FlipCard>
-            <View style={[styles.container, { padding: 10 }]}>
-              <ImageBackground
-                style={styles.footer3}
-                source={require("../assets/ivan-diaz-tG49tjZOui0-unsplash.jpg")}
-              >
-                <View
-                  style={{
-                    alignItems: "center",
-                    paddingTop: 150,
-                    fontStyle: "bold",
-                  }}
-                >
-                  <Text style={{ color: "white", fontSize: 40 }}>
-                    Transport
-                  </Text>
-                </View>
-              </ImageBackground>
+            <View style={styles.container}>
+              <View style={styles.cardwhiteborder}>
+
+              </View>
+              
             </View>
             {/* Back Side */}
             <View style={[styles.container, { padding: 10 }]}>
@@ -492,6 +480,11 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
   },
+  cardwhiteborder:{
+    width: 325,
+    height: 756,
+    backgroundColor: "white",
+  },
 });
 
 const styles1 = StyleSheet.create({
@@ -527,4 +520,5 @@ const styles1 = StyleSheet.create({
   slide5: {
     backgroundColor: "rgba(200,20,20,0.3)",
   },
+
 });
