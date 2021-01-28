@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet ,Image} from 'react-native';
 import {MaterialIcons} from "react-native-vector-icons";
 
-const SettingsScreen = () => {
+const HotelUi = () => {
     return (
       <View style={styles.container}>
         <View style={styles.frame}>
@@ -23,7 +23,7 @@ const SettingsScreen = () => {
     );
 };
 
-export default SettingsScreen;
+export default HotelUi;
 
 const styles = StyleSheet.create({
   container: {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   frame:{
     width: 352,
-height: 640,
+height: 560,
 borderRadius:21,
 borderWidth:1,
 borderColor:'#FFFFFF',
@@ -66,7 +66,7 @@ height: 32,
 backgroundColor:'white',
 borderRadius:20,
 marginLeft:160,
-marginTop:167,
+marginTop:100,
 alignItems: 'center',
 }
 });

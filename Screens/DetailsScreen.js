@@ -24,7 +24,7 @@ const DetailsScreen = ({ route, navigation }) => {
   let Name = "";
 
   React.useEffect(() => {
-    fetch("https://alphax-api.azurewebsites.net/api/users")
+    fetch("https://run.mocky.io/v3/c45dd8db-b0cf-48ad-9892-5a6d25f82913")
       .then((response) => response.json())
       .then((json) => setData1(json))
       .catch((error) => console.error(error));
@@ -134,7 +134,9 @@ const DetailsScreen = ({ route, navigation }) => {
                 <Entypo name="location" size={14} color="black" />
               </View>
             </View>
+            <View style={styles.addresss}>
             <Text style={styles.email}>{adress}</Text>
+            </View>
           </View>
         </View>
         {/* fourthcard */}
@@ -183,12 +185,12 @@ export default DetailsScreen;
 // });
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#3E8977",
+    backgroundColor: "#174D36",
     flex: 1,
   },
   profiimage: {
     alignItems: "center",
-    marginTop: 180,
+    marginTop: 18,
   },
   image: {
     width: 107,
@@ -241,7 +243,11 @@ const styles = StyleSheet.create({
   emailwrpper:{
     flexDirection: 'row',
     alignItems: "center",
+  },
+  addresss:{
+    
   }
+
 
   // header:{
   //   backgroundColor: "gray",

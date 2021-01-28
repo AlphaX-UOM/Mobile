@@ -25,7 +25,7 @@ const SignInScreen = ({navigation}) => {
     const [data1, setData1] = React.useState([]);
         
       React.useEffect(() => {
-        fetch('https://alphax-api.azurewebsites.net/api/users')
+        fetch('https://run.mocky.io/v3/c45dd8db-b0cf-48ad-9892-5a6d25f82913')
           .then((response) => response.json())
           .then((json) => setData1(json))
           .catch((error) => console.error(error))
@@ -152,13 +152,42 @@ const SignInScreen = ({navigation}) => {
  
   console.log(data.password)
  return (
-  <ImageBackground  style={styles.ImageBackground} source={require('../assets/annie-spratt-qyAka7W5uMY-unsplash.jpg')}>
+  <ImageBackground  style={styles.ImageBackground} source={require('../assets/singinddpage.jpg')}>
       <View style={styles.container}>
-          <StatusBar backgroundColor='#434a54' barStyle='light-content'/>
-          <View style={styles.header}>
-            <Text style={styles.text_header}>             Welcome</Text>
+          <StatusBar backgroundColor='rgba( 0, 0, 0, 05 )' barStyle='light-content'/>
+          <View style={styles.usernamewrapper}>
+            <View style={styles.emailIcon}>
+            <FontAwesome name="user-o" color="black" size={20}/>
+            </View>
+            <View style={styles.textemail}>
+            <TextInput
+                  placeholder="Your Email"
+                  style={styles.textInput}
+                  onChangeText={(val)=>textInputChange(val)}
+                />
+           
+            </View>
+
           </View>
-          <Animatable.View style={styles.footer} animation="fadeInUpBig">
+          <View style={styles.Passwordwrapper}>
+            <View style={styles.emailIcon}>
+            <FontAwesome name="lock" color="black" size={25}/>
+            </View>
+            <View style={styles.textemail}>
+            <TextInput
+                  placeholder="Password"
+                  style={styles.textInput}
+                  secureTextEntry={data.secureTextEntry ? true:false}
+                  onChangeText={(val)=>handlePasswordChange(val)}
+                />
+            </View>
+          
+           
+            
+
+          </View>
+         
+          {/* <Animatable.View  animation="fadeInUpBig">
             <Text style={styles.text_footer}>Email</Text>
             <View style={styles.action}>
                 <FontAwesome name="user-o" color="black" size={25}/>
@@ -199,19 +228,16 @@ const SignInScreen = ({navigation}) => {
                 size={20}
                />}
                 </TouchableOpacity>
-            </View>
-            <View style={styles.button}>
-                <TouchableOpacity style={styles.signIn} onPress={() =>{loginHandle(data.userName,data.password),check()}}>
-                <LinearGradient
-                  colors={['#434a54','#69C6BA']}
-                  style={styles.signIn}
-                >
-                    <Text style={[styles.textSign,{color:'#ffff'}]}>Sign In</Text>
-                </LinearGradient>
+            </View>*/}
+            <View style={styles.getstaredbutton}>
+                <TouchableOpacity style={styles.getstarttext} onPress={() =>{loginHandle(data.userName,data.password),check()}}>
+               
+                    <Text style={styles.texts}>Sign In</Text>
+                
                 </TouchableOpacity>
              
             </View>
-          </Animatable.View>
+         
         
       </View>
       </ImageBackground>
@@ -223,9 +249,52 @@ export default SignInScreen;
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
+      alignItems: 'center',
      
-      backgroundColor: 'rgba( 0, 0, 0, 0.6 )',
+     
+    },
+    usernamewrapper:{
+      width: 250,
+      height: 44,
+      borderColor:"#777777",
+      borderWidth:1,
+      marginTop:279,
+      borderRadius:21,
+      
+      
+    },
+    Passwordwrapper:{
+      width: 250,
+      height: 44,
+      borderColor:"#777777",
+      borderWidth:1,
+      marginTop:13,
+      borderRadius:21,
+    },
+    emailIcon:{
+      marginTop:11,
+      marginLeft:13,
+      
+    },
+    textemail:{
+     
+      marginLeft:71
+    },
+    getstaredbutton:{
+      width: 166,
+height: 35,
+borderRadius:21,
+backgroundColor:'#174D36',
+marginTop:28,
+marginLeft:4,
+
+    },
+    getstarttext:{
+      marginTop:7,
+      alignItems: 'center',
+    },
+    texts:{
+      color:'white'
     },
     header: {
         flex: 1,
@@ -239,7 +308,8 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         paddingHorizontal: 20,
-        paddingVertical: 30
+        paddingVertical: 30,
+        
     },
     text_header: {
         color: '#fff',
@@ -266,8 +336,8 @@ const styles = StyleSheet.create({
     },
     textInput: {
         flex: 1,
-        marginTop: Platform.OS === 'ios' ? 0 : -12,
-        paddingLeft: 10,
+        marginTop: Platform.OS === 'ios' ? 0 : -15.5,
+        
         color: '#05375a',
     },
     errorMsg: {
@@ -291,7 +361,6 @@ const styles = StyleSheet.create({
     },
     ImageBackground: {
       flex: 1,
-      width: null,
-      height: null,
+    
   },
   });
