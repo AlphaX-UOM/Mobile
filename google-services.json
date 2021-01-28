@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "411672984143",
+    "project_id": "vvisit-notify",
+    "storage_bucket": "vvisit-notify.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411672984143:android:8c6ac45beec63bb35c083a",
+        "android_client_info": {
+          "package_name": "com.newtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411672984143-ueghd738i3go5v0o5g9g2fgh096q9rg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmHvB08y7_dk7qJARD9cghJ56SwlXPU_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411672984143-ueghd738i3go5v0o5g9g2fgh096q9rg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

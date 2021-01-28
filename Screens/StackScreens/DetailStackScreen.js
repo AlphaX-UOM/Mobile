@@ -14,16 +14,16 @@ const DetailsStackScreen = ({navigation,route}) =>
  
     <DetailsStack.Navigator screenOptions={{
             headerStyle: {
-            backgroundColor: '#434a54',
+            backgroundColor: '#174D36',
             },
-            headerTintColor: '#fff',
+            headerTintColor: '#174D36',
             headerTitleStyle: {
             fontWeight: 'bold'
             }
         }}>
             <DetailsStack.Screen name="Profile" component={DetailsScreen} initialParams={{ Name:useName  }} options={{
             headerLeft: () => (
-                <Icon.Button name="ios-menu" size={25} backgroundColor="#434a54" onPress={() => navigation.openDrawer()}></Icon.Button>
+                <Icon.Button name="ios-menu" size={25} backgroundColor="#174D36" onPress={() => navigation.openDrawer()}></Icon.Button>
             )
             }} />
     </DetailsStack.Navigator>

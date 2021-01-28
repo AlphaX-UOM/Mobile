@@ -11,7 +11,7 @@ const ReservationStackScreen = ({navigation,route}) =>
   return  (
     <ReservationStack.Navigator screenOptions={{
             headerStyle: {
-            backgroundColor: '#434a54',
+            backgroundColor: '#174D36',
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -21,7 +21,7 @@ const ReservationStackScreen = ({navigation,route}) =>
             <ReservationStack.Screen name="Home" component={ReservationScreen} initialParams={{ Name:useName  }} options={{
             title:'Reservations',
             headerLeft: () => (
-                <Icon.Button name="ios-menu" size={25} backgroundColor="#434a54" onPress={() => navigation.openDrawer()}></Icon.Button>
+                <Icon.Button name="ios-menu" size={25} backgroundColor="#174D36" onPress={() => navigation.openDrawer()}></Icon.Button>
             )
             }} />
     </ReservationStack.Navigator>
