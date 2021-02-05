@@ -1,6 +1,10 @@
 {
   "expo": {
     "name": "newtest",
+    "notification": {
+      "icon": "https://github.com/Ttecs/mobilenotico/blob/master/output-onlinepngtools.png?raw=true",
+      "color": "#89eb34"
+    },
     "slug": "newtest",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,9 +17,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -29,6 +31,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "useNextNotificationsApi": true
     }
   }
 }

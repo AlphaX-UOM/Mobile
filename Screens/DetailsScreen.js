@@ -14,15 +14,62 @@ import "react-native-gesture-handler";
 import { CardEcomOne, CardEcomTwo, CardEcomFour } from "react-native-card-ui";
 import { FontAwesome, Feather, Entypo } from "react-native-vector-icons";
 import { route } from "@react-navigation/native";
-
+import * as firebase from "firebase";
+import * as Notifications from "expo-notifications";
 const DetailsScreen = ({ route, navigation }) => {
   const [data1, setData1] = React.useState([]);
+  const [data2, setData2] = React.useState([{
+    "highscore": "",
+    "paymentD": 0,
+    "pushToken": "",
+  }]);
   let email = "";
   let image = "";
   let pno = "";
   let adress = "";
   let Name = "";
 
+  const getData = () => {
+    firebase
+      .database()
+      .ref(`users/${route.params.Name}`)
+      .on("value", function (snapshot) {
+        setData2(snapshot.val());
+      });
+  };
+
+  console.log(data2);
+  React.useEffect(() => {
+    setTimeout(() => {
+      getData();
+    }, 1000);
+  }, []);
+
+ 
+
+  if(data2.paymentD !==0){
+    sendPushNotification(data2.pushToken)
+  }
+
+  async function sendPushNotification(expoPushToken) {
+    const message = {
+      to: expoPushToken,
+      sound: "default",
+      title: "Payment Success",
+      body: "And here is the body!",
+      data: { someData: "goes here" },
+    };
+
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Accept-encoding": "gzip, deflate",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
+  }
   React.useEffect(() => {
     fetch("https://run.mocky.io/v3/c45dd8db-b0cf-48ad-9892-5a6d25f82913")
       .then((response) => response.json())
@@ -92,56 +139,55 @@ const DetailsScreen = ({ route, navigation }) => {
           style={styles.image}
           source={{ uri: "https://bootdey.com/img/Content/avatar/avatar6.png" }}
         />
-
       </View>
-      <Animatable.View  animation="fadeInUpBig" style={styles.header}>
-      {/* all cards */}
-      <View style={styles.cardall}>
-        {/* firstcard */}
-        <View style={styles.namecard}>
-          <Text style={styles.name}>{Name}</Text>
-        </View>
-        {/* firstcard */}
-        {/* secondcard */}
-        <View style={styles.namecard2}>
-          <View style={styles.emailwrpper}>
-            <View style={styles.atsignwrapper}>
-              <View style={styles.at}>
-                <Entypo name="email" size={14} color="black" />
-              </View>
-            </View>
-            <Text style={styles.email}>{email}</Text>
+      <Animatable.View animation="fadeInUpBig" style={styles.header}>
+        {/* all cards */}
+        <View style={styles.cardall}>
+          {/* firstcard */}
+          <View style={styles.namecard}>
+            <Text style={styles.name}>{Name}</Text>
           </View>
-        </View>
-        {/* secondcard */}
-        {/* thirdcard */}
-        <View style={styles.namecard2}>
-          <View style={styles.emailwrpper}>
-            <View style={styles.atsignwrapper}>
-              <View style={styles.at}>
-                <Entypo name="phone" size={14} color="black" />
+          {/* firstcard */}
+          {/* secondcard */}
+          <View style={styles.namecard2}>
+            <View style={styles.emailwrpper}>
+              <View style={styles.atsignwrapper}>
+                <View style={styles.at}>
+                  <Entypo name="email" size={14} color="black" />
+                </View>
               </View>
-            </View>
-            <Text style={styles.email}>{pno}</Text>
-          </View>
-        </View>
-        {/* thirdcard */}
-        {/* fourthcard */}
-        <View style={styles.namecard2}>
-          <View style={styles.emailwrpper}>
-            <View style={styles.atsignwrapper}>
-              <View style={styles.at}>
-                <Entypo name="location" size={14} color="black" />
-              </View>
-            </View>
-            <View style={styles.addresss}>
-            <Text style={styles.email}>{adress}</Text>
+              <Text style={styles.email}>{email}</Text>
             </View>
           </View>
+          {/* secondcard */}
+          {/* thirdcard */}
+          <View style={styles.namecard2}>
+            <View style={styles.emailwrpper}>
+              <View style={styles.atsignwrapper}>
+                <View style={styles.at}>
+                  <Entypo name="phone" size={14} color="black" />
+                </View>
+              </View>
+              <Text style={styles.email}>{pno}</Text>
+            </View>
+          </View>
+          {/* thirdcard */}
+          {/* fourthcard */}
+          <View style={styles.namecard2}>
+            <View style={styles.emailwrpper}>
+              <View style={styles.atsignwrapper}>
+                <View style={styles.at}>
+                  <Entypo name="location" size={14} color="black" />
+                </View>
+              </View>
+              <View style={styles.addresss}>
+                <Text style={styles.email}>{adress}</Text>
+              </View>
+            </View>
+          </View>
+          {/* fourthcard */}
         </View>
-        {/* fourthcard */}
-      </View>
-      {/* all cards */}
+        {/* all cards */}
       </Animatable.View>
     </View>
   );
@@ -211,7 +257,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 24,
     fontWeight: "bold",
-    marginTop:20
+    marginTop: 20,
   },
   namecard2: {
     width: 318,
@@ -219,8 +265,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginTop: 13,
     borderRadius: 28,
-    overflow: "hidden"
-    
+    overflow: "hidden",
   },
   atsignwrapper: {
     width: 48,
@@ -236,18 +281,16 @@ const styles = StyleSheet.create({
     marginTop: 17,
     marginLeft: 4,
   },
-  email:{
-      fontSize:14,
-      marginLeft:41,marginTop:31
+  email: {
+    fontSize: 14,
+    marginLeft: 41,
+    marginTop: 31,
   },
-  emailwrpper:{
-    flexDirection: 'row',
+  emailwrpper: {
+    flexDirection: "row",
     alignItems: "center",
   },
-  addresss:{
-    
-  }
-
+  addresss: {},
 
   // header:{
   //   backgroundColor: "gray",
