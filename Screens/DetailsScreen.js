@@ -22,6 +22,8 @@ const DetailsScreen = ({ route, navigation }) => {
     "highscore": "",
     "paymentD": 0,
     "pushToken": "",
+    "services": "null",
+    "servicesgranted": "null",
   }]);
   let email = "";
   let image = "";
@@ -47,18 +49,28 @@ const DetailsScreen = ({ route, navigation }) => {
 
  
 
-  if(data2.paymentD !==0){
+  if(data2.paymentD !== 0){
     sendPushNotification(data2.pushToken)
   }
+
+  if(data2.services !== "null"){
+    servicegranted(data2.pushToken)
+  }
+
+  // if(data2.servicesgranted !== "null"){
+  //   newserviceacces(data2.pushToken)
+  // }
 
   async function sendPushNotification(expoPushToken) {
     const message = {
       to: expoPushToken,
       sound: "default",
       title: "Payment Success",
-      body: "And here is the body!",
+      body: "Happy travell :-)",
       data: { someData: "goes here" },
     };
+
+    
 
     await fetch("https://exp.host/--/api/v2/push/send", {
       method: "POST",
@@ -70,6 +82,53 @@ const DetailsScreen = ({ route, navigation }) => {
       body: JSON.stringify(message),
     });
   }
+
+  async function servicegranted(expoPushToken) {
+    const message = {
+      to: expoPushToken,
+      sound: "default",
+      title: "service Succes! Lets GO",
+      body: "Welcome To Srilanka",
+      data: { someData: "goes here" },
+    };
+
+    
+
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Accept-encoding": "gzip, deflate",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
+  }
+ async function newserviceacces(expoPushToken) {
+    const message = {
+      to: expoPushToken,
+      sound: "default",
+      title: "new Service registration",
+      body: "Succes!",
+      data: { someData: "goes here" },
+    };
+
+    
+
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Accept-encoding": "gzip, deflate",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
+  }
+
+
+
+
   React.useEffect(() => {
     fetch("https://run.mocky.io/v3/c45dd8db-b0cf-48ad-9892-5a6d25f82913")
       .then((response) => response.json())

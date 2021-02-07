@@ -46,14 +46,27 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-function storeHighScore(userId, pushToken) {
+function   setcusData(userId, pushToken) {
   firebase
     .database()
     .ref("users/" + userId)
     .set({
-      highscore: userId,
+      UserId: userId,
       pushToken: pushToken,
       paymentD: 0,
+      services:"null",
+    });
+}
+
+function   setSerData(userId, pushToken) {
+  firebase
+    .database()
+    .ref("users/" + userId)
+    .set({
+     UserId: userId,
+      pushToken: pushToken,
+      paymentD: 0,
+      servicesgranted: 'null',
     });
 }
 
@@ -239,8 +252,12 @@ let i=0;
         //  console.log('pass',data1[0].releaseYear)
 
         if (condition == true) {
-          storeHighScore(token, pushToken);
-
+          if(role== 'Customer'){
+            setcusData(token, pushToken);
+          }else{
+            setSerData(token, pushToken);
+          }
+          
           try {
             userToken = "fksjf";
             await AsyncStorage.setItem("userToken", userToken);
