@@ -12,13 +12,14 @@ import { ActivityIndicator } from "react-native-paper";
 import AuthContext from "./components/context";
 import MainTabScreen from "./Screens/MainTabScreen";
 import SupportScreen from "./Screens/SupportScreen";
-import SettingsScreen from "./Screens/SettingsScreen";
+import PaymentScreen from "./Screens/PaymentsScreen";
 import BookmarkScreen from "./Screens/Reservation";
 import DrawerContent from "./Screens/DrawerContent";
 import DrawerContent1 from "./Screens/DrawerContent1";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import HomeStackScreen from "./Screens/StackScreens/HomeStackScreen";
 import DetailsStackScreen from "./Screens/StackScreens/DetailStackScreen";
+import PaymentStackScreen from "./Screens/StackScreens/paymentStackScreen";
 import ReservationStackScreen from "./Screens/StackScreens/ReservationStackScreen";
 import ServiceStackScreen from "./Screens/StackScreens/ServiceStackScreen";
 import * as Notifications from "expo-notifications";
@@ -46,14 +47,27 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-function storeHighScore(userId, pushToken) {
+function   setcusData(userId, pushToken) {
   firebase
     .database()
     .ref("users/" + userId)
     .set({
-      highscore: userId,
+      UserId: userId,
       pushToken: pushToken,
       paymentD: 0,
+      services:"null",
+    });
+}
+
+function   setSerData(userId, pushToken) {
+  firebase
+    .database()
+    .ref("users/" + userId)
+    .set({
+     UserId: userId,
+      pushToken: pushToken,
+      paymentD: 0,
+      servicesgranted: 'null',
     });
 }
 
@@ -239,8 +253,12 @@ let i=0;
         //  console.log('pass',data1[0].releaseYear)
 
         if (condition == true) {
-          storeHighScore(token, pushToken);
-
+          if(role== 'Customer'){
+            setcusData(token, pushToken);
+          }else{
+            setSerData(token, pushToken);
+          }
+          
           try {
             userToken = "fksjf";
             await AsyncStorage.setItem("userToken", userToken);
@@ -310,7 +328,13 @@ let i=0;
                 component={ReservationStackScreen}
                 initialParams={{ Name: tokenState }}
               />
-              <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+                 <Drawer.Screen
+                name="Payments"
+                component={PaymentStackScreen}
+                initialParams={{ Name: tokenState }}
+              />
+             
+             
               <Drawer.Screen name="SupportScreen" component={SupportScreen} />
             </Drawer.Navigator>
           ) : (
@@ -328,7 +352,12 @@ let i=0;
                 component={ServiceStackScreen}
                 initialParams={{ Name: tokenState }}
               />
-              <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+                <Drawer.Screen
+                name="Payments"
+                component={PaymentStackScreen}
+                initialParams={{ Name: tokenState }}
+              />
+             
               <Drawer.Screen name="SupportScreen" component={SupportScreen} />
             </Drawer.Navigator>
           )
