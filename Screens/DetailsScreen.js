@@ -19,8 +19,8 @@ import * as Notifications from "expo-notifications";
 const DetailsScreen = ({ route, navigation }) => {
   const [data1, setData1] = React.useState([]);
   const [data2, setData2] = React.useState([{
-    "highscore": "",
-    "paymentD": 0,
+    "highscore": " ",
+    "paymentD": " ",
     "pushToken": "",
     "services": "null",
     "servicesgranted": "null",

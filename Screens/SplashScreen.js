@@ -18,11 +18,11 @@ const SplashScreen = ({ navigation }) => {
   return (
     <ImageBackground
       style={styles.ImageBackground}
-      source={require("../assets/Googlehfu.jpg")}
+      source={require("../assets/Splashs.png")}
     >
       <View style={styles.container}>
         <StatusBar
-          backgroundColor="rgba( 0, 0, 0, 05 )"
+          backgroundColor="#22343C"
           barStyle="light-content"
         />
         <View style={styles.header}>
@@ -44,9 +44,7 @@ const SplashScreen = ({ navigation }) => {
               <View style={styles.alingtext}>
                 <Text style={styles.textSign}>Get Started</Text>
               </View>
-              <View style={styles.alingicon}>
-               <Image source={require('../assets/2203522-48.png')}/>
-              </View>
+              
             </View>
           </TouchableOpacity>
         </View>
@@ -71,6 +69,7 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: "center",
     alignItems: "center",
+    marginTop:180
   },
   footer: {
     flex: 2,
@@ -94,11 +93,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   button: {
-    marginTop: 30,
+    marginTop: 270,
     flexDirection: "row",
-    width: 193,
-    height: 40,
-    backgroundColor: "white",
+    width: 280,
+    height: 49,
+    backgroundColor: "#40DF9F",
     borderRadius: 57,
     justifyContent: "space-between",
   },
@@ -111,19 +110,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   textSign: {
+    color: "white"
     
   },
   alingtext:{
-   marginLeft:31,
+ marginLeft:92,
+ marginTop:10,
    alignItems: "center",
-   marginTop:9
+   
   },
   alingicon: {
       marginLeft:20,
       marginTop:5},
      
   textSign: {
-    color: "#248058",
+    color: "white",
     fontWeight: "bold",
     fontSize: 18,
   },

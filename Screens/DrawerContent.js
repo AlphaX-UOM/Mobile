@@ -69,9 +69,9 @@ function DrawerContent1(props) {
               icon={({ color, size }) => (
                 <Icon name="settings-outline" color={"#777777"} size={30} />
               )}
-              label="        settings"
+              label="        Payments"
               onPress={() => {
-                props.navigation.navigate("SettingsScreen");
+                props.navigation.navigate("Payments");
               }}
             />
             <DrawerItem
