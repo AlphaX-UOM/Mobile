@@ -49,13 +49,13 @@ const DetailsScreen = ({ route, navigation }) => {
 
  
 
-  if(data2.paymentD !== 0){
-    sendPushNotification(data2.pushToken)
-  }
+  // if(data2.paymentD !== 0){
+  //   sendPushNotification(data2.pushToken)
+  // }
 
-  if(data2.services !== "null"){
-    servicegranted(data2.pushToken)
-  }
+  // if(data2.services !== "null"){
+  //   servicegranted(data2.pushToken)
+  // }
 
   // if(data2.servicesgranted !== "null"){
   //   newserviceacces(data2.pushToken)

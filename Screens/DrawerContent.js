@@ -21,8 +21,8 @@ function DrawerContent1(props) {
   const paperTheme = useTheme();
 
   return (
-    <View style={{ flex: 2}}>
-      <DrawerContentScrollView {...props} >
+    <View style={{ flex: 2 }}>
+      <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
             <View>
@@ -77,7 +77,11 @@ function DrawerContent1(props) {
             <DrawerItem
               style={styles.homelabel}
               icon={({ color, size }) => (
-                <Icon name="account-check-outline" color={"#777777"} size={30} />
+                <Icon
+                  name="account-check-outline"
+                  color={"#777777"}
+                  size={30}
+                />
               )}
               label="        Support"
               onPress={() => {
@@ -88,11 +92,13 @@ function DrawerContent1(props) {
         </View>
       </DrawerContentScrollView>
       <Drawer.Section style={styles.bottomDrawerSection}>
-        <DrawerItem style={styles.bottombutton}
+        <DrawerItem
+          style={styles.bottombutton}
           icon={({ color, size }) => (
-            <Icon name="exit-to-app" color='white' size={30} />
+            <Icon name="exit-to-app" color="white" size={30} />
           )}
-          label="Sign Out" color="white"
+          label="Sign Out"
+          color="white"
           onPress={() => {
             signOut();
           }}
@@ -106,11 +112,11 @@ const styles = StyleSheet.create({
   drawerContent: {
     flex: 0.5,
   },
-  bottombutton:{
+  bottombutton: {
     width: 198,
     height: 40,
-    backgroundColor:'#174D36',
-    borderRadius:13,
+    backgroundColor: "#174D36",
+    borderRadius: 13,
   },
   homelabel: {
     width: 198,
@@ -162,8 +168,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
 });
-
-
 
 // import React from "react";
 // import { View, StyleSheet, Image, ImageBackground } from "react-native";
