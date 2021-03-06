@@ -20,6 +20,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import HomeStackScreen from "./Screens/StackScreens/HomeStackScreen";
 import DetailsStackScreen from "./Screens/StackScreens/DetailStackScreen";
 import PaymentStackScreen from "./Screens/StackScreens/paymentStackScreen";
+import MorePaymentStackScreen from "./Screens/StackScreens/MorepaymentStackScreen";
 import ReservationStackScreen from "./Screens/StackScreens/ReservationStackScreen";
 import ServiceStackScreen from "./Screens/StackScreens/ServiceStackScreen";
 import * as Notifications from "expo-notifications";
@@ -47,7 +48,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-function   setcusData(userId, pushToken) {
+function setcusData(userId, pushToken) {
   firebase
     .database()
     .ref("users/" + userId)
@@ -55,19 +56,19 @@ function   setcusData(userId, pushToken) {
       UserId: userId,
       pushToken: pushToken,
       paymentD: 0,
-      services:"null",
+      services: "null",
     });
 }
 
-function   setSerData(userId, pushToken) {
+function setSerData(userId, pushToken) {
   firebase
     .database()
     .ref("users/" + userId)
     .set({
-     UserId: userId,
+      UserId: userId,
       pushToken: pushToken,
       paymentD: 0,
-      servicesgranted: 'null',
+      servicesgranted: "null",
     });
 }
 
@@ -83,52 +84,43 @@ function App() {
   const [tokenState, setTokenState] = React.useState("a");
   const [data1, setData1] = React.useState([]);
   let userIdtoken = "e4d74bf2-e51a-4c18-78ee-08d89bf76381";
-let i=0;
+  let i = 0;
   const getData = (tokenState1) => {
-    
     firebase
       .database()
       .ref(`users/${tokenState1}`)
       .on("value", function (snapshot) {
-        setData1(snapshot.val())  ;
+        setData1(snapshot.val());
       });
-      
-        
-        
   };
   console.log(data1);
   React.useEffect(() => {
     setTimeout(() => {
       getData(tokenState);
-      console.log("menname ka",pushToken)
+      console.log("menname ka", pushToken);
     }, 1000);
   }, []);
-
-  
 
   async function sendPushNotification(expoPushToken) {
     const message = {
       to: expoPushToken,
-      sound: 'default',
-      title: 'New Massage',
-      body: 'Your message body',
-      data: { someData: 'goes here' },
+      sound: "default",
+      title: "New Massage",
+      body: "Your message body",
+      data: { someData: "goes here" },
     };
-  
-    await fetch('https://exp.host/--/api/v2/push/send', {
-      method: 'POST',
+
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Accept-encoding': 'gzip, deflate',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Accept-encoding": "gzip, deflate",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(message),
     });
   }
 
- 
-
-  
   React.useEffect(() => {
     Permissions.getAsync(Permissions.NOTIFICATIONS)
       .then((statusObj) => {
@@ -253,12 +245,12 @@ let i=0;
         //  console.log('pass',data1[0].releaseYear)
 
         if (condition == true) {
-          if(role== 'Customer'){
+          if (role == "Customer") {
             setcusData(token, pushToken);
-          }else{
+          } else {
             setSerData(token, pushToken);
           }
-          
+
           try {
             userToken = "fksjf";
             await AsyncStorage.setItem("userToken", userToken);
@@ -328,13 +320,18 @@ let i=0;
                 component={ReservationStackScreen}
                 initialParams={{ Name: tokenState }}
               />
-                 <Drawer.Screen
+              <Drawer.Screen
                 name="Payments"
                 component={PaymentStackScreen}
                 initialParams={{ Name: tokenState }}
               />
-             
-             
+
+              <Drawer.Screen
+                name="morePayments"
+                component={MorePaymentStackScreen}
+               
+              />
+
               <Drawer.Screen name="SupportScreen" component={SupportScreen} />
             </Drawer.Navigator>
           ) : (
@@ -352,12 +349,24 @@ let i=0;
                 component={ServiceStackScreen}
                 initialParams={{ Name: tokenState }}
               />
-                <Drawer.Screen
+              <Drawer.Screen
                 name="Payments"
                 component={PaymentStackScreen}
                 initialParams={{ Name: tokenState }}
               />
-             
+
+              <Drawer.Screen
+                name="morePayments"
+                component={MorePaymentStackScreen}
+              
+              />
+
+                <Drawer.Screen
+                name="morePaymecard"
+                component={MorePaymentStackScreen}
+              
+              />
+
               <Drawer.Screen name="SupportScreen" component={SupportScreen} />
             </Drawer.Navigator>
           )

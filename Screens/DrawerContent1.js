@@ -69,9 +69,9 @@ function DrawerContent1(props) {
               icon={({ color, size }) => (
                 <Icon name="settings-outline" color={"#777777"} size={30} />
               )}
-              label="        settings"
+              label="        Payments"
               onPress={() => {
-                props.navigation.navigate("SettingsScreen");
+                props.navigation.navigate("Payments");
               }}
             />
             <DrawerItem
@@ -82,6 +82,16 @@ function DrawerContent1(props) {
               label="        Support"
               onPress={() => {
                 props.navigation.navigate("SupportScreen");
+              }}
+            />
+             <DrawerItem
+              style={styles.homelabel}
+              icon={({ color, size }) => (
+                <Icon name="account-check-outline" color={"#777777"} size={30} />
+              )}
+              label="        Supportpaka"
+              onPress={() => {
+                props.navigation.navigate("paymentcard");
               }}
             />
           </Drawer.Section>

@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, ImageBackground,Image} from 'react-native';
 import * as Animatable from "react-native-animatable";
-const SupportScreen = () => {
+const SupportScreen = ({navigation},props) => {
     return (
       <ImageBackground
       style={styles.container}
       source={require("../assets/aboutus.jpg")}
     >
      <View style={styles.heataboutwrapper}>
+     <Button title="Go to Home" onPress={() => navigation.navigate('morePayments',{itemId: 1254})} />
        <View >
          {/* <Image source={require("../assets/1055045-64.png")}/> */}
          <Animatable.Image

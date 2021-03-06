@@ -1,5 +1,5 @@
 import React,{ useState,useEffect} from 'react';
-import { View, Text, Button, StyleSheet ,Image,ScrollView} from 'react-native';
+import { View, Text,TouchableOpacity, Button, StyleSheet ,Image,ScrollView} from 'react-native';
 import { FontAwesome, Feather, MaterialIcons,Ionicons } from 'react-native-vector-icons';
 import { CardEcomOne, CardEcomTwo, CardEcomFour } from "react-native-card-ui";
 const PaymentScreen = ({ route, navigation }) => {
@@ -23,7 +23,9 @@ const showPayment=() =>{
        .map((Aname, i) => {
          return (
            <View style={{padding: 8 }}>
+            <TouchableOpacity  onPress={() => navigation.navigate('morePayments',{itemId: Aname.id})}>
            <PaymenCard date={Aname.date} discount={Aname.discount} cash={Aname.amount}/> 
+           </TouchableOpacity>
            </View>
         
          );
@@ -39,6 +41,7 @@ const showPayment=() =>{
         <View style={styles.paymentbox}>
           <Text style={styles.payment}>Payments</Text>
         </View>
+      
        <ScrollView>
           { showPayment()}
        </ScrollView>
@@ -66,8 +69,9 @@ const styles = StyleSheet.create({
  
 });
 
-function PaymenCard(props){
+function PaymenCard(props ,{ route, navigation }){
   return(
+   
     <View style={styles1.cardbox}>
     <View style={styles1.square}>
       <View style={styles1.dollarbig}>
@@ -91,6 +95,7 @@ function PaymenCard(props){
     <Text style={styles1.cashtext}>{props.cash}</Text>
     </View>
   </View>
+ 
   )
 }
 
