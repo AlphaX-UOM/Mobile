@@ -13,15 +13,29 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
  function MorepaymentDetails({ route, navigation }) {
 
  let paymentId=route.params.Name;
+ let namee;
+    let          pricee;
+           let   lange;
+           let   datee;
 
- 
+ let nameh;
+ let priceh;
+ let langh;
+ let dateh;
+
+ let namet;
+ let pricet;
+ let langt;
+ let datet;
 
  let nameg;
  let priceg;
  let lang;
  let dateg;
-
- const [paymentList, setPaymentList] = React.useState([]);
+ const [paymentListe, setPaymentListe] = React.useState([]);
+ const [paymentListh, setPaymentListh] = React.useState([]);
+ const [paymentListt, setPaymentListt] = React.useState([]);
+ const [paymentListg, setPaymentListg] = React.useState([]);
  React.useEffect(() => {
    fetch(
      "https://alphax-api.azurewebsites.net/api/tourguideservicereservations" 
@@ -29,11 +43,11 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
    )
      .then((res) => res.json())
      .then((data) => {
-       setPaymentList(data);
+       setPaymentListg(data);
      });
  }, []);
 
- paymentList && paymentList.filter((word) => paymentId == word.paymentID)
+ paymentListg && paymentListg.filter((word) => paymentId == word.paymentID)
     .map((Aname, i) => {
        nameg=Aname.tourGuideService.name
        priceg=Aname.tourGuideService.costPerDay
@@ -41,7 +55,62 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
        dateg=Aname.tourGuideService.checkIn
     })
 
-    
+    React.useEffect(() => {
+      fetch(
+        "https://alphax-api.azurewebsites.net/api/transportservicereservations" 
+        
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setPaymentListt(data);
+        });
+    }, []);
+   
+    paymentListt && paymentListt.filter((word) => paymentId == word.paymentID)
+       .map((Aname, i) => {
+          namet=Aname.transportService.name
+          pricet=Aname.price
+          langt = Aname.numOfTravellers
+          datet=Aname.pickUpTime
+       })
+
+       React.useEffect(() => {
+        fetch(
+          "https://alphax-api.azurewebsites.net/api/hotelsservicereservations" 
+          
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setPaymentListh(data);
+          });
+      }, []);
+     
+      paymentListh && paymentListh.filter((word) => paymentId == word.paymentID)
+         .map((Aname, i) => {
+            nameh=Aname.hotelsService.name
+            priceh=Aname.price
+            langh = Aname.noOfRooms
+            dateh=Aname.checkIn
+         })
+       
+         React.useEffect(() => {
+          fetch(
+            "https://alphax-api.azurewebsites.net/api/eventplannerservicereservations" 
+            
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              setPaymentListe(data);
+            });
+        }, []);
+       
+        paymentListe && paymentListe.filter((word) => paymentId == word.paymentID)
+           .map((Aname, i) => {
+              namee=Aname.eventPlannerService.name
+              pricee=Aname.price
+              lange = Aname.numOfTravellers
+              datee=Aname.checkIn
+           })
   
 
   return (
@@ -105,7 +174,7 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
                 <Text style={styles.ptext}> Transport </Text>
               </View>
               <View style={styles.name}>
-                <Text style={styles.ptext}> uber </Text>
+                <Text style={styles.ptext}> {namet} </Text>
               </View>
             </View>
             <View style={{ flexDirection: 'row' }}>
@@ -119,20 +188,20 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
                 <View style={{ flexDirection: 'row' }}>
                   <View style={styles.colordot}></View>
                   <View style={styles.datetext}>
-                    <Text style={styles.ptext}> Date: </Text>
+                    <Text style={styles.ptext}> Date:{datet} </Text>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
                   <View style={styles.colordot1}></View>
                   <View style={styles.datetext}>
-                    <Text style={styles.ptext}> trav: </Text>
+                    <Text style={styles.ptext}> trav:{langt} </Text>
                   </View>
                 </View>
               </View>
             </View>
             <View style={styles.priceboxtrans}>
               <View style={styles.priceboxtext}>
-                <Text style={styles.pbtext}> $pric </Text>
+                <Text style={styles.pbtext}>{pricet} </Text>
               </View>
             </View>
           </View>
@@ -142,7 +211,7 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
                 <Text style={styles.ptext}> Hotels </Text>
               </View>
               <View style={styles.name}>
-                <Text style={styles.ptext}> shangila</Text>
+                <Text style={styles.ptext}> {nameh}</Text>
               </View>
             </View>
             <View style={{ flexDirection: 'row' }}>
@@ -156,20 +225,20 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
                 <View style={{ flexDirection: 'row' }}>
                   <View style={styles.colordot}></View>
                   <View style={styles.datetext}>
-                    <Text style={styles.ptext}> Date: </Text>
+                    <Text style={styles.ptext}> Date:{dateh} </Text>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
                   <View style={styles.colordot1}></View>
                   <View style={styles.datetext}>
-                    <Text style={styles.ptext}> trav: </Text>
+                    <Text style={styles.ptext}> rooms:{langh} </Text>
                   </View>
                 </View>
               </View>
             </View>
             <View style={styles.pricebox}>
               <View style={styles.priceboxtext}>
-                <Text style={styles.pbtext}> $pric </Text>
+                <Text style={styles.pbtext}> {priceh} </Text>
               </View>
             </View>
           </View>
@@ -179,7 +248,7 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
                 <Text style={styles.ptext}> Events </Text>
               </View>
               <View style={styles.name}>
-                <Text style={styles.ptext}> eventName </Text>
+                <Text style={styles.ptext}>{namee} </Text>
               </View>
             </View>
             <View style={{ flexDirection: 'row' }}>
@@ -193,20 +262,20 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
                 <View style={{ flexDirection: 'row' }}>
                   <View style={styles.colordot}></View>
                   <View style={styles.datetext}>
-                    <Text style={styles.ptext}> Date: </Text>
+                    <Text style={styles.ptext}> Date:{datee} </Text>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
                   <View style={styles.colordot1}></View>
                   <View style={styles.datetext}>
-                    <Text style={styles.ptext}> Lang: </Text>
+                    <Text style={styles.ptext}> trav:{lange} </Text>
                   </View>
                 </View>
               </View>
             </View>
             <View style={styles.priceboxtrans}>
               <View style={styles.priceboxtext}>
-                <Text style={styles.pbtext}> $pric </Text>
+                <Text style={styles.pbtext}> {pricee} </Text>
               </View>
             </View>
           </View>
