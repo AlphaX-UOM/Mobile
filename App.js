@@ -361,11 +361,7 @@ function App() {
               
               />
 
-                <Drawer.Screen
-                name="morePaymecard"
-                component={MorePaymentStackScreen}
-              
-              />
+               
 
               <Drawer.Screen name="SupportScreen" component={SupportScreen} />
             </Drawer.Navigator>

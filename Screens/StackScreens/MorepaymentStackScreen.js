@@ -9,7 +9,7 @@ const MorePaymentStack = createStackNavigator();
 
 const MorePaymentStackScreen = ({navigation,route}) =>
 {  let {itemId} = route.params;
-   console.log(itemId)
+  
   return   (
 
  

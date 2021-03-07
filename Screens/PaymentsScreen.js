@@ -23,9 +23,9 @@ const showPayment=() =>{
        .map((Aname, i) => {
          return (
            <View style={{padding: 8 }}>
-            <TouchableOpacity  onPress={() => navigation.navigate('morePayments',{itemId: Aname.id})}>
-           <PaymenCard date={Aname.date} discount={Aname.discount} cash={Aname.amount}/> 
-           </TouchableOpacity>
+           
+           <PaymenCard date={Aname.date} discount={Aname.id} cash={Aname.amount} forwardLink={() => navigation.navigate('morePayments',{itemId: Aname.id})}/> 
+           
            </View>
         
          );
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 
 function PaymenCard(props ,{ route, navigation }){
   return(
-   
+    <TouchableOpacity onPress={props.forwardLink}>
     <View style={styles1.cardbox}>
     <View style={styles1.square}>
       <View style={styles1.dollarbig}>
@@ -95,7 +95,7 @@ function PaymenCard(props ,{ route, navigation }){
     <Text style={styles1.cashtext}>{props.cash}</Text>
     </View>
   </View>
- 
+  </TouchableOpacity>
   )
 }
 
