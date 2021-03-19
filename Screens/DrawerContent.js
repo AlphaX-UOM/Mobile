@@ -21,15 +21,18 @@ function DrawerContent1(props) {
   const paperTheme = useTheme();
 
   return (
-    <View style={{ flex: 2 }}>
+    <View style={{ flex: 1, backgroundColor: "#22343C"}}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
             <View>
               <Image
-                source={require("../assets/Group17.png")}
-                Style={{ width: 189, height: 18 }}
+                source={require("../assets/aliya.png")}
+                style={{ width: 68, height:68,marginTop:70,marginLeft:15}}
               />
+              <View style={{marginTop:10,marginLeft:15}}>
+                <Text style={{fontSize:24,color: 'white',fontWeight: 'bold'}}>Vvisit</Text>
+              </View>
             </View>
           </View>
 
@@ -37,9 +40,10 @@ function DrawerContent1(props) {
             <DrawerItem
               style={styles.homelabel}
               icon={({ color, size }) => (
-                <Icon name="home-outline" color={"#777777"} size={30} />
+                <Icon name="home-outline" color={"#96A7AF"} size={30} />
               )}
-              label="        Home"
+              label="Home"
+              labelStyle={{fontSize:20,color: 'white',fontWeight: 'bold'}}
               onPress={() => {
                 props.navigation.navigate("HomeDrawer");
               }}
@@ -47,9 +51,10 @@ function DrawerContent1(props) {
             <DrawerItem
               style={styles.homelabel}
               icon={({ color, size }) => (
-                <Icon name="account-outline" color={"#777777"} size={30} />
+                <Icon name="account-outline" color={"#96A7AF"} size={30} />
               )}
-              label="        Profile"
+              label="Profile"
+              labelStyle={{fontSize:20,color: 'white',fontWeight: 'bold'}}
               onPress={() => {
                 props.navigation.navigate("userDetails");
               }}
@@ -57,9 +62,10 @@ function DrawerContent1(props) {
             <DrawerItem
               style={styles.homelabel}
               icon={({ color, size }) => (
-                <Icon name="bookmark-outline" color={"#777777"} size={30} />
+                <Icon name="bookmark-outline" color={"#96A7AF"} size={30} />
               )}
-              label="        Reservation"
+              label="Reservation"
+              labelStyle={{fontSize:20,color: 'white',fontWeight: 'bold'}}
               onPress={() => {
                 props.navigation.navigate("reservation");
               }}
@@ -67,9 +73,10 @@ function DrawerContent1(props) {
             <DrawerItem
               style={styles.homelabel}
               icon={({ color, size }) => (
-                <Icon name="settings-outline" color={"#777777"} size={30} />
+                <Icon name="settings-outline" color={"#96A7AF"} size={30} />
               )}
-              label="        Payments"
+              label="Payments"
+              labelStyle={{fontSize:20,color: 'white',fontWeight: 'bold'}}
               onPress={() => {
                 props.navigation.navigate("Payments");
               }}
@@ -79,11 +86,12 @@ function DrawerContent1(props) {
               icon={({ color, size }) => (
                 <Icon
                   name="account-check-outline"
-                  color={"#777777"}
+                  color={"#96A7AF"}
                   size={30}
                 />
               )}
-              label="        Support"
+              label="Support"
+              labelStyle={{fontSize:20,color: 'white',fontWeight: 'bold'}}
               onPress={() => {
                 props.navigation.navigate("SupportScreen");
               }}
@@ -110,21 +118,21 @@ function DrawerContent1(props) {
 export default DrawerContent1;
 const styles = StyleSheet.create({
   drawerContent: {
-    flex: 0.5,
+    flex: 1,
   },
   bottombutton: {
     width: 198,
     height: 40,
-    backgroundColor: "#174D36",
+    backgroundColor:'#40DF9F',
     borderRadius: 13,
   },
   homelabel: {
-    width: 198,
-    height: 40,
-    borderColor: "#777777",
-    borderWidth: 1,
+   
+   
+   
+   
     marginTop: 3,
-    borderRadius: 29,
+   
   },
   userInfoSection: {
     paddingLeft: 0,
@@ -158,8 +166,8 @@ const styles = StyleSheet.create({
   },
   bottomDrawerSection: {
     marginBottom: 15,
-    borderTopColor: "#f4f4f4",
-    borderTopWidth: 1,
+   
+    
   },
   preference: {
     flexDirection: "row",

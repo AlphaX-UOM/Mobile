@@ -2,7 +2,10 @@ import React,{ useState,useEffect} from 'react';
 import { View, Text,TouchableOpacity, Button, StyleSheet ,Image,ScrollView} from 'react-native';
 import { FontAwesome, Feather, MaterialIcons,Ionicons } from 'react-native-vector-icons';
 import { CardEcomOne, CardEcomTwo, CardEcomFour } from "react-native-card-ui";
+import ComponentWithFocus from '../components/ComponentWithFocus'
 const PaymentScreen = ({ route, navigation }) => {
+
+ 
 
   const [paymentList, setPaymentList] = useState([]);
   useEffect(() => {
@@ -21,6 +24,7 @@ const showPayment=() =>{
     paymentList
        .filter((word) => route.params.Name== word.userID)
        .map((Aname, i) => {
+      
          return (
            <View style={{padding: 8 }}>
            
@@ -69,8 +73,10 @@ const styles = StyleSheet.create({
  
 });
 
-function PaymenCard(props ,{ route, navigation }){
+function PaymenCard(props ){
+ 
   return(
+    
     <TouchableOpacity onPress={props.forwardLink}>
     <View style={styles1.cardbox}>
     <View style={styles1.square}>

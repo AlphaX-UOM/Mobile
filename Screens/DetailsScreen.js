@@ -147,50 +147,7 @@ const DetailsScreen = ({ route, navigation }) => {
           (adress = Aname.address)
         );
       });
-  // console.log(image)
-
-  // return (
-  //        <View style={styles.container}>
-  //         {/* <View style={styles.header}></View> */}
-  //         <Animatable.View  animation="fadeInUpBig" style={styles.header}>
-  //         <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
-  //         <View style={styles.body}>
-  //           <View style={styles.bodyContent}>
-  //             <Text style={styles.name}>{Name}</Text>
-  //             <Text style={styles.info}>{email}</Text>
-  //             <Text style={styles.description}>{pno}</Text>
-  //             <Text style={styles.description}>{adress}</Text>
-  //             {/* <TouchableOpacity style={styles.buttonContainer}>
-  //               <Text>Opcion 1</Text>
-  //             </TouchableOpacity>
-  //             <TouchableOpacity style={styles.buttonContainer}>
-  //               <Text>Opcion 2</Text>
-  //             </TouchableOpacity> */}
-  //           </View>
-  //       </View>
-  //       </Animatable.View>
-  //     </View>
-  //   // <View style={{ flex: 1 }}>
-  //   //   <CardEcomOne
-  //   //     style={{ flex: 1 }}
-  //   //     title={"NIKE SILVER"}
-  //   //     price={"$200"}
-  //   //     image={require("../assets/ahmed-zayan-n_YWKiIBnp4-unsplash.jpg")} //OR {{uri:"http://......"}}
-  //   //     icon={"star"}
-  //   //     nbStar={3}
-  //   //     iconColor={"#FFC57C"}
-  //   //     colorList={["#000000", "#0b8457", "#7ed3b2"]}
-  //   //     selectColor={"#000000"}
-  //   //     getSelectColor={(color) => alert(color)}
-  //   //   />
-  //   //   {/* <View style={styles.text_detail}>
-  //   // <Text style={styles.text_footer}>Name:</Text><Text>{Name}</Text>
-  //   // <Text style={styles.text_footer}>Email    :</Text><Text>{email}</Text>
-  //   //       <Text style={styles.text_footer}>Contact No:</Text><Text>{pno}</Text>
-  //   //       <Text style={styles.text_footer}>Adress:</Text><Text>{adress}</Text>
-  //   //       </View> */}
-  //   // </View>
-  // );
+  
   return (
     <View style={styles.container}>
       <View style={styles.profiimage}>
@@ -290,7 +247,7 @@ export default DetailsScreen;
 // });
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#174D36",
+    backgroundColor: "#1F2E35",
     flex: 1,
   },
   profiimage: {
