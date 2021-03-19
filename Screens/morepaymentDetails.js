@@ -12,7 +12,9 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
 
  function MorepaymentDetails({ route, navigation }) {
 
- let paymentId=route.params.Name;
+  
+
+  let {itemId} = route.params;
  let namee;
     let          pricee;
            let   lange;
@@ -47,7 +49,7 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
      });
  }, []);
 
- paymentListg && paymentListg.filter((word) => paymentId == word.paymentID)
+ paymentListg && paymentListg.filter((word) => itemId == word.paymentID)
     .map((Aname, i) => {
        nameg=Aname.tourGuideService.name
        priceg=Aname.tourGuideService.costPerDay
@@ -66,7 +68,7 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
         });
     }, []);
    
-    paymentListt && paymentListt.filter((word) => paymentId == word.paymentID)
+    paymentListt && paymentListt.filter((word) => itemId == word.paymentID)
        .map((Aname, i) => {
           namet=Aname.transportService.name
           pricet=Aname.price
@@ -85,7 +87,7 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
           });
       }, []);
      
-      paymentListh && paymentListh.filter((word) => paymentId == word.paymentID)
+      paymentListh && paymentListh.filter((word) => itemId == word.paymentID)
          .map((Aname, i) => {
             nameh=Aname.hotelsService.name
             priceh=Aname.price
@@ -104,7 +106,7 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
             });
         }, []);
        
-        paymentListe && paymentListe.filter((word) => paymentId == word.paymentID)
+        paymentListe && paymentListe.filter((word) => itemId == word.paymentID)
            .map((Aname, i) => {
               namee=Aname.eventPlannerService.name
               pricee=Aname.price
@@ -124,7 +126,7 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
             <Text style={styles.ptext}> Payments </Text>
           </View>
           <View style={styles.paymenttext}>
-            <Text style={styles.ptext}>{paymentId} </Text>
+            <Text style={styles.ptext}>{itemId} </Text>
           </View>
         </ImageBackground>
       </View>

@@ -25,6 +25,7 @@ import ReservationStackScreen from "./Screens/StackScreens/ReservationStackScree
 import ServiceStackScreen from "./Screens/StackScreens/ServiceStackScreen";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
+import morepaymentDetails from "./Screens/morepaymentDetails"
 const Drawer = createDrawerNavigator();
 
 Notifications.setNotificationHandler({
@@ -328,7 +329,7 @@ function App() {
 
               <Drawer.Screen
                 name="morePayments"
-                component={MorePaymentStackScreen}
+                component={morepaymentDetails}
                
               />
 

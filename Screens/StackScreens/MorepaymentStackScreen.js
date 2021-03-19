@@ -9,6 +9,9 @@ const MorePaymentStack = createStackNavigator();
 
 const MorePaymentStackScreen = ({navigation,route}) =>
 {  let {itemId} = route.params;
+// componentDidMount=()=>{
+//     navigation.setParams({itemId})
+// }
   
   return   (
 
@@ -22,7 +25,7 @@ const MorePaymentStackScreen = ({navigation,route}) =>
             fontWeight: 'bold'
             }
         }}>
-            <MorePaymentStack.Screen name="morePaymecard" component={MorepaymentDetails} initialParams={{ Name: itemId }}  options={{
+            <MorePaymentStack.Screen name="morePaymecard" component={MorepaymentDetails} params={{ Name: itemId }}  options={{
             headerLeft: () => (
                 <Icon.Button name="ios-menu" size={25} backgroundColor="#22343C" onPress={() => navigation.openDrawer()}></Icon.Button>
             )
