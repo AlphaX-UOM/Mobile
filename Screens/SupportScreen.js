@@ -5,10 +5,10 @@ const SupportScreen = ({navigation},props) => {
     return (
       <ImageBackground
       style={styles.container}
-      source={require("../assets/aboutus.jpg")}
+      source={require("../assets/supportabout1.png")}
     >
      <View style={styles.heataboutwrapper}>
-     <Button title="Go to Home" onPress={() => navigation.navigate('morePayments',{itemId: 1254})} />
+    
        <View >
          {/* <Image source={require("../assets/1055045-64.png")}/> */}
          <Animatable.Image
@@ -28,6 +28,7 @@ Try to think about paragraphs in terms of
  thematic unity: a paragraph is a sentence
  or a group ofsentences that supports one
  central, unified idea.</Text></View>
+ <View style={styles.panda}><Image source={require("../assets/panda.png")}/></View>
 
     </ImageBackground>
     );
@@ -64,5 +65,8 @@ const styles = StyleSheet.create({
 height: 114,
 marginLeft:40,
 marginTop:79
+  },
+  panda:{
+    marginLeft:275
   }
 });

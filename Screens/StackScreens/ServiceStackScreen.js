@@ -12,7 +12,7 @@ const ServiceStackScreen = ({navigation,route}) =>
   return  (
     <ServiceStack.Navigator screenOptions={{
             headerStyle: {
-            backgroundColor: '#174D36',
+            backgroundColor: '#22343C',
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -22,7 +22,7 @@ const ServiceStackScreen = ({navigation,route}) =>
             <ServiceStack.Screen name="Home" component={ServicesScreen} initialParams={{ Name:useName  }} options={{
             title:'Services',
             headerLeft: () => (
-                <Icon.Button name="ios-menu" size={25} backgroundColor="#174D36" onPress={() => navigation.openDrawer()}></Icon.Button>
+                <Icon.Button name="ios-menu" size={25} backgroundColor="#22343C" onPress={() => navigation.openDrawer()}></Icon.Button>
             )
             }} />
     </ServiceStack.Navigator>

@@ -177,9 +177,9 @@ const DetailsScreen = ({ route, navigation }) => {
           </View>
           {/* secondcard */}
           {/* thirdcard */}
-          <View style={styles.namecard2}>
+          <View style={styles.namecard3}>
             <View style={styles.emailwrpper}>
-              <View style={styles.atsignwrapper}>
+              <View style={styles.atsignwrapper1}>
                 <View style={styles.at}>
                   <Entypo name="phone" size={14} color="black" />
                 </View>
@@ -189,9 +189,9 @@ const DetailsScreen = ({ route, navigation }) => {
           </View>
           {/* thirdcard */}
           {/* fourthcard */}
-          <View style={styles.namecard2}>
+          <View style={styles.namecard4}>
             <View style={styles.emailwrpper}>
-              <View style={styles.atsignwrapper}>
+              <View style={styles.atsignwrapper2}>
                 <View style={styles.at}>
                   <Entypo name="location" size={14} color="black" />
                 </View>
@@ -265,20 +265,37 @@ const styles = StyleSheet.create({
   namecard: {
     width: 318,
     height: 90,
-    backgroundColor: "white",
+   
     marginTop: 24,
-    borderRadius: 28,
+    
     alignItems: "center",
   },
   name: {
     fontSize: 24,
     fontWeight: "bold",
-    marginTop: 20,
+    marginTop: 18,
+    color:'white',
   },
   namecard2: {
     width: 318,
     height: 90,
-    backgroundColor: "white",
+    backgroundColor: "#286053",
+    marginTop: 13,
+    borderRadius: 28,
+    overflow: "hidden",
+  },
+  namecard3: {
+    width: 318,
+    height: 90,
+    backgroundColor: "#625B39",
+    marginTop: 13,
+    borderRadius: 28,
+    overflow: "hidden",
+  },
+  namecard4: {
+    width: 318,
+    height: 90,
+    backgroundColor: "#623A42",
     marginTop: 13,
     borderRadius: 28,
     overflow: "hidden",
@@ -286,7 +303,27 @@ const styles = StyleSheet.create({
   atsignwrapper: {
     width: 48,
     height: 44,
-    backgroundColor: "#3E8977",
+    backgroundColor: "#3DD598",
+    marginLeft: 15,
+    marginTop: 21,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    alignItems: "center",
+  },
+  atsignwrapper1: {
+    width: 48,
+    height: 44,
+    backgroundColor: "#FFC542",
+    marginLeft: 15,
+    marginTop: 21,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    alignItems: "center",
+  },
+  atsignwrapper2: {
+    width: 48,
+    height: 44,
+    backgroundColor: "#FF565E",
     marginLeft: 15,
     marginTop: 21,
     borderTopRightRadius: 20,
@@ -298,9 +335,10 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   email: {
-    fontSize: 14,
+    fontSize: 18,
     marginLeft: 41,
     marginTop: 31,
+    color: "#FFFFFF",
   },
   emailwrpper: {
     flexDirection: "row",

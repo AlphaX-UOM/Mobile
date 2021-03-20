@@ -394,7 +394,7 @@ const ReservationScreen = ({ route, navigation }) => {
       <StatusBar barStyle= { theme.dark ? "light-content" : "dark-content" }/>
         <FlipCard>
           <View style={{ flex: 1 }}>
-          <GreenUiUi image={require('../assets/HotelIcon.png')} Name="Hotels" />
+          <GreenUiUi image={require('../assets/hotelsillus.png')} Name="Hotels" />
           </View>
 
           <View style={[styles.container, { padding: 10 }]}>
@@ -407,7 +407,7 @@ const ReservationScreen = ({ route, navigation }) => {
       <View style={styles1.slide2}>
         <FlipCard>
           <View style={{ flex: 1 }}>
-          <GreenUiUi image={require('../assets/3357503-256.png')} Name="Events" />
+          <GreenUiUi image={require('../assets/sally.png')} Name="Events" />
           </View>
 
           <View style={[styles.container, { padding: 10 }]}>
@@ -420,7 +420,7 @@ const ReservationScreen = ({ route, navigation }) => {
       <View style={styles1.slide2}>
         <FlipCard>
           <View style={{ flex: 1 }}>
-          <GreenUiUi image={require('../assets/1530078-256.png')} Name="Guide" />
+          <GreenUiUi image={require('../assets/guidillus.png')} Name="Guide" />
           </View>
 
           <View style={[styles.container, { padding: 10 }]}>
@@ -433,7 +433,7 @@ const ReservationScreen = ({ route, navigation }) => {
       <View style={styles1.slide2}>
         <FlipCard>
           <View style={{ flex: 1 }}>
-          <GreenUiUi image={require('../assets/3687823-256.png')} Name="Transport" />
+          <GreenUiUi image={require('../assets/transportillus.png')} Name="Transport" />
           </View>
 
           <View style={[styles.container, { padding: 10 }]}>
@@ -453,7 +453,7 @@ export default ReservationScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#30444E",
   },
   blurredImage: {
     width: 192,
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
     height: 280,
   },
   footer3: {
-    backgroundColor: "white",
+    backgroundColor: "#30444E",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     borderTopLeftRadius: 10,
