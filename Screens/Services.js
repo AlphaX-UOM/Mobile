@@ -383,7 +383,7 @@ const ReservationScreen = ({ route, navigation }) => {
       <StatusBar barStyle= { theme.dark ? "light-content" : "dark-content" }/>
         <FlipCard>
           <View style={{ flex: 1 }}>
-          <GreenUiUi image={require('../assets/greenhotel.png')} Name="Hotels" />
+          <GreenUiUi color="#623A42" image={require('../assets/hotelsillus.png')} Name="Hotels" />
           </View>
 
           <View style={[styles.container, { padding: 10 }]}>
@@ -396,7 +396,7 @@ const ReservationScreen = ({ route, navigation }) => {
       <View style={styles1.slide2}>
         <FlipCard>
           <View style={{ flex: 1 }}>
-          <GreenUiUi image={require('../assets/greenevent.png')} Name="Events" />
+          <GreenUiUi color="#625B39" image={require('../assets/sally.png')} Name="Events" />
           </View>
 
           <View style={[styles.container, { padding: 10 }]}>
@@ -409,7 +409,7 @@ const ReservationScreen = ({ route, navigation }) => {
       <View style={styles1.slide2}>
         <FlipCard>
           <View style={{ flex: 1 }}>
-          <GreenUiUi image={require('../assets/greenguide.png')} Name="Guide" />
+          <GreenUiUi color="#286053" image={require('../assets/guidillus.png')} Name="Guide" />
           </View>
 
           <View style={[styles.container, { padding: 10 }]}>
@@ -422,7 +422,7 @@ const ReservationScreen = ({ route, navigation }) => {
       <View style={styles1.slide2}>
         <FlipCard>
           <View style={{ flex: 1 }}>
-          <GreenUiUi image={require('../assets/greencar.png')} Name="Transport" />
+          <GreenUiUi color="#625B39" image={require('../assets/transportillus.png')} Name="Transport" />
           </View>
 
           <View style={[styles.container, { padding: 10 }]}>

@@ -8,7 +8,7 @@ const HomeStack = createStackNavigator();
 const HomeStackScreen = ({navigation}) => (
     <HomeStack.Navigator screenOptions={{
             headerStyle: {
-            backgroundColor: '#434a54',
+            backgroundColor: '#22343C',
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -18,7 +18,7 @@ const HomeStackScreen = ({navigation}) => (
             <HomeStack.Screen name="Home" component={HomeScreen} options={{
             title:'Home',
             headerLeft: () => (
-                <Icon.Button name="ios-menu" size={25} backgroundColor="#434a54" onPress={() => navigation.openDrawer()}></Icon.Button>
+                <Icon.Button name="ios-menu" size={25} backgroundColor="#22343C" onPress={() => navigation.openDrawer()}></Icon.Button>
             )
             }} />
     </HomeStack.Navigator>
