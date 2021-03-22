@@ -67,7 +67,7 @@ const ReservationScreen = ({ route, navigation }) => {
   let tourGuideServiceID = [];
   let eventPlannerServiceID = [];
   let hotelsServiceID = [];
-
+  const [user,setUser]=React.useState([]);
   const [data1, setData1] = React.useState([]);
   const [data11, setData11] = React.useState([]);
   const [data111, setData111] = React.useState([]);
@@ -111,8 +111,7 @@ const ReservationScreen = ({ route, navigation }) => {
     "https://images.unsplash.com/photo-1534086184399-1ddd8c3b6b83?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80"
   ];
 
-  var item = hotelarray[Math.floor(Math.random() * hotelarray.length)];
-  console.log(item);
+  
 
   React.useEffect(() => {
     fetch(
@@ -120,6 +119,14 @@ const ReservationScreen = ({ route, navigation }) => {
     )
       .then((response) => response.json())
       .then((json) => setData1(json))
+      .catch((error) => console.error(error));
+  }, []);
+  React.useEffect(() => {
+    fetch(
+      "https://run.mocky.io/v3/c45dd8db-b0cf-48ad-9892-5a6d25f82913"
+    )
+      .then((response) => response.json())
+      .then((json) => setUser(json))
       .catch((error) => console.error(error));
   }, []);
 
@@ -184,80 +191,105 @@ const ReservationScreen = ({ route, navigation }) => {
   //         hotelsServiceID=Aname.hotelsServiceID
 
   //           )})
-
-  data1 &&
-    data1
-      .filter((person) => person.userID === route.params.Name)
-      .map((Aname, i) => {
-        return (eventId[i] = Aname.eventPlannerServiceID);
-      });
-
   const Collapsibleevent = () => {
     return (
-      eventinfo &&
-      eventinfo
-        .filter((word) => eventId.indexOf(word))
-        .map((Aname, i) => {
-          return (
-            <Showmoreevents
-              key={i}
-              eventname={Aname.name}
-              evprice={Aname.price}
-              evevenye={Aname.eventType}
-              eventtypeevent={Aname.otherDetails}
-              dateevent={Aname.date}
-              timeevent={Aname.time}
-            />
-          );
-        })
-    );
-  };
-
-  data11 &&
-    data11
-      .filter((person) => person.userID === route.params.Name)
+  data1 &&
+    data1
+      .filter((person) => person.eventPlannerService.userID === route.params.Name)
       .map((Aname, i) => {
-        return (Gid[i] = Aname.tourGuideServiceID);
-      });
+        return (
+          Aname.eventPlannerService.eventPlannerServiceReservations
+            .filter((person) => person.userID === person.userID)
+            .map((Bname, i) => {
+              return (
+                user && user.filter((person)=>person.id==Bname.userID).map((Cname,i)=>{
+                  return(
+                    // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
+                    <Showmoreevents
+                    key={i}
+                    eventname={Aname.eventPlannerService.name}
+                    evprice={Cname.firstName}
+                    evevenye={Bname.id}
+                    eventtypeevent={Aname.eventPlannerService.otherDetails}
+                    dateevent={Bname.checkIn}
+                    timeevent={Bname.checkOut}
+                  />
+                  )
+                })
+               
+            
+              );
+            }));
+      })
+    )}
+
+  
+
+  
   const Collapsibleguid = () => {
     return (
-      guideinfo &&
-      guideinfo
-        .filter((word) => Gid.indexOf(word))
-        .map((Aname, i) => {
-          return (
-            <Showmoreguide
-              key={i}
-              Gname={Aname.name}
-              languageg={Aname.language}
-              costPerDayg={Aname.costPerDay}
-              pnumberg={Aname.pnumber}
-              otherDetailsg={Aname.otherDetails}
-            />
-          );
-        })
+      data11 &&
+      data11
+      .filter((person) => person.tourGuideService.userID === route.params.Name)
+      .map((Aname, i) => {
+        return (
+          Aname.tourGuideService.tourGuideServiceReservations
+            .filter((person) => person.userID === person.userID)
+            .map((Bname, i) => {
+              return (
+                user && user.filter((person)=>person.id==Bname.userID).map((Cname,i)=>{
+                  return(
+                    // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
+                    <Showmoreguide
+                    key={i}
+                    eventname={Aname.tourGuideService.name}
+                    evprice={Cname.firstName}
+                    evevenye={Bname.id}
+                    
+                    dateevent={Bname.checkIn}
+                    timeevent={Bname.checkOut}
+                  />
+                  )
+                })
+               
+            
+              );
+            }));
+      })
     );
   };
 
 
   const CollapsibleHotels = () => {
     return (
-      hotelinfo &&
-      hotelinfo
-        .filter((word) => word.userID === route.params.Name)
-        .map((Aname, i) => {
-          return (
-            <Showmorehotels
-              key={i}
-              nameH={Aname.name}
-              venueH={Aname.venue}
-              pricePerDayH={Aname.firstName}
-              districtH={Aname.lastName}
-              features={Aname.email}
-             
-            />
-          );
-        })
+      data111 &&
+    data111
+      .filter((person) => person.hotelsService.userID === route.params.Name)
+      .map((Aname, i) => {
+        return (
+          Aname.hotelsService.hotelsServiceReservations
+            .filter((person) => person.userID === person.userID)
+            .map((Bname, i) => {
+              return (
+                user && user.filter((person)=>person.id==Bname.userID).map((Cname,i)=>{
+                  return(
+                    // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
+                    <Showmorehotels
+                    key={i}
+                    eventname={Aname.hotelsService.name}
+                    evprice={Cname.firstName}
+                    evevenye={Bname.id}
+                    
+                    dateevent={Bname.checkIn}
+                    timeevent={Bname.checkOut}
+                  />
+                  )
+                })
+               
+            
+              );
+            }));
+      })
     );
   };
 
@@ -274,21 +306,34 @@ const ReservationScreen = ({ route, navigation }) => {
 
   const CollapsibleTransport = () => {
     return (
-      transportinfo &&
-      transportinfo
-        .filter((word) => word.userID === route.params.Name)
-        .map((Aname, i) => {
-          return (
-            <ShowmoreTransport
-              key={i}
-              name={Aname.name}
-              district={Aname.district}
-              pnumber={Aname.firstName}
-              descriptiont={Aname.lastName}
-              vehicleType={Aname.email}
-            />
-          );
-        })
+      data1111 &&
+    data1111
+      .filter((person) => person.transportService.userID === route.params.Name)
+      .map((Aname, i) => {
+        return (
+          Aname.transportService.transportServiceReservations
+            .filter((person) => person.userID === person.userID)
+            .map((Bname, i) => {
+              return (
+                user && user.filter((person)=>person.id==Bname.userID).map((Cname,i)=>{
+                  return(
+                    // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
+                    <ShowmoreTransport
+                    key={i}
+                    eventname={Aname.transportService.name}
+                    evprice={Cname.firstName}
+                    evevenye={Bname.id}
+                    
+                    dateevent={Bname.checkIn}
+                    timeevent={Bname.checkOut}
+                  />
+                  )
+                })
+               
+            
+              );
+            }));
+      })
     );
   };
 
@@ -323,54 +368,70 @@ const ReservationScreen = ({ route, navigation }) => {
   function Showmoreguide(props) {
     return (
       <View style={{ padding: 8 }}>
-        <CardEcomFour
-          title={props.Gname}
-          subTitle={props.languageg}
-          price={"$" + props.costPerDayg + `\n` + `\n` + props.otherDetailsg}
-          image={{uri:guidearray[Math.floor(Math.random() * guidearray.length)]}}
-        />
-      </View>
+      <CardEcomFour
+        title={props.eventname}
+        subTitle={props.evevenye}
+        price={
+          "$" +
+          props.evprice +
+          `\n` +
+          `\n` +
+          props.dateevent +
+          `\n` +
+          `\n` +
+          props.timeevent
+        }
+        image={{uri:guidearray[Math.floor(Math.random() * guidearray.length)]}}
+      />
+    </View>
     );
   }
 
   function ShowmoreTransport(props) {
     return (
-      <View>
-        <CardEcomFour
-          title={props.name}
-          subTitle={props.vehicleType}
-          price={
-           
-            
+      <View style={{ padding: 8 }}>
+      <CardEcomFour
+        title={props.eventname}
+        subTitle={props.evevenye}
+        price={
+          "$" +
+          props.evprice +
+          `\n` +
+          `\n` +
+          props.dateevent +
+          `\n` +
+          `\n` +
+          props.timeevent
+        }
+        image={{uri:Transportarray[Math.floor(Math.random() * Transportarray.length)]}}
+      />
+    </View>
          
-            props.district +
-            `\n` +
-            `\n` +
-            props.pnumber+" "+props.descriptiont
-          }
-          image={{uri:Transportarray[Math.floor(Math.random() * Transportarray.length)]}}
-        />
-      </View>
+      
     );
   }
   function Showmorehotels(props) {
     return (
-      <View>
-        <CardEcomFour
-          title={props.nameH}
-          subTitle={props.venueH}
-          price={
-       
-            props.pricePerDayH +
-            " "+
-            props.districtH +
-            `\n` +
-            `\n` +
-            props.features
-          }
-          image={{uri:hotelarray[Math.floor(Math.random() * hotelarray.length)]}}
-        />
-      </View>
+      <View style={{ padding: 8 }}>
+      <CardEcomFour
+        title={props.eventname}
+        subTitle={props.evevenye}
+        price={
+          "$" +
+          props.evprice +
+          `\n` +
+          `\n` +
+          props.dateevent +
+          `\n` +
+          `\n` +
+          props.timeevent
+        }
+        image={{uri:hotelarray[Math.floor(Math.random() * hotelarray.length)]}}
+      />
+    </View>
+          
+        
+      
     );
   }
 
@@ -442,7 +503,7 @@ export default ReservationScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#30444E",
   },
   blurredImage: {
     width: 192,
@@ -461,7 +522,7 @@ const styles = StyleSheet.create({
     height: 280,
   },
   footer3: {
-    backgroundColor: "white",
+    backgroundColor: "#30444E",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     borderTopLeftRadius: 10,
