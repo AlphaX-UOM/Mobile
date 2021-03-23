@@ -308,14 +308,15 @@ function App() {
         {loginState.userToken !== null ? (
           roleState === "Customer" ? (
             <Drawer.Navigator
-              drawerContent={(props) => <DrawerContent {...props} />}
+              drawerContent={(props) => <DrawerContent {...props} /> } initialRouteName="HomeDrawer"
             >
+              <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
               <Drawer.Screen
                 name="userDetails"
                 component={DetailsStackScreen}
                 initialParams={{ Name: tokenState }}
               />
-              <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
+             
               <Drawer.Screen
                 name="reservation"
                 component={ReservationStackScreen}
@@ -337,7 +338,7 @@ function App() {
             </Drawer.Navigator>
           ) : (
             <Drawer.Navigator
-              drawerContent={(props) => <DrawerContent1 {...props} />}
+              drawerContent={(props) => <DrawerContent1 {...props} />} initialRouteName="HomeDrawer"
             >
               <Drawer.Screen
                 name="userDetails"

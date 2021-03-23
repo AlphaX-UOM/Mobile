@@ -49,17 +49,17 @@ const DetailsScreen = ({ route, navigation }) => {
 
  
 
-  // if(data2.paymentD !== 0){
-  //   sendPushNotification(data2.pushToken)
-  // }
+  if(data2.paymentD !== 0){
+    sendPushNotification(data2.pushToken)
+  }
 
-  // if(data2.services !== "null"){
-  //   servicegranted(data2.pushToken)
-  // }
+  if(data2.services !== "null"){
+    servicegranted(data2.pushToken)
+  }
 
-  // if(data2.servicesgranted !== "null"){
-  //   newserviceacces(data2.pushToken)
-  // }
+  if(data2.servicesgranted !== "null"){
+    newserviceacces(data2.pushToken)
+  }
 
   async function sendPushNotification(expoPushToken) {
     const message = {
@@ -142,18 +142,18 @@ const DetailsScreen = ({ route, navigation }) => {
         return (
           (Name = Aname.firstName),
           (email = Aname.email),
-          (image = Aname.userurl),
+          (image = Aname.imgURL),
           (pno = Aname.contact),
           (adress = Aname.address)
         );
       });
-  
+  const image1="https://bootdey.com/img/Content/avatar/avatar6.png"
   return (
     <View style={styles.container}>
       <View style={styles.profiimage}>
         <Image
           style={styles.image}
-          source={{ uri: "https://bootdey.com/img/Content/avatar/avatar6.png" }}
+          source={{ uri:image1  }}
         />
       </View>
       <Animatable.View animation="fadeInUpBig" style={styles.header}>

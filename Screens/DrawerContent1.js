@@ -86,21 +86,13 @@ function DrawerContent1(props) {
               icon={({ color, size }) => (
                 <Icon name="account-check-outline" color={"#96A7AF"} size={30} />
               )}
-              label="        Support"
+              label="Support"
+              labelStyle={{fontSize:20,color: 'white',fontWeight: 'bold'}}
               onPress={() => {
                 props.navigation.navigate("SupportScreen");
               }}
             />
-             <DrawerItem
-              style={styles.homelabel}
-              icon={({ color, size }) => (
-                <Icon name="account-check-outline" color={"#96A7AF"} size={30} />
-              )}
-              label="        Supportpaka"
-              onPress={() => {
-                props.navigation.navigate("paymentcard");
-              }}
-            />
+            
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
