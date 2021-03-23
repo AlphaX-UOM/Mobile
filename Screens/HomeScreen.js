@@ -96,6 +96,7 @@ return(
     "#0062FF",
     "#3ED598",
   ];
+ 
   var colorg = colorarray[Math.floor(Math.random() * colorarray.length)];
   return (
     <View style={styles.container}>
@@ -125,6 +126,7 @@ return(
           </ScrollView>
         </View>
       </ScrollView>
+      <View style={{marginTop: 10}}></View>
     </View>
   );
 };
@@ -132,11 +134,12 @@ return(
 const LeftContent = (props) => <Avatar.Icon {...props} icon="home" />;
 
 const GuideAds = (props) => {
+  const guideimage=[require("../assets/guide23.png"),require("../assets/guidillus.png"),require("../assets/guide34.png")]
   return (
     <View
       style={{
-        width: 165,
-        height: 200,
+        width: 175,
+        height: 230,
         backgroundColor: props.colorg,
         borderRadius: 10,
         marginTop: 10,
@@ -150,19 +153,20 @@ const GuideAds = (props) => {
         <Text style={styles.guidetext}>{props.price}</Text>
       </View>
       <Image
-        style={{ width: 90, height: 50 }}
-        source={require("../assets/guidillus.png")}
+        style={{ width: 90, height: 90,marginLeft:60 }}
+        source={ guideimage[Math.floor(Math.random() * guideimage.length)]}
       />
     </View>
   );
 };
 
 const TransportAds = (props) => {
+  const guideimage=[require("../assets/transport12.png"),require("../assets//transport23.png"),require("../assets/guide34.png")]
   return (
     <View
       style={{
-        width: 173,
-        height: 200,
+        width: 183,
+        height: 240,
         backgroundColor: props.colorg,
         borderRadius: 10,
         marginTop: 10,
@@ -176,8 +180,8 @@ const TransportAds = (props) => {
         <Text style={styles.guidetext}>{props.car}</Text>
       </View>
       <Image
-        style={{ width: 90, height: 50 }}
-        source={require("../assets/guidillus.png")}
+        style={{ width: 90, height: 100 }}
+        source={ guideimage[Math.floor(Math.random() * guideimage.length)]}
       />
     </View>
   );
@@ -247,7 +251,7 @@ const EventAds = (props) => {
           </View>
         </View>
       </View>
-      <View style={{ marginLeft: 19, marginTop: 10 }}>
+      <View style={{ marginLeft: 19, marginTop: 10 ,width:355,height:50,}}>
         <Text style={{ color: "white" }}>
          {props.details}
         </Text>
