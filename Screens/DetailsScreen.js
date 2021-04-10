@@ -130,7 +130,7 @@ const DetailsScreen = ({ route, navigation }) => {
 
 
   React.useEffect(() => {
-    fetch("https://run.mocky.io/v3/c45dd8db-b0cf-48ad-9892-5a6d25f82913")
+    fetch("https://alphax-api.azurewebsites.net/api/users")
       .then((response) => response.json())
       .then((json) => setData1(json))
       .catch((error) => console.error(error));
@@ -147,7 +147,7 @@ const DetailsScreen = ({ route, navigation }) => {
           (adress = Aname.address)
         );
       });
-  const image1="https://bootdey.com/img/Content/avatar/avatar6.png"
+  const image1=image
   return (
     <View style={styles.container}>
       <View style={styles.profiimage}>
