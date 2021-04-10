@@ -10,7 +10,7 @@ const PaymentScreen = ({ route, navigation }) => {
   const [paymentList, setPaymentList] = useState([]);
   useEffect(() => {
     fetch(
-      "https://run.mocky.io/v3/73958238-7761-4d81-8577-793ff92c0ea1" 
+      "https://alphax-api.azurewebsites.net/api/payments" 
       
     )
       .then((res) => res.json())
@@ -18,17 +18,20 @@ const PaymentScreen = ({ route, navigation }) => {
         setPaymentList(data);
       });
   }, []);
+
+  let sortedPayments = paymentList.sort((a, b) => new Date(...a.date.split('/')) - new Date(...b.date.split('/')));
+  let resortedpay=sortedPayments.reverse();
 const showPayment=() =>{
   return (
-    paymentList &&
-    paymentList
+   resortedpay &&
+   resortedpay
        .filter((word) => route.params.Name== word.userID)
        .map((Aname, i) => {
       
          return (
            <View style={{padding: 8 }}>
            
-           <PaymenCard date={Aname.date} discount={Aname.id} cash={Aname.amount} forwardLink={() => navigation.navigate('morePayments',{itemId: Aname.id})}/> 
+           <PaymenCard date={Aname.date} discount={Aname.discount} cash={Aname.amount} forwardLink={() => navigation.navigate('morePayments',{itemId: Aname.id})}/> 
            
            </View>
         
@@ -74,6 +77,9 @@ const styles = StyleSheet.create({
 });
 
 function PaymenCard(props ){
+
+  var myDate = new Date(props.date);
+  var output = myDate.getDate() + " - " +  (myDate.getMonth()+1) + " - " + myDate.getFullYear();
  
   return(
     
@@ -86,14 +92,14 @@ function PaymenCard(props ){
     </View>
     <View style={styles1.datedisc}>
       <View style={styles1.date}>
-        <Text style={styles1.datetext}>{props.date} </Text>
+        <Text style={styles1.datetext}>Date {output} </Text>
       </View>
       <View style={styles1.discount}>
        <View style={styles1.rocket}>
        <FontAwesome name="rocket" color="#FFC542" size={20} />
       </View>
        <View style={styles1.discountval}>
-        <Text style={styles1.discounttext}>{props.discount}</Text>
+        <Text style={styles1.discounttext}>{props.discount} % Discount</Text>
       </View>
       </View>
     </View>

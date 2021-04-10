@@ -24,7 +24,7 @@ const SignInScreen = ({ navigation }) => {
   const [data1, setData1] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("https://run.mocky.io/v3/c45dd8db-b0cf-48ad-9892-5a6d25f82913")
+    fetch("https://alphax-api.azurewebsites.net/api/users")
       .then((response) => response.json())
       .then((json) => setData1(json))
       .catch((error) => console.error(error));
@@ -48,7 +48,29 @@ const SignInScreen = ({ navigation }) => {
 
   const { signIn } = React.useContext(AuthContext);
 
+
+ 
+
   const textInputChange = (val) => {
+
+    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    // if (reg.test(text) === false) {
+    //   console.log("Email is Not Correct");
+    //   setData({
+    //     ...data,
+    //     userName: val,
+    //     check_textInputChange: true,
+    //   });
+    //   return false;
+    // }
+    // else {
+    //   setData({
+    //     ...data,
+    //     emal: val,
+    //     check_textInputChange: false,
+    //   });
+    //   console.log("Email is Correct");
+    // }
     if (val.length !== 0) {
       setData({
         ...data,
@@ -159,10 +181,17 @@ const SignInScreen = ({ navigation }) => {
             placeholderTextColor="#96A7AF"
             onChangeText={(val) => textInputChange(val)}
           />
+          
         </View>
 
         <View style={styles.faviconcontainer}>
-          <FontAwesome name="eye" color="#96A7AF" size={20} />
+        {data.check_textInputChange ?
+                <Feather
+                 name="check-circle"
+                 color="#96A7AF" size={20}
+                />
+                :null}
+          {/* <FontAwesome name="eye" color="#96A7AF" size={20} /> */}
         </View>
       </View>
       <View style={{ flexDirection: "row" }}>
@@ -182,7 +211,20 @@ const SignInScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.faviconcontainer1}>
-          <FontAwesome name="eye" color="#96A7AF" size={20} />
+          {/* <FontAwesome name="eye" color="#96A7AF" size={20} /> */}
+          <TouchableOpacity 
+                onPress={updateSecureTextEntry}
+                >
+                    {data.secureTextEntry ?
+                <Feather
+                 name="eye-off"
+                 color="#96A7AF" size={20}
+                /> :
+                <Feather
+                name="eye"
+                color="#96A7AF" size={20}
+               />}
+                </TouchableOpacity>
         </View>
       </View>
 

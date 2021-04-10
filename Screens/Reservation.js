@@ -11,8 +11,7 @@ import {
 import { CardEcomOne, CardEcomTwo, CardEcomFour } from "react-native-card-ui";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { FontAwesome, Feather } from "react-native-vector-icons";
-import CollapsibleCard from "./Collapsiablecard";
-import CollapsibleCard1 from "./CollapsiableCard1";
+
 import { useTheme } from '@react-navigation/native';
 //import Swiper from "react-native-web-swiper";
 import FlipCard from "react-native-flip-card";
@@ -116,7 +115,7 @@ const ReservationScreen = ({ route, navigation }) => {
 
   React.useEffect(() => {
     fetch(
-      "https://run.mocky.io/v3/80584d2c-6096-45f8-b16b-ea1d0602106d"
+      "https://alphax-api.azurewebsites.net/api/eventplannerservicereservations"
     )
       .then((response) => response.json())
       .then((json) => setData1(json))
@@ -124,7 +123,7 @@ const ReservationScreen = ({ route, navigation }) => {
   }, []);
 
   React.useEffect(() => {
-    fetch("https://run.mocky.io/v3/bb7949a9-003e-4c8e-80d2-136dc09bb0f8")
+    fetch("https://alphax-api.azurewebsites.net/api/eventplannerservices")
       .then((response) => response.json())
       .then((json) => seteventinfo(json))
       .catch((error) => console.error(error));
@@ -132,7 +131,7 @@ const ReservationScreen = ({ route, navigation }) => {
 
   React.useEffect(() => {
     fetch(
-      "https://run.mocky.io/v3/b7224c5d-e72c-4985-a8c4-18bdb4842c9e"
+      "https://alphax-api.azurewebsites.net/api/tourguideservicereservations"
     )
       .then((response) => response.json())
       .then((json) => setData11(json))
@@ -140,20 +139,20 @@ const ReservationScreen = ({ route, navigation }) => {
   }, []);
 
   React.useEffect(() => {
-    fetch("https://run.mocky.io/v3/db39e5c4-e595-4a3c-a3d2-0aa9ae1859b3")
+    fetch("https://alphax-api.azurewebsites.net/api/tourguideservices")
       .then((response) => response.json())
       .then((json) => setguideinfo(json))
       .catch((error) => console.error(error));
   }, []);
 
   React.useEffect(() => {
-    fetch("https://run.mocky.io/v3/2a1a4cbe-b935-4e10-8e3b-21cee8d82d9e")
+    fetch("https://alphax-api.azurewebsites.net/api/hotelsservicereservations")
       .then((response) => response.json())
       .then((json) => setData111(json))
       .catch((error) => console.error(error)); 
   }, []);
   React.useEffect(() => {
-    fetch("https://run.mocky.io/v3/042b3a38-e875-4203-80ad-0080eadd1104")
+    fetch("https://alphax-api.azurewebsites.net/api/hotelsservices")
       .then((response) => response.json())
       .then((json) => setHotelinfo(json))
       .catch((error) => console.error(error));
@@ -161,14 +160,14 @@ const ReservationScreen = ({ route, navigation }) => {
 
   React.useEffect(() => {
     fetch(
-      "https://run.mocky.io/v3/1b4133ef-0c8e-4727-89a3-74588bfddae4"
+      "https://alphax-api.azurewebsites.net/api/transportservicereservations"
     )
       .then((response) => response.json())
       .then((json) => setData1111(json))
       .catch((error) => console.error(error));
   }, []);
   React.useEffect(() => {
-    fetch("https://run.mocky.io/v3/492eae31-c7e8-4ce1-9029-7e48216c9f11")
+    fetch("https://alphax-api.azurewebsites.net/api/transportservices")
       .then((response) => response.json())
       .then((json) => settransportinfo(json))
       .catch((error) => console.error(error));
