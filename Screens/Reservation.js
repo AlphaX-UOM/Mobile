@@ -190,11 +190,14 @@ const ReservationScreen = ({ route, navigation }) => {
       .map((Aname, i) => {
         return (eventId[i] = Aname.eventPlannerServiceID);
       });
-
+      let sortedevents =  eventinfo.sort((a, b) => new Date(...a.date.split('/')) - new Date(...b.date.split('/')));
+      let resortedevents=sortedevents.reverse();
   const Collapsibleevent = () => {
+    
+    
     return (
-      eventinfo &&
-      eventinfo
+      resortedevents &&
+      resortedevents
         .filter((word) => eventId.indexOf(word))
         .map((Aname, i) => {
           return (
@@ -212,16 +215,21 @@ const ReservationScreen = ({ route, navigation }) => {
     );
   };
 
-  data11 &&
-    data11
+  let sortedGuide =   data11.sort((a, b) => new Date(...a.checkIn.split('/')) - new Date(...b.checkIn.split('/')));
+  let resortedguide=sortedGuide.reverse();
+
+ resortedguide &&
+   resortedguide
       .filter((person) => person.userID === route.params.Name)
       .map((Aname, i) => {
         return (Gid[i] = Aname.tourGuideServiceID);
       });
+
+     
   const Collapsibleguid = () => {
     return (
-      guideinfo &&
-      guideinfo
+     guideinfo &&guideinfo
+     
         .filter((word) => Gid.indexOf(word))
         .map((Aname, i) => {
           return (
@@ -238,16 +246,19 @@ const ReservationScreen = ({ route, navigation }) => {
     );
   };
 
-  data111 &&
-    data111
+  let sortedhotels =  data111.sort((a, b) => new Date(...a.checkIn.split('/')) - new Date(...b.checkIn.split('/')));
+  let resortedhotels=sortedhotels.reverse();
+   resortedhotels &&
+     resortedhotels
       .filter((person) => person.userID === route.params.Name)
       .map((Aname) => {
         return (hotelNameid = Aname.hotelsServiceID);
       });
+
   const CollapsibleHotels = () => {
     return (
-      hotelinfo &&
-      hotelinfo
+       hotelinfo &&
+       hotelinfo
         .filter((word) => hotelNameid.indexOf(word))
         .map((Aname, i) => {
           return (
@@ -274,17 +285,21 @@ const ReservationScreen = ({ route, navigation }) => {
   //                       nooftravellers1=Aname.noOfTravellers,
   //                       hotelName1=Aname.hotelName)})
 
-  data1111 &&
-    data1111
+  let sortedTransport =  data1111.sort((a, b) => new Date(...a.checkIn.split('/')) - new Date(...b.checkIn.split('/')));
+  let resortedTransport=sortedTransport.reverse();
+
+  resortedTransport &&
+    resortedTransport
       .filter((person) => person.userID === route.params.Name)
       .map((Aname) => {
         return (trnsportId = Aname.transportServiceID);
       });
 
+
   const CollapsibleTransport = () => {
     return (
-      transportinfo &&
-      transportinfo
+    transportinfo &&
+    transportinfo
         .filter((word) => trnsportId.indexOf(word))
         .map((Aname, i) => {
           return (
@@ -306,6 +321,11 @@ const ReservationScreen = ({ route, navigation }) => {
   }
 
   function Showmoreevents(props) {
+    var myDate = new Date(props.dateevent);
+    var output = myDate.getDate() + " - " +  (myDate.getMonth()+1) + " - " + myDate.getFullYear();
+
+
+    let [hour, minute, second] = new Date(props.timeevent).toLocaleTimeString("en-US").split(/:| /)
     return (
       // Your Code
 
@@ -313,15 +333,15 @@ const ReservationScreen = ({ route, navigation }) => {
         <CardEcomFour
           title={props.eventname}
           subTitle={props.evevenye}
-          price={
+          price={ 
             "$" +
             props.evprice +
             `\n` +
             `\n` +
-            props.dateevent +
+             "date" +" "+output +
             `\n` +
             `\n` +
-            props.timeevent
+            hour+" :" +minute
           }
           image={{uri:eventarray[Math.floor(Math.random() * eventarray.length)]}}
         />

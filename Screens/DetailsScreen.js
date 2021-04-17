@@ -57,9 +57,7 @@ const DetailsScreen = ({ route, navigation }) => {
     servicegranted(data2.pushToken)
   }
 
-  if(data2.servicesgranted !== "null"){
-    newserviceacces(data2.pushToken)
-  }
+  
 
   async function sendPushNotification(expoPushToken) {
     const message = {
