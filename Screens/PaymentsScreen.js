@@ -8,6 +8,7 @@ const PaymentScreen = ({ route, navigation }) => {
  
 
   const [paymentList, setPaymentList] = useState([]);
+  const [paymentList1, setPaymentList1] = useState("null");
   useEffect(() => {
     fetch(
       "https://alphax-api.azurewebsites.net/api/payments" 
@@ -18,6 +19,19 @@ const PaymentScreen = ({ route, navigation }) => {
         setPaymentList(data);
       });
   }, []);
+
+  useEffect(() => {
+    fetch(
+      `https://alphax-api.azurewebsites.net/api/users/${route.params.Name}`
+      
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setPaymentList1(data);
+      });
+  }, []);
+
+  console.log(paymentList1.role);
 
   let sortedPayments = paymentList.sort((a, b) => new Date(...a.date.split('/')) - new Date(...b.date.split('/')));
   let resortedpay=sortedPayments.reverse();
@@ -40,13 +54,19 @@ const showPayment=() =>{
    
   )
 }
+let heading;
 
-
+if(paymentList1.role=="Customer"){
+   heading = "Payments"
+}
+else{
+  heading = "Payments/Earnings"
+}
  
     return (
       <View style={styles.container}>
         <View style={styles.paymentbox}>
-          <Text style={styles.payment}>Payments</Text>
+          <Text style={styles.payment}>{heading}</Text>
         </View>
       
        <ScrollView>

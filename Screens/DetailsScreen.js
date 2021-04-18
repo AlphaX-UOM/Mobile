@@ -17,7 +17,7 @@ import { route } from "@react-navigation/native";
 import * as firebase from "firebase";
 import * as Notifications from "expo-notifications";
 const DetailsScreen = ({ route, navigation }) => {
-  const [data1, setData1] = React.useState([]);
+  const [data1, setData1] = React.useState("null");
   const [data2, setData2] = React.useState([{
     "highscore": " ",
     "paymentD": " ",
@@ -128,23 +128,20 @@ const DetailsScreen = ({ route, navigation }) => {
 
 
   React.useEffect(() => {
-    fetch("https://alphax-api.azurewebsites.net/api/users")
+    fetch(`https://alphax-api.azurewebsites.net/api/users/${route.params.Name}`)
       .then((response) => response.json())
       .then((json) => setData1(json))
       .catch((error) => console.error(error));
   }, []);
-  data1 &&
-    data1
-      .filter((person) => person.id === route.params.Name)
-      .map((Aname) => {
-        return (
-          (Name = Aname.firstName),
-          (email = Aname.email),
-          (image = Aname.imgURL),
-          (pno = Aname.contact),
-          (adress = Aname.address)
-        );
-      });
+  
+     
+        
+          Name = data1.firstName;
+          email = data1.email;
+          image = data1.imgURL;
+          pno = data1.contact;
+          adress = data1.address;
+      
   const image1=image
   return (
     <View style={styles.container}>

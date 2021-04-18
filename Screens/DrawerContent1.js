@@ -70,6 +70,17 @@ function DrawerContent1(props) {
                 props.navigation.navigate("Services");
               }}
             />
+             <DrawerItem
+              style={styles.homelabel}
+              icon={({ color, size }) => (
+                <Icon name="bookmark-outline" color={"#96A7AF"} size={30} />
+              )}
+              label="Reservation"
+              labelStyle={{fontSize:20,color: 'white',fontWeight: 'bold'}}
+              onPress={() => {
+                props.navigation.navigate("reservation");
+              }}
+            />
             <DrawerItem
               style={styles.homelabel}
               icon={({ color, size }) => (

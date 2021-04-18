@@ -8,7 +8,7 @@ import {
   Image,
   ImageBackground,
 } from "react-native";
-import { CardEcomOne, CardEcomTwo, CardEcomFour } from "react-native-card-ui";
+import { CardEcomFour } from "react-native-card-ui";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 import { FontAwesome, Feather } from "react-native-vector-icons";
 
@@ -21,7 +21,7 @@ import GreenUiUi from "./GreenUiUi"
 const ReservationScreen = ({ route, navigation }) => {
 
   const { colors } = useTheme();
-
+  
   const theme = useTheme();
 
   let eventId = [];
@@ -71,10 +71,7 @@ const ReservationScreen = ({ route, navigation }) => {
   const [data11, setData11] = React.useState([]);
   const [data111, setData111] = React.useState([]);
   const [data1111, setData1111] = React.useState([]);
-  const [hotelinfo, setHotelinfo] = React.useState([]);
-  const [guideinfo, setguideinfo] = React.useState([]);
-  const [transportinfo, settransportinfo] = React.useState([]);
-  const [eventinfo, seteventinfo] = React.useState([]);
+ 
   const hotelarray=["https://images.unsplash.com/photo-1544477597-7e30412ada8c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
 "https://images.unsplash.com/photo-1596386461350-326ccb383e9f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1001&q=80",
 "https://images.unsplash.com/photo-1560920452-da0369e98fe7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
@@ -129,12 +126,7 @@ const ReservationScreen = ({ route, navigation }) => {
       .catch((error) => console.error(error));
   }, []);
 
-  React.useEffect(() => {
-    fetch("https://alphax-api.azurewebsites.net/api/eventplannerservices")
-      .then((response) => response.json())
-      .then((json) => seteventinfo(json))
-      .catch((error) => console.error(error));
-  }, []);
+ 
 
   React.useEffect(() => {
     fetch(
@@ -145,12 +137,7 @@ const ReservationScreen = ({ route, navigation }) => {
       .catch((error) => console.error(error));
   }, []);
 
-  React.useEffect(() => {
-    fetch("https://alphax-api.azurewebsites.net/api/tourguideservices")
-      .then((response) => response.json())
-      .then((json) => setguideinfo(json))
-      .catch((error) => console.error(error));
-  }, []);
+
 
   React.useEffect(() => {
     fetch("https://alphax-api.azurewebsites.net/api/hotelsservicereservations")
@@ -158,12 +145,7 @@ const ReservationScreen = ({ route, navigation }) => {
       .then((json) => setData111(json))
       .catch((error) => console.error(error)); 
   }, []);
-  React.useEffect(() => {
-    fetch("https://run.mocky.io/v3/c808cbbb-c074-4b78-913a-8fb275f59659")
-      .then((response) => response.json())
-      .then((json) => setHotelinfo(json))
-      .catch((error) => console.error(error));
-  }, []);
+ 
 
   React.useEffect(() => {
     fetch(
@@ -173,12 +155,7 @@ const ReservationScreen = ({ route, navigation }) => {
       .then((json) => setData1111(json))
       .catch((error) => console.error(error));
   }, []);
-  React.useEffect(() => {
-    fetch("https://run.mocky.io/v3/7dbddd26-802b-4a87-a97a-8a1b373976e5")
-      .then((response) => response.json())
-      .then((json) => settransportinfo(json))
-      .catch((error) => console.error(error));
-  }, []);
+
 
   //  arrayOfArrays && arrayOfArrays.map(
   //   (Aname)=>{
@@ -191,13 +168,18 @@ const ReservationScreen = ({ route, navigation }) => {
 
   //           )})
   const Collapsibleevent = () => {
+
+    
+
     return (
   data1 &&
     data1
       .filter((person) => person.eventPlannerService.userID === route.params.Name)
       .map((Aname, i) => {
+        let sortedTransport =  Aname.eventPlannerService.eventPlannerServiceReservations.sort((a, b) => new Date(...a.checkIn.split('/')) - new Date(...b.checkIn.split('/')));
+        let resortedTransport=sortedTransport.reverse();
         return (
-          Aname.eventPlannerService.eventPlannerServiceReservations
+          resortedTransport
             .filter((person) => person.userID === person.userID)
             .map((Bname, i) => {
               return (
@@ -227,14 +209,18 @@ const ReservationScreen = ({ route, navigation }) => {
 
   
   const Collapsibleguid = () => {
+    let sortedTransport1 =  data11.sort((a, b) => new Date(...a.checkIn.split('/')) - new Date(...b.checkIn.split('/')));
+    let resortedTransport1=sortedTransport1.reverse();
     return (
-      data11 &&
-      data11
+     resortedTransport1 &&
+     resortedTransport1
       .filter((person) => person.tourGuideService.userID === route.params.Name)
       .map((Aname, i) => {
+        let sortedTransport =   Aname.tourGuideService.tourGuideServiceReservations.sort((a, b) => new Date(...a.checkIn.split('/')) - new Date(...b.checkIn.split('/')));
+        let resortedTransport=sortedTransport.reverse();
         return (
-          Aname.tourGuideService.tourGuideServiceReservations
-            .filter((person) => person.userID === person.userID)
+         
+          resortedTransport.filter((person) => person.userID === person.userID)
             .map((Bname, i) => {
               return (
                 user && user.filter((person)=>person.id==Bname.userID).map((Cname,i)=>{
@@ -261,13 +247,17 @@ const ReservationScreen = ({ route, navigation }) => {
 
 
   const CollapsibleHotels = () => {
+    let sortedTransport1 =  data111.sort((a, b) => new Date(...a.checkIn.split('/')) - new Date(...b.checkIn.split('/')));
+    let resortedTransport1=sortedTransport1.reverse();
     return (
-      data111 &&
-    data111
+     resortedTransport1 &&
+   resortedTransport1
       .filter((person) => person.hotelsService.userID === route.params.Name)
       .map((Aname, i) => {
+        let sortedTransport =   Aname.hotelsService.hotelsServiceReservations.sort((a, b) => new Date(...a.checkIn.split('/')) - new Date(...b.checkIn.split('/')));
+        let resortedTransport=sortedTransport.reverse();
         return (
-          Aname.hotelsService.hotelsServiceReservations
+          resortedTransport &&  resortedTransport
             .filter((person) => person.userID === person.userID)
             .map((Bname, i) => {
               return (
@@ -342,11 +332,15 @@ const ReservationScreen = ({ route, navigation }) => {
   }
 
   function Showmoreevents(props) {
+    var myDate = new Date(props.dateevent);
+    var output = myDate.getDate() + " - " +  (myDate.getMonth()+1) + " - " + myDate.getFullYear();
+    let [hour, minute, second] = new Date(props.timeevent).toLocaleTimeString("en-US").split(/:| /)
     return (
       // Your Code
 
       <View style={{ padding: 8 }}>
         <CardEcomFour
+        buttonColor={"white"}
           title={props.eventname}
           subTitle={props.evevenye}
           price={
@@ -354,10 +348,10 @@ const ReservationScreen = ({ route, navigation }) => {
             props.evprice +" "+ props.lastname+
             `\n` +
             `\n` +
-            props.dateevent +
+            output +
             `\n` +
             `\n` +
-            props.timeevent
+            hour+" :" +minute
           }
           image={{uri:eventarray[Math.floor(Math.random() * eventarray.length)]}}
         />
@@ -366,9 +360,15 @@ const ReservationScreen = ({ route, navigation }) => {
   }
 
   function Showmoreguide(props) {
+
+    var myDate = new Date(props.dateevent);
+    var output = myDate.getDate() + " - " +  (myDate.getMonth()+1) + " - " + myDate.getFullYear();
+    let [hour, minute, second] = new Date(props.timeevent).toLocaleTimeString("en-US").split(/:| /)
+
     return (
       <View style={{ padding: 8 }}>
       <CardEcomFour
+      buttonColor={"white"}
         title={props.eventname}
         subTitle={props.evevenye}
         price={
@@ -376,10 +376,10 @@ const ReservationScreen = ({ route, navigation }) => {
           props.evprice +" "+ props.lastname+
           `\n` +
           `\n` +
-          props.dateevent +
+          output +
           `\n` +
           `\n` +
-          props.timeevent
+          hour+" :" +minute
         }
         image={{uri:guidearray[Math.floor(Math.random() * guidearray.length)]}}
       />
@@ -388,9 +388,14 @@ const ReservationScreen = ({ route, navigation }) => {
   }
 
   function ShowmoreTransport(props) {
+    var myDate = new Date(props.dateevent);
+    var output = myDate.getDate() + " - " +  (myDate.getMonth()+1) + " - " + myDate.getFullYear();
+    let [hour, minute, second] = new Date(props.timeevent).toLocaleTimeString("en-US").split(/:| /)
+
     return (
       <View style={{ padding: 8 }}>
       <CardEcomFour
+      buttonColor={"white"}
         title={props.eventname}
         subTitle={props.evevenye}
         price={
@@ -398,10 +403,10 @@ const ReservationScreen = ({ route, navigation }) => {
           props.evprice +" "+ props.lastname+
           `\n` +
           `\n` +
-          props.dateevent +
+          output +
           `\n` +
           `\n` +
-          props.timeevent
+          hour+" :" +minute
         }
         image={{uri:Transportarray[Math.floor(Math.random() * Transportarray.length)]}}
       />
@@ -411,9 +416,14 @@ const ReservationScreen = ({ route, navigation }) => {
     );
   }
   function Showmorehotels(props) {
+    var myDate = new Date(props.dateevent);
+    var output = myDate.getDate() + " - " +  (myDate.getMonth()+1) + " - " + myDate.getFullYear();
+    var myDate1 = new Date(props.timeevent);
+    var output1 = myDate1.getDate() + " - " +  (myDate1.getMonth()+1) + " - " + myDate1.getFullYear();
     return (
       <View style={{ padding: 8 }}>
       <CardEcomFour
+      buttonColor={"white"}
         title={props.eventname}
         subTitle={props.evevenye}
         price={
@@ -421,10 +431,10 @@ const ReservationScreen = ({ route, navigation }) => {
           props.evprice +" "+ props.lastname+
           `\n` +
           `\n` +
-          props.dateevent +
+          output +
           `\n` +
           `\n` +
-          props.timeevent
+          output1
         }
         image={{uri:hotelarray[Math.floor(Math.random() * hotelarray.length)]}}
       />

@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "newtest",
+    "name": "Vvisit",
     "notification": {
       "icon": "https://github.com/Ttecs/mobilenotico/blob/master/output-onlinepngtools.png?raw=true",
       "color": "#89eb34"
     },
-    "slug": "newtest",
+    "slug": "vvisit",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,23 +17,20 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF",
-        "googleServicesFile": "./google-services.json"
-      },
-      "package": "com.newtest"
+      "useNextNotificationsApi": true,
+      "package": "com.ttecs.vvisit"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "android": {
-      "useNextNotificationsApi": true
-    }
+    "description": "Vvisit is a tourist app",
+    "githubUrl": "https://github.com/AlphaX-UOM/Mobile.git"
   }
 }
