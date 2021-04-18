@@ -53,37 +53,37 @@ const SignInScreen = ({ navigation }) => {
 
   const textInputChange = (val) => {
 
-    // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    // if (reg.test(text) === false) {
-    //   console.log("Email is Not Correct");
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (reg.test(val) === false) {
+      console.log("Email is Not Correct");
+      setData({
+        ...data,
+        userName: val,
+        check_textInputChange:false,
+      });
+      return false;
+    }
+    else {
+      setData({
+        ...data,
+        emal: val,
+        check_textInputChange: true,
+      });
+      console.log("Email is Correct");
+    }
+    // if (val.length !== 0) {
     //   setData({
     //     ...data,
     //     userName: val,
     //     check_textInputChange: true,
     //   });
-    //   return false;
-    // }
-    // else {
+    // } else {
     //   setData({
     //     ...data,
     //     emal: val,
     //     check_textInputChange: false,
     //   });
-    //   console.log("Email is Correct");
     // }
-    if (val.length !== 0) {
-      setData({
-        ...data,
-        userName: val,
-        check_textInputChange: true,
-      });
-    } else {
-      setData({
-        ...data,
-        emal: val,
-        check_textInputChange: false,
-      });
-    }
   };
   const handlePasswordChange = (val) => {
     setData({
@@ -146,7 +146,7 @@ const SignInScreen = ({ navigation }) => {
     }
   };
 
-  console.log(data.password);
+  
   return (
     <View style={styles.container}>
       <StatusBar
@@ -176,7 +176,7 @@ const SignInScreen = ({ navigation }) => {
         </View>
         <View style={styles.usernametextcontainer}>
           <TextInput
-            placeholder="User Name"
+            placeholder="Email"
             style={styles.textInput}
             placeholderTextColor="#96A7AF"
             onChangeText={(val) => textInputChange(val)}
@@ -190,7 +190,10 @@ const SignInScreen = ({ navigation }) => {
                  name="check-circle"
                  color="#96A7AF" size={20}
                 />
-                :null}
+                :  <Feather
+                name="alert-octagon"
+                color="red" size={20}
+               />}
           {/* <FontAwesome name="eye" color="#96A7AF" size={20} /> */}
         </View>
       </View>
@@ -228,48 +231,7 @@ const SignInScreen = ({ navigation }) => {
         </View>
       </View>
 
-      {/* <Animatable.View  animation="fadeInUpBig">
-            <Text style={styles.text_footer}>Email</Text>
-            <View style={styles.action}>
-                <FontAwesome name="user-o" color="black" size={25}/>
-                <TextInput
-                  placeholder="Your Email"
-                  style={styles.textInput}
-                  onChangeText={(val)=>textInputChange(val)}
-                />
-                {data.check_textInputChange ?
-                <Feather
-                 name="check-circle"
-                 color="black"
-                 size={20}
-                />
-                :null}
-            </View>
-            <Text style={[styles.text_footer,{marginTop:35}]}>Password</Text>
-            <View style={styles.action}>
-                <FontAwesome name="lock" color="black" size={25}/>
-                <TextInput
-                  placeholder="Password"
-                  style={styles.textInput}
-                  secureTextEntry={data.secureTextEntry ? true:false}
-                  onChangeText={(val)=>handlePasswordChange(val)}
-                />
-                <TouchableOpacity 
-                onPress={updateSecureTextEntry}
-                >
-                    {data.secureTextEntry ?
-                <Feather
-                 name="eye-off"
-                 color="black"
-                 size={20}
-                /> :
-                <Feather
-                name="eye"
-                color="black"
-                size={20}
-               />}
-                </TouchableOpacity>
-            </View>*/}
+     
       <View style={styles.buttonnextcon}>
         <View style={styles.backb}>
           <View style={styles.arrowleft}>

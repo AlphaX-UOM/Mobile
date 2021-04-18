@@ -27,9 +27,9 @@ const HomeScreen = ({ navigation }) => {
   }, []);
 const ShowGuideAds=()=>{
   return(
-    guideAds.map((Aname) => {
+    guideAds.map((Aname,i) => {
       return (
-        <GuideAds colorg={colorarray[Math.floor(Math.random() * colorarray.length)]} gname={Aname.name}  lang={Aname.language} price={Aname.costPerDay}/>
+        <GuideAds key={i} colorg={colorarray[Math.floor(Math.random() * colorarray.length)]} gname={Aname.name}  lang={Aname.language} price={Aname.costPerDay}/>
       )
     })
    
@@ -43,9 +43,9 @@ useEffect(() => {
 }, []);
 const ShowhotelAds=()=>{
 return(
-  hotelAds.map((Aname) => {
+  hotelAds.map((Aname,i) => {
     return (
-      <HotelAds colorg={colorarray[Math.floor(Math.random() * colorarray.length)]} name={Aname.name} price={Aname.pricePerDay} details={Aname.otherDetails} image={Aname.imgURL}/>
+      <HotelAds key={i} colorg={colorarray[Math.floor(Math.random() * colorarray.length)]} name={Aname.name} price={Aname.pricePerDay} details={Aname.otherDetails} image={Aname.hotelImgURL}/>
     )
   })
  
@@ -59,9 +59,9 @@ useEffect(() => {
 }, []);
 const ShowtransportAds=()=>{
 return(
-  transportAds.map((Aname) => {
+  transportAds.map((Aname,i) => {
     return (
-      <TransportAds colorg={colorarray[Math.floor(Math.random() * colorarray.length)]} name={Aname.name} price={Aname.pricePerDay} car={Aname.vehicleType} />
+      <TransportAds key={i} colorg={colorarray[Math.floor(Math.random() * colorarray.length)]} name={Aname.name} price={Aname.pricePerDay} car={Aname.vehicleType} />
     )
   })
  
@@ -75,9 +75,9 @@ useEffect(() => {
 }, []);
 const ShowEventAds=()=>{
 return(
-  eventAds.map((Aname) => {
+  eventAds.map((Aname,i) => {
     return (
-      <EventAds colorg={colorarray[Math.floor(Math.random() * colorarray.length)]} name={Aname.name} price={Aname.price} details={Aname.otherDetails}  image={Aname.imgURL}/>
+      <EventAds key={i} colorg={colorarray[Math.floor(Math.random() * colorarray.length)]} name={Aname.name} price={Aname.price} details={Aname.otherDetails}  image={Aname.imgURL}/>
     )
   })
  

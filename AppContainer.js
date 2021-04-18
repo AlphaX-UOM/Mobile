@@ -1,10 +1,9 @@
 // In App.js in a new project
 
-// In App.js in a new project
 
 import * as React from "react";
 import * as firebase from "firebase";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button,LogBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import RootStackScreen from "./Screens/StackScreens/RootStackScreen";
@@ -26,6 +25,7 @@ import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
 import morepaymentDetails from "./Screens/morepaymentDetails"
 const Drawer = createDrawerNavigator();
+LogBox.ignoreLogs(['Setting a timer']);
 
 Notifications.setNotificationHandler({
   handleNotification: async () => {
@@ -343,6 +343,11 @@ function AppContainer() {
               <Drawer.Screen
                 name="Services"
                 component={ServiceStackScreen}
+                initialParams={{ Name: tokenState }}
+              />
+               <Drawer.Screen
+                name="reservation"
+                component={ReservationStackScreen}
                 initialParams={{ Name: tokenState }}
               />
               <Drawer.Screen
