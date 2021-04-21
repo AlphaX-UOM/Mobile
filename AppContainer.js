@@ -40,11 +40,11 @@ Notifications.setNotificationHandler({
 // })})
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBafIb9nBuCXpe-sCeWJX14Nl8V8rLkC_Y",
-  authDomain: "react-firebase-166ec.firebaseapp.com",
-  databaseURL: "https://react-firebase-166ec-default-rtdb.firebaseio.com",
-  projectId: "react-firebase-166ec",
-  storageBucket: "react-firebase-166ec.appspot.com",
+  apiKey: "AIzaSyBUqsaZQSoV67VgFkpozKHJfgD7OLeaXyE",
+    authDomain: "vvisit-d6347.firebaseapp.com",
+    databaseURL: "https://vvisit-d6347-default-rtdb.firebaseio.com",
+    projectId: "vvisit-d6347",
+    storageBucket: "vvisit-d6347.appspot.com",
 };
 firebase.initializeApp(firebaseConfig);
 

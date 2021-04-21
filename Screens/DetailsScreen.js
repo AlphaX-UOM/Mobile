@@ -1,4 +1,5 @@
 import * as React from "react";
+import axios from 'axios';
 import {
   View,
   Text,
@@ -18,29 +19,150 @@ import * as firebase from "firebase";
 import * as Notifications from "expo-notifications";
 const DetailsScreen = ({ route, navigation }) => {
   const [data1, setData1] = React.useState("null");
-  const [data2, setData2] = React.useState([{
-    "highscore": " ",
-    "paymentD": " ",
-    "pushToken": "",
-    "services": "null",
-    "servicesgranted": "null",
-  }]);
+  const [data2, setData2] = React.useState([]);
+  
+  const [data4, setData4] = React.useState(0);
+  const [data6, setData6] = React.useState(0);
+  const [updatepaymentdata, setData5] = React.useState(0);
+  
+  const [reservation234, setData8] = React.useState(0);
   let email = "";
   let image = "";
   let pno = "";
   let adress = "";
   let Name = "";
+  let paymentcount=data4;
+ 
+ 
 
-  const getData = () => {
+     
+
+
+   
+     React.useEffect(() => {
+      myFunction();
+      return () => {
+        setData4({}); // This worked for me
+      };
+    }, []);
+
+    const myFunction = () => {
+      fetch(`https://vvisit-d6347-default-rtdb.firebaseio.com/payments.json`)
+      .then((response) => response.json())
+      .then((json) => setData4(Object.values(json).filter(item => item.custId ===route.params.Name).length),
+      
+      )
+      .catch((error) => console.error(error));
+  }
+ 
+ 
+console.log("role+>",data1.role)
+  
+  if(data1.role==="ServiceProvider"){
+    React.useEffect(() => {
+      myFunction1();
+      return () => {
+        setData6({}); // This worked for me
+      };
+    }, []);
+
+    const myFunction1 = () => {
+      fetch(`https://vvisit-d6347-default-rtdb.firebaseio.com/reservations.json`)
+      .then((response) => response.json())
+      .then((json) => setData6(Object.values(json).filter(item => item.serId ===route.params.Name).length),
+      
+      )
+      .catch((error) => console.error(error));
+  }
+  
+    
+  }
+  else{
+    
+
+    React.useEffect(() => {
+      myFunction2();
+      return () => {
+        setData6({}); // This worked for me
+      };
+    }, []);
+
+    const myFunction2 = () => {
+      fetch(`https://vvisit-d6347-default-rtdb.firebaseio.com/reservations.json`)
+      .then((response) => response.json())
+      .then((json) => setData6(Object.values(json).filter(item => item.custId ===route.params.Name).length),
+      
+      )
+      .catch((error) => console.error(error));
+  }
+  }
+  
+
+  
+  
+
+function getData  ()  {
+
+   firebase
+    .database()
+    .ref(`users/${route.params.Name}`)
+    .once("value", function (snapshot) {
+      setData2(snapshot.val());
+    });
+
     firebase
-      .database()
-      .ref(`users/${route.params.Name}`)
-      .on("value", function (snapshot) {
-        setData2(snapshot.val());
-      });
+    .database()
+    .ref(`payments`)
+    .on("value", function (snapshot) {
+     
+      setData5(Object.values(snapshot.val()).filter(item => item.custId ===route.params.Name).length)
+    });
+
+    if(data1.role==="ServiceProvider"){
+      firebase
+    .database()
+    .ref(`reservations`)
+    .on("value", function (snapshot) {
+     
+      setData8(Object.values(snapshot.val()).filter(item => item.serId ===route.params.Name).length)
+    });
+
+
+    }
+    else{
+
+      firebase
+    .database()
+    .ref(`reservations`)
+    .on("value", function (snapshot) {
+     
+      setData8(Object.values(snapshot.val()).filter(item => item.custId ===route.params.Name).length)
+    });
+
+
+    }
+
+
+    
+    
+    // React.useEffect(() => {
+    //   fetch(`https://vvisit-d6347-default-rtdb.firebaseio.com/payments.json`)
+    //     .then((response) => response.json())
+    //     .then((json) => setData3(Object.values(json).filter(item => item.custId ===route.params.Name)))
+    //     .catch((error) => console.error(error));
+    // }, []);
+  
+    // React.useEffect(() => {
+    //   fetch(`https://vvisit-d6347-default-rtdb.firebaseio.com/reservations.json`)
+    //     .then((response) => response.json())
+    //     .then((json) => setData4(Object.values(json).filter(item => item.custId ===route.params.Name)))
+    //     .catch((error) => console.error(error));
+    // }, []);
+    
+     
   };
 
-  console.log(data2);
+  console.log(reservation234,data6);
   React.useEffect(() => {
     setTimeout(() => {
       getData();
@@ -49,12 +171,16 @@ const DetailsScreen = ({ route, navigation }) => {
 
  
 
-  if(data2.paymentD !== 0){
+  if( data4<updatepaymentdata){
     sendPushNotification(data2.pushToken)
+    let value=updatepaymentdata-data4 
+    setData4(data4+value)
   }
 
-  if(data2.services !== "null"){
+  if(data6<reservation234){
     servicegranted(data2.pushToken)
+    let value=reservation234-data6
+    setData6(data6+value)
   }
 
   
@@ -133,6 +259,7 @@ const DetailsScreen = ({ route, navigation }) => {
       .then((json) => setData1(json))
       .catch((error) => console.error(error));
   }, []);
+
   
      
         

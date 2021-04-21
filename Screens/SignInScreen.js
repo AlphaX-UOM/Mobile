@@ -41,34 +41,40 @@ const SignInScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     userName: "",
     password: "",
-    check_textInputChange: false,
+    
     secureTextEntry: true,
     condition: null,
   });
 
+  const [check_textInputChange,setcheck_textInputChange]= React.useState(false)
+
   const { signIn } = React.useContext(AuthContext);
 
-
+console.log(data.userName, data.password)
  
 
   const textInputChange = (val) => {
-
+    setData({
+      ...data,
+      userName: val,
+      
+    });
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (reg.test(val) === false) {
+    if (reg.test(data.userName) === false) {
       console.log("Email is Not Correct");
-      setData({
-        ...data,
-        userName: val,
-        check_textInputChange:false,
-      });
+      
+       
+        
+      
+     
       return false;
     }
     else {
-      setData({
-        ...data,
-        emal: val,
-        check_textInputChange: true,
-      });
+     
+       
+      setcheck_textInputChange(true)
+     
+      
       console.log("Email is Correct");
     }
     // if (val.length !== 0) {
@@ -185,7 +191,7 @@ const SignInScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.faviconcontainer}>
-        {data.check_textInputChange ?
+        {check_textInputChange ?
                 <Feather
                  name="check-circle"
                  color="#96A7AF" size={20}
