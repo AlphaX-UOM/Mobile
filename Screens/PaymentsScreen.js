@@ -2,10 +2,10 @@ import React,{ useState,useEffect} from 'react';
 import { View, Text,TouchableOpacity, Button, StyleSheet ,Image,ScrollView} from 'react-native';
 import { FontAwesome, Feather, MaterialIcons,Ionicons } from 'react-native-vector-icons';
 import { CardEcomOne, CardEcomTwo, CardEcomFour } from "react-native-card-ui";
-import ComponentWithFocus from '../components/ComponentWithFocus'
+import AuthNewContext from "../components/newContext"
 const PaymentScreen = ({ route, navigation }) => {
 
- 
+  const { trigermy, setmytriger } = React.useContext(AuthNewContext);
 
   const [paymentList, setPaymentList] = useState([]);
   const [paymentList1, setPaymentList1] = useState("null");
@@ -18,7 +18,7 @@ const PaymentScreen = ({ route, navigation }) => {
       .then((data) => {
         setPaymentList(data);
       });
-  }, []);
+  }, [trigermy]);
 
   useEffect(() => {
     fetch(
@@ -31,7 +31,7 @@ const PaymentScreen = ({ route, navigation }) => {
       });
   }, []);
 
-  console.log(paymentList1.role);
+  // console.log(paymentList1.role);
 
   let sortedPayments = paymentList.sort((a, b) => new Date(...a.date.split('/')) - new Date(...b.date.split('/')));
   let resortedpay=sortedPayments.reverse();
@@ -43,15 +43,15 @@ const showPayment=() =>{
        .map((Aname, i) => {
       
          return (
-           <View style={{padding: 8 }}>
+           <View key={i} style={{padding: 8 }}>
            
-           <PaymenCard date={Aname.date} discount={Aname.discount} cash={Aname.amount} forwardLink={() => navigation.navigate('morePayments',{itemId: Aname.id})}/> 
+           <PaymenCard key={i} date={Aname.date} discount={Aname.discount} cash={Aname.amount} forwardLink={() => navigation.navigate('morePayments',{itemId: Aname.id})}/> 
            
            </View>
         
          );
        })
-   
+      //  console.log
   )
 }
 let heading;

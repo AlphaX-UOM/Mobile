@@ -2,13 +2,13 @@ import React from 'react';
 import ServicesScreen from '../Services';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+// console.log
 const ServiceStack = createStackNavigator();
 
 const ServiceStackScreen = ({navigation,route}) => 
 {
     let useName=route.params.Name;
-    console.log('services',useName);
+    // console.log('services',useName);
   return  (
     <ServiceStack.Navigator screenOptions={{
             headerStyle: {

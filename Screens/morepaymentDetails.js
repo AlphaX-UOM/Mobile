@@ -108,6 +108,7 @@ import { FontAwesome, Feather } from 'react-native-vector-icons';
        
         paymentListe && paymentListe.filter((word) => itemId == word.paymentID)
            .map((Aname, i) => {
+             let key=i
               namee=Aname.eventPlannerService.name
               pricee=Aname.price
               lange = Aname.numOfTravellers

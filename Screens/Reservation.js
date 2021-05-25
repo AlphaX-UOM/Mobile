@@ -111,7 +111,7 @@ const ReservationScreen = ({ route, navigation }) => {
   ];
 
   var item = hotelarray[Math.floor(Math.random() * hotelarray.length)];
-  console.log(item);
+  // console.log(item);
 
   React.useEffect(() => {
     fetch(
@@ -317,7 +317,7 @@ const ReservationScreen = ({ route, navigation }) => {
   };
 
   function getDiscription(discription) {
-    return console.log(discription);
+    // return console.log(discription);
   }
 
   function Showmoreevents(props) {
@@ -382,6 +382,7 @@ const ReservationScreen = ({ route, navigation }) => {
       </View>
     );
   }
+  // console.log
   function Showmorehotels(props) {
     return (
       <View>

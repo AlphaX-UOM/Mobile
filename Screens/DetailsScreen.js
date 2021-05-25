@@ -17,7 +17,13 @@ import { FontAwesome, Feather, Entypo } from "react-native-vector-icons";
 import { route } from "@react-navigation/native";
 import * as firebase from "firebase";
 import * as Notifications from "expo-notifications";
+import AuthNewContext from "../components/newContext"
+
+
 const DetailsScreen = ({ route, navigation }) => {
+
+  const {trigermy, setmytriger } = React.useContext(AuthNewContext);
+  console.log("🚀 ~ file: DetailsScreen.js ~ line 26 ~ DetailsScreen ~ trigermy", trigermy)
   const [data1, setData1] = React.useState("null");
   const [data2, setData2] = React.useState([]);
   
@@ -33,7 +39,7 @@ const DetailsScreen = ({ route, navigation }) => {
   let Name = "";
   let paymentcount=data4;
  
- 
+  // console.log
 
      
 
@@ -56,7 +62,7 @@ const DetailsScreen = ({ route, navigation }) => {
   }
  
  
-console.log("role+>",data1.role)
+// console.log("role+>",data1.role)
   
   if(data1.role==="ServiceProvider"){
     React.useEffect(() => {
@@ -115,7 +121,8 @@ function getData  ()  {
     .ref(`payments`)
     .on("value", function (snapshot) {
      
-      setData5(Object.values(snapshot.val()).filter(item => item.custId ===route.params.Name).length)
+      setData5(Object.values(snapshot.val()).filter(item => item.custId ===route.params.Name).length);
+     
     });
 
     if(data1.role==="ServiceProvider"){
@@ -162,7 +169,7 @@ function getData  ()  {
      
   };
 
-  console.log(reservation234,data6);
+  // console.log(reservation234,data6);
   React.useEffect(() => {
     setTimeout(() => {
       getData();
@@ -172,12 +179,14 @@ function getData  ()  {
  
 
   if( data4<updatepaymentdata){
+    setmytriger(!trigermy)
     sendPushNotification(data2.pushToken)
     let value=updatepaymentdata-data4 
     setData4(data4+value)
   }
 
   if(data6<reservation234){
+    setmytriger(!trigermy)
     servicegranted(data2.pushToken)
     let value=reservation234-data6
     setData6(data6+value)

@@ -17,65 +17,44 @@ import * as Animatable from "react-native-animatable";
 import { FontAwesome, Feather } from "react-native-vector-icons";
 import AuthContext from "../components/context";
 import DetailsScreen from "./DetailsScreen";
-
+import jwt_decode from "jwt-decode";
+import base64 from "react-native-base64";
 import "react-native-gesture-handler";
+import axios from "axios";
 
 const SignInScreen = ({ navigation }) => {
-  const [data1, setData1] = React.useState([]);
-
-  React.useEffect(() => {
-    fetch("https://alphax-api.azurewebsites.net/api/users")
-      .then((response) => response.json())
-      .then((json) => setData1(json))
-      .catch((error) => console.error(error));
-  }, []);
-
-  const _storeData = async () => {
-    try {
-      await AsyncStorage.setItem(data1);
-    } catch (error) {
-      // Error saving data
-    }
-  };
+  const [token, setToken] = React.useState(null);
 
   const [data, setData] = React.useState({
     userName: "",
     password: "",
-    
+
     secureTextEntry: true,
     condition: null,
   });
 
-  const [check_textInputChange,setcheck_textInputChange]= React.useState(false)
+  const [check_textInputChange, setcheck_textInputChange] = React.useState(
+    false
+  );
 
   const { signIn } = React.useContext(AuthContext);
 
-console.log(data.userName, data.password)
- 
+  // console.log(data.userName, data.password);
 
   const textInputChange = (val) => {
     setData({
       ...data,
       userName: val,
-      
     });
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(data.userName) === false) {
-      console.log("Email is Not Correct");
-      
-       
-        
-      
-     
+      // console.log("Email is Not Correct");
+
       return false;
-    }
-    else {
-     
-       
-      setcheck_textInputChange(true)
-     
-      
-      console.log("Email is Correct");
+    } else {
+      setcheck_textInputChange(true);
+
+      // console.log("Email is Correct");
     }
     // if (val.length !== 0) {
     //   setData({
@@ -104,30 +83,40 @@ console.log(data.userName, data.password)
       secureTextEntry: !data.secureTextEntry,
     });
   };
-  const call = () => {
-    return data1;
-  };
+
   let condition;
   let i = 0;
   let status = false;
   let person_role = "abc";
-  const loginHandle = (userName, password) => {
-    return (
-      data1 &&
-      data1
-        .filter(
-          (person) => person.email === userName && person.password === password
-        )
-        .map((Aname) => {
-          return (
-            signIn(true, Aname.id, Aname.role),
-            (status = true),
-            (person_role = Aname.role)
-          );
-        })
 
-      // condition = true;
-    );
+  const loginHandle = (userName, password) => {
+    var decodedStringBtoA = userName + `:` + password;
+    var encodedStringBtoA = base64.encode(decodedStringBtoA);
+    let url = "https://alphax-api.azurewebsites.net/api/users/Login";
+
+    var axios = require("axios");
+    var config = {
+      method: "post",
+      url: url,
+      headers: {
+        Authorization: "Basic " + encodedStringBtoA,
+      },
+    };
+    axios(config)
+      .then(function (response) {
+        var decoded = jwt_decode(response.data.token);
+        signIn(true, decoded.ID, decoded.Role);
+        setToken(decoded);
+        person_role = decoded.Role;
+      })
+      .catch(function (error) {
+        // console.log(error);
+        check();
+      });
+
+    // console.log("==>", token);
+
+    // condition = true;
   };
 
   const check = () => {
@@ -138,21 +127,20 @@ console.log(data.userName, data.password)
         [
           {
             text: "",
-            onPress: () => console.log("Ask me later pressed"),
+            // onPress: () => console.log("Ask me later pressed"),
           },
           {
             text: "",
-            onPress: () => console.log("Cancel Pressed"),
+            // onPress: () => console.log("Cancel Pressed"),
             style: "cancel",
           },
-          { text: "OK", onPress: () => console.log("OK Pressed") },
+          // { text: "OK", onPress: () => console.log("OK Pressed") },
         ],
         { cancelable: false }
       );
     }
   };
 
-  
   return (
     <View style={styles.container}>
       <StatusBar
@@ -187,19 +175,14 @@ console.log(data.userName, data.password)
             placeholderTextColor="#96A7AF"
             onChangeText={(val) => textInputChange(val)}
           />
-          
         </View>
 
         <View style={styles.faviconcontainer}>
-        {check_textInputChange ?
-                <Feather
-                 name="check-circle"
-                 color="#96A7AF" size={20}
-                />
-                :  <Feather
-                name="alert-octagon"
-                color="red" size={20}
-               />}
+          {check_textInputChange ? (
+            <Feather name="check-circle" color="#96A7AF" size={20} />
+          ) : (
+            <Feather name="alert-octagon" color="red" size={20} />
+          )}
           {/* <FontAwesome name="eye" color="#96A7AF" size={20} /> */}
         </View>
       </View>
@@ -221,23 +204,16 @@ console.log(data.userName, data.password)
 
         <View style={styles.faviconcontainer1}>
           {/* <FontAwesome name="eye" color="#96A7AF" size={20} /> */}
-          <TouchableOpacity 
-                onPress={updateSecureTextEntry}
-                >
-                    {data.secureTextEntry ?
-                <Feather
-                 name="eye-off"
-                 color="#96A7AF" size={20}
-                /> :
-                <Feather
-                name="eye"
-                color="#96A7AF" size={20}
-               />}
-                </TouchableOpacity>
+          <TouchableOpacity onPress={updateSecureTextEntry}>
+            {data.secureTextEntry ? (
+              <Feather name="eye-off" color="#96A7AF" size={20} />
+            ) : (
+              <Feather name="eye" color="#96A7AF" size={20} />
+            )}
+          </TouchableOpacity>
         </View>
       </View>
 
-     
       <View style={styles.buttonnextcon}>
         <View style={styles.backb}>
           <View style={styles.arrowleft}>
@@ -248,7 +224,7 @@ console.log(data.userName, data.password)
         <TouchableOpacity
           style={styles.getstarttext}
           onPress={() => {
-            loginHandle(data.userName, data.password), check();
+            loginHandle(data.userName, data.password) /*check()*/;
           }}
         >
           <View style={styles.getstaredbutton}>
@@ -264,7 +240,7 @@ console.log(data.userName, data.password)
     </View>
   );
 };
-
+// console.log
 export default SignInScreen;
 
 const styles = StyleSheet.create({
@@ -310,7 +286,8 @@ const styles = StyleSheet.create({
   },
   usernametextcontainer: {
     marginLeft: 18,
-    marginTop: 12,width: 180,
+    marginTop: 12,
+    width: 180,
   },
   faviconcontainer: {
     marginLeft: 70,
