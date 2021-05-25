@@ -185,7 +185,7 @@ const ReservationScreen = ({ route, navigation }) => {
               return (
                 user && user.filter((person)=>person.id==Bname.userID).map((Cname,i)=>{
                   return(
-                    // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
+                    // // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
                     <Showmoreevents
                     key={i}
                     eventname={Aname.eventPlannerService.name}
@@ -225,7 +225,7 @@ const ReservationScreen = ({ route, navigation }) => {
               return (
                 user && user.filter((person)=>person.id==Bname.userID).map((Cname,i)=>{
                   return(
-                    // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
+                    // // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
                     <Showmoreguide
                     key={i}
                     eventname={Aname.tourGuideService.name}
@@ -263,7 +263,7 @@ const ReservationScreen = ({ route, navigation }) => {
               return (
                 user && user.filter((person)=>person.id==Bname.userID).map((Cname,i)=>{
                   return(
-                    // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
+                    // // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
                     <Showmorehotels
                     key={i}
                     eventname={Aname.hotelsService.name}
@@ -307,7 +307,7 @@ const ReservationScreen = ({ route, navigation }) => {
               return (
                 user && user.filter((person)=>person.id==Bname.userID).map((Cname,i)=>{
                   return(
-                    // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
+                    // // console.log(Cname.firstName,Aname.eventPlannerService.name,Bname.checkIn)
                     <ShowmoreTransport
                     key={i}
                     eventname={Aname.transportService.name}
@@ -328,7 +328,7 @@ const ReservationScreen = ({ route, navigation }) => {
   };
 
   function getDiscription(discription) {
-    return console.log(discription);
+    // return console.log(discription);
   }
 
   function Showmoreevents(props) {
@@ -507,7 +507,7 @@ const ReservationScreen = ({ route, navigation }) => {
    
   );
 };
-
+// console.log
 export default ReservationScreen;
 
 const styles = StyleSheet.create({

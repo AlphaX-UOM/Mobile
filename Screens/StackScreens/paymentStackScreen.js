@@ -6,10 +6,10 @@ import PaymentScreen from '../PaymentsScreen'
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const PaymentStack = createStackNavigator();
-
+// console.log
 const PaymentStackScreen = ({navigation,route}) =>
 {  let useName=route.params.Name;
-    console.log(useName)
+    // console.log(useName)
   return   (
 
  

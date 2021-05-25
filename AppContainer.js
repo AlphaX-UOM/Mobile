@@ -1,6 +1,6 @@
 // In App.js in a new project
 
-
+// console.log
 import * as React from "react";
 import * as firebase from "firebase";
 import { View, Text, Button,LogBox } from "react-native";
@@ -9,6 +9,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import RootStackScreen from "./Screens/StackScreens/RootStackScreen";
 import { ActivityIndicator } from "react-native-paper";
 import AuthContext from "./components/context";
+import AuthNewContext from "./components/newContext";
 
 import SupportScreen from "./Screens/SupportScreen";
 
@@ -46,7 +47,14 @@ const firebaseConfig = {
     projectId: "vvisit-d6347",
     storageBucket: "vvisit-d6347.appspot.com",
 };
-firebase.initializeApp(firebaseConfig);
+
+try{
+  firebase.initializeApp(firebaseConfig);
+}
+catch(e){
+
+}
+
 
 function setcusData(userId, pushToken) {
   firebase
@@ -77,87 +85,69 @@ function setSerData(userId, pushToken) {
 function AppContainer() {
   let pushToken;
   const [tokenState, setTokenState] = React.useState("a");
-  const [data1, setData1] = React.useState([]);
+  const [trigermy, setmytriger] = React.useState(true);
   
 
-  const getData = (tokenState1) => {
-    firebase
-      .database()
-      .ref(`users/${tokenState1}`)
-      .on("value", function (snapshot) {
-        setData1(snapshot.val());
-      });
-  };
-  console.log(data1);
-  React.useEffect(() => {
-    setTimeout(() => {
-      getData(tokenState);
-      console.log("menname ka", pushToken);
-    }, 1000);
-  }, []);
+ 
 
-  async function sendPushNotification(expoPushToken) {
-    const message = {
-      to: expoPushToken,
-      sound: "default",
-      title: "New Massage",
-      body: "Your message body",
-      data: { someData: "goes here" },
-    };
 
-    await fetch("https://exp.host/--/api/v2/push/send", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Accept-encoding": "gzip, deflate",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(message),
+  
+
+  
+  const myFunctions =()=>{
+    Permissions.getAsync(Permissions.NOTIFICATIONS)
+    .then((statusObj) => {
+      if (statusObj.status !== "granted") {
+        return Permissions.askAsync(Permissions.NOTIFICATIONS);
+      }
+      return statusObj;
+    })
+    .then((statusObj) => {
+      if (statusObj.status !== "granted") {
+        throw new Error("permission not granted");
+      }
+    })
+    .then(() => {
+      // console.log("getting token");
+      return Notifications.getExpoPushTokenAsync();
+    })
+    .then((response) => {
+      const token = response.data;
+      // console.log("token: " + token);
+      pushToken = token;
+    })
+    .catch((err) => {
+      return null;
     });
   }
 
   React.useEffect(() => {
-    Permissions.getAsync(Permissions.NOTIFICATIONS)
-      .then((statusObj) => {
-        if (statusObj.status !== "granted") {
-          return Permissions.askAsync(Permissions.NOTIFICATIONS);
-        }
-        return statusObj;
-      })
-      .then((statusObj) => {
-        if (statusObj.status !== "granted") {
-          throw new Error("permission not granted");
-        }
-      })
-      .then(() => {
-        console.log("getting token");
-        return Notifications.getExpoPushTokenAsync();
-      })
-      .then((response) => {
-        const token = response.data;
-        console.log("token: " + token);
-        pushToken = token;
-      })
-      .catch((err) => {
-        return null;
-      });
+    let cancel=false
+    myFunctions()
+    return () => {
+      // This is the cleanup function
+      cancel=true
+    }
+    
   }, []);
 
   React.useEffect(() => {
+    let cancel1=false
     const backgroundSubcription = Notifications.addNotificationResponseReceivedListener(
       (response) => {
-        console.log(response);
+        // console.log(response);
       }
     );
 
     const foregroundsubscription = Notifications.addNotificationReceivedListener(
       (notification) => {
-        console.log(notification);
+        // console.log(notification);
       }
     );
     return () => {
       foregroundsubscription.remove();
       backgroundSubcription.remove();
+      cancel1=true
     };
   }, []);
 
@@ -236,8 +226,8 @@ function AppContainer() {
         //    }
         //    else continue;
         //  }
-        //  console.log('user name',data1[0].id)
-        //  console.log('pass',data1[0].releaseYear)
+        // //  console.log('user name',data1[0].id)
+        // //  console.log('pass',data1[0].releaseYear)
 
         if (condition == true) {
           if (role == "Customer") {
@@ -250,7 +240,7 @@ function AppContainer() {
             userToken = "fksjf";
             await AsyncStorage.setItem("userToken", userToken);
           } catch (e) {
-            console.log(e);
+            // console.log(e);
           }
         }
 
@@ -262,11 +252,11 @@ function AppContainer() {
         try {
           await AsyncStorage.removeItem("userToken");
         } catch (e) {
-          console.log(e);
+          // console.log(e);
         }
         dispatch({ type: "LOGOUT" });
       },
-      signUp: () => {
+      signUp:async (value) => {
         //setUserToken('fksjf');
         // setIsLoading(false);
       },
@@ -281,7 +271,7 @@ function AppContainer() {
       try {
         userToken = await AsyncStorage.getItem("userToken");
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
 
       dispatch({ type: "REGISTER", token: userToken });
@@ -296,7 +286,8 @@ function AppContainer() {
     );
   }
 
-  return (
+  return ( 
+    <AuthNewContext.Provider value={{trigermy, setmytriger}}>
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
         {loginState.userToken !== null ? (
@@ -372,6 +363,7 @@ function AppContainer() {
         )}
       </NavigationContainer>
     </AuthContext.Provider>
+    </AuthNewContext.Provider>
   );
 }
 

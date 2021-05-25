@@ -1,11 +1,13 @@
 {
   "expo": {
     "name": "Vvisit",
+    "author":"H.M.T.S Bandara",
     "notification": {
-      "icon": "https://github.com/Ttecs/mobilenotico/blob/master/output-onlinepngtools.png?raw=true",
+     
       "color": "#89eb34"
     },
     "slug": "vvisit",
+    
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,8 +26,16 @@
       "supportsTablet": true
     },
     "android": {
+      
       "useNextNotificationsApi": true,
-      "package": "com.ttecs.vvisit"
+      "package": "com.ttecs.vvisit",
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSyCsklvQHNKsg2BbaJzUgsAuQH5kFlR4pyw"
+        }
+      },
+      "versionCode":1
     },
     "web": {
       "favicon": "./assets/favicon.png"

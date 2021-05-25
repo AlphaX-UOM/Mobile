@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "411672984143",
-    "project_id": "vvisit-notify",
-    "storage_bucket": "vvisit-notify.appspot.com"
+    "project_number": "251258406300",
+    "firebase_url": "https://vvisit-d6347-default-rtdb.firebaseio.com",
+    "project_id": "vvisit-d6347",
+    "storage_bucket": "vvisit-d6347.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:411672984143:android:8c6ac45beec63bb35c083a",
+        "mobilesdk_app_id": "1:251258406300:android:882aa6e2b85f6714e5b459",
         "android_client_info": {
-          "package_name": "com.newtest"
+          "package_name": "com.ttecs.vvisit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "411672984143-ueghd738i3go5v0o5g9g2fgh096q9rg9.apps.googleusercontent.com",
+          "client_id": "251258406300-puhqh6tg683314emnr23i666ougd44k2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCmHvB08y7_dk7qJARD9cghJ56SwlXPU_s"
+          "current_key": "AIzaSyCsklvQHNKsg2BbaJzUgsAuQH5kFlR4pyw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "411672984143-ueghd738i3go5v0o5g9g2fgh096q9rg9.apps.googleusercontent.com",
+              "client_id": "251258406300-puhqh6tg683314emnr23i666ougd44k2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
